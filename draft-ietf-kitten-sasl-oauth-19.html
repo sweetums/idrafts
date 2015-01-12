@@ -745,7 +745,9 @@ S: 250-SIZE 35651584
 S: 250-8BITMIME
 S: 250-AUTH LOGIN PLAIN OAUTHBEARER 
 S: 250-ENHANCEDSTATUSCODES
+S: 250-STARTTLS
 S: 250 PIPELINING
+[Negotiate TLS...]
 C: t1 AUTHENTICATE OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9c
       2VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9QmVhcmVyIHZGOWRmdDR
       xbVRjMk52YjNSbGNrQmhiSFJoZG1semRHRXVZMjl0Q2c9PQEB
@@ -794,8 +796,7 @@ auth=OAuth realm="Example",
 <pre>
 S: * OK IMAP4rev1 Server Ready
 C: t0 CAPABILITY
-S: * CAPABILITY IMAP4rev1 AUTH=OAUTHBEARER SASL-IR IMAP4rev1 Server 
-     Ready 
+S: * CAPABILITY IMAP4rev1 AUTH=OAUTHBEARER SASL-IR 
 S: t0 OK Completed 
 C: t1 AUTHENTICATE OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAW
       hvc3Q9c2VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9AQE=
@@ -803,7 +804,7 @@ S: + eyJzdGF0dXMiOiJpbnZhbGlkX3Rva2VuIiwic2NvcGUiOiJleGFtcGxl
      X3Njb3BlIiwib3BlbmlkLWNvbmZpZ3VyYXRpb24iOiJodHRwczovL2V4
      YW1wbGUuY29tLy53ZWxsLWtub3duL29wZW5pZC1jb25maWd1cmF0aW9u
      In0=
-C: + AQ==
+C: AQ==
 S: t1 NO SASL authentication failed
 </pre>
 <p></p>
@@ -829,8 +830,7 @@ port=143^Aauth=^A^A
 <pre>
 S: * OK IMAP4rev1 Server Ready
 C: t0 CAPABILITY
-S: * CAPABILITY IMAP4rev1 AUTH=OAUTHBEARER SASL-IR IMAP4rev1 Server 
-     Ready 
+S: * CAPABILITY IMAP4rev1 AUTH=OAUTHBEARER SASL-IR IMAP4rev1
 S: t0 OK Completed 
 C: t1 AUTHENTICATE OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAW
       hvc3Q9c2VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9AQE=
@@ -838,7 +838,7 @@ S: + eyJzdGF0dXMiOiJpbnZhbGlkX3Rva2VuIiwic2NvcGUiOiJleGFtcGxl
      X3Njb3BlIiwib3BlbmlkLWNvbmZpZ3VyYXRpb24iOiJodHRwczovL2V4
      YW1wbGUuY29tLy53ZWxsLWtub3duL29wZW5pZC1jb25maWd1cmF0aW9u
      In0=
-C: + *
+C: *
 S: t1 NO SASL authentication failed
 </pre>
 <p></p>
@@ -1064,7 +1064,7 @@ S: 535 5.7.1 http://support.example.com/mail/oauth
 
 <ul>
 <li>Last call feedback agaiun.  </li>
-<li>Clarified usage of TLS in examples.  Adding reference to RFC4422 and cancellation token and an example for that.  </li>
+<li>Clarified usage of TLS in examples and fixed them some more.  Adding reference to RFC4422 and cancellation token and an example for that.  </li>
 </ul>
 
 <p> </p>

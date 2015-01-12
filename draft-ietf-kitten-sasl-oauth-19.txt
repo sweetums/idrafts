@@ -657,7 +657,9 @@ Internet-Draft                 SASL OAuth                           2014
    S: 250-8BITMIME
    S: 250-AUTH LOGIN PLAIN OAUTHBEARER
    S: 250-ENHANCEDSTATUSCODES
+   S: 250-STARTTLS
    S: 250 PIPELINING
+   [Negotiate TLS...]
    C: t1 AUTHENTICATE OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9c
          2VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9QmVhcmVyIHZGOWRmdDR
          xbVRjMk52YjNSbGNrQmhiSFJoZG1semRHRXVZMjl0Q2c9PQEB
@@ -699,14 +701,13 @@ Internet-Draft                 SASL OAuth                           2014
               oauth_nonce="7d8f3e4a",
               oauth_signature="SSdtIGEgbGl0dGxlIHRlYSBwb3Qu"^A^A
 
-4.3.  Failed Exchange
-
 
 
 Mills, Showalter & Tschofenig   Expires                        [Page 12]
 
 Internet-Draft                 SASL OAuth                           2014
 
+4.3.  Failed Exchange
 
    This IMAP example shows a failed exchange because of the empty
    Authorization header, which is how a client can query for the needed
@@ -714,8 +715,7 @@ Internet-Draft                 SASL OAuth                           2014
 
    S: * OK IMAP4rev1 Server Ready
    C: t0 CAPABILITY
-   S: * CAPABILITY IMAP4rev1 AUTH=OAUTHBEARER SASL-IR IMAP4rev1 Server
-        Ready
+   S: * CAPABILITY IMAP4rev1 AUTH=OAUTHBEARER SASL-IR
    S: t0 OK Completed
    C: t1 AUTHENTICATE OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAW
          hvc3Q9c2VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9AQE=
@@ -723,7 +723,7 @@ Internet-Draft                 SASL OAuth                           2014
         X3Njb3BlIiwib3BlbmlkLWNvbmZpZ3VyYXRpb24iOiJodHRwczovL2V4
         YW1wbGUuY29tLy53ZWxsLWtub3duL29wZW5pZC1jb25maWd1cmF0aW9u
         In0=
-   C: + AQ==
+   C: AQ==
    S: t1 NO SASL authentication failed
 
    The decoded initial client response is:
@@ -746,8 +746,7 @@ Internet-Draft                 SASL OAuth                           2014
 
    S: * OK IMAP4rev1 Server Ready
    C: t0 CAPABILITY
-   S: * CAPABILITY IMAP4rev1 AUTH=OAUTHBEARER SASL-IR IMAP4rev1 Server
-        Ready
+   S: * CAPABILITY IMAP4rev1 AUTH=OAUTHBEARER SASL-IR IMAP4rev1
    S: t0 OK Completed
    C: t1 AUTHENTICATE OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAW
          hvc3Q9c2VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9AQE=
@@ -755,10 +754,11 @@ Internet-Draft                 SASL OAuth                           2014
         X3Njb3BlIiwib3BlbmlkLWNvbmZpZ3VyYXRpb24iOiJodHRwczovL2V4
         YW1wbGUuY29tLy53ZWxsLWtub3duL29wZW5pZC1jb25maWd1cmF0aW9u
         In0=
-   C: + *
+   C: *
    S: t1 NO SASL authentication failed
 
 4.4.  SMTP Example of a Failed Negotiation
+
 
 
 
@@ -1039,8 +1039,9 @@ Appendix B.  Document History
 
    o  Last call feedback agaiun.
 
-   o  Clarified usage of TLS in examples.  Adding reference to RFC4422
-      and cancellation token and an example for that.
+   o  Clarified usage of TLS in examples and fixed them some more.
+      Adding reference to RFC4422 and cancellation token and an example
+      for that.
 
    -18
 
@@ -1055,7 +1056,6 @@ Appendix B.  Document History
 
    o  Added recommendations for discovery and dynamic client
       registration support.
-
 
 Mills, Showalter & Tschofenig   Expires                        [Page 18]
 
