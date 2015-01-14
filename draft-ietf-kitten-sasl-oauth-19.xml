@@ -429,12 +429,12 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
  
       </section>
       <section title="Completing an Error Message Sequence">
-	<t>Section 3.6 of <xref target="RFC4422"/> explicitly prohibits additional information
+	<t>Section 3.6 of SASL <xref target="RFC4422"/> explicitly prohibits additional information
   	in an unsuccessful authentication outcome.  Therefore, the error
   	message is sent in a normal message.  The client MUST then send either an
   	additional client response consisting of a single %x01 (control A) character to 
 	the server in order to allow the server to finish the exchange or send a SASL 
-	cancellation token as generally defined in section 6.3.1.
+	cancellation token as generally defined in section 3.5 of SASL <xref target="RFC4422"/>.
 	A specific example of a cancellation token can be found in IMAP <xref target="RFC3501"/> 
 	section 6.2.2.
 	</t>
