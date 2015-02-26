@@ -514,28 +514,28 @@
 <div id="rfc.figure.1"/>
 <div id="overview"/>
 <pre>
-                                                              ----+
-   +--------+                                  +---------------+  |
-   |        |--(A)-- Authorization Request ---&gt;|   Resource    |  |
-   |        |                                  |     Owner     |  |Plain
-   |        |&lt;-(B)------ Access Grant ---------|               |  |OAuth
-   |        |                                  +---------------+  |2.0
-   |        |                                                     | 
-   |        |         Client Credentials &amp;     +---------------+  |
-   |        |--(C)------ Access Grant --------&gt;| Authorization |  |
-   | Client |                                  |     Server    |  |
-   |        |&lt;-(D)------ Access Token ---------|               |  |
-   |        |      (w/ Optional Refresh Token) +---------------+  |
-   |        |                                                 ----+
-   |        |                                                 ----+
-   |        |                                  +---------------+  |
-   |        |                                  |               |  |OAuth
-   |        |--(E)------ Access Token --------&gt;|    Resource   |  |over
-   |        |                                  |     Server    |  |SASL
-   |        |&lt;-(F)---- Protected Resource -----|               |  |
-   |        |                                  |               |  |
-   +--------+                                  +---------------+  |
-                                                              ----+
+                                                           ----+
++--------+                                  +---------------+  |
+|        |--(A)-- Authorization Request ---&gt;|   Resource    |  |
+|        |                                  |     Owner     |  |Plain
+|        |&lt;-(B)------ Access Grant ---------|               |  |OAuth
+|        |                                  +---------------+  |2.0
+|        |                                                     | 
+|        |         Client Credentials &amp;     +---------------+  |
+|        |--(C)------ Access Grant --------&gt;| Authorization |  |
+| Client |                                  |     Server    |  |
+|        |&lt;-(D)------ Access Token ---------|               |  |
+|        |      (w/ Optional Refresh Token) +---------------+  |
+|        |                                                 ----+
+|        |                                                 ----+
+|        |                                  +---------------+  |
+|        |                                  |               |  |OAuth
+|        |--(E)------ Access Token --------&gt;|    Resource   |  |over
+|        |                                  |     Server    |  |SASL
+|        |&lt;-(F)---- Protected Resource -----|               |  |
+|        |                                  |               |  |
++--------+                                  +---------------+  |
+                                                           ----+
 </pre>
 <p class="figure">Figure 1: OAuth 2.0 Protocol Flow</p>
 <p/>
@@ -555,7 +555,7 @@
 <p id="rfc.section.1.p.8">Again, steps (E) and (F) are not defined in <a href="#RFC6749">[RFC6749]</a> (but are described in, for example, <a href="#RFC6750">[RFC6750]</a> for the OAuth Bearer Token instead) and are the main functionality specified within this document. Consequently, the message exchange shown in <a href="#overview">Figure 1</a> is the result of this specification. The client will generally need to determine the authentication endpoints (and perhaps the service endpoints) before the OAuth 2.0 protocol exchange messages in steps (A)-(D) are executed. The discovery of the resource owner, authorization server endpoints, and client registration are outside the scope of this specification. The client must discover the authorization endpoints using a discovery mechanism such as OpenID Connect Discovery <a href="#OpenID.Discovery">[OpenID.Discovery]</a> or Webfinger using host-meta <a href="#RFC7033">[RFC7033]</a>.  Once credentials are obtained the client proceeds to steps (E) and (F) defined in this specification.  Authorization endpoints MAY require client registration and generic clients SHOULD support the Dynamic Client Registration protocol  <a href="#I-D.ietf-oauth-dyn-reg">[I-D.ietf-oauth-dyn-reg]</a>.  </p>
 <p id="rfc.section.1.p.9">OAuth 1.0 follows a similar model but uses a different terminology and does not separate the resource server from the authorization server.</p>
 <h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#terminology" id="terminology">Terminology</a></h1>
-<p id="rfc.section.2.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119">[RFC2119]</a>.</p>
+<p id="rfc.section.2.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119">[RFC2119]</a>.</p>
 <p id="rfc.section.2.p.2">The reader is assumed to be familiar with the terms used in the OAuth 2.0 specification <a href="#RFC6749">[RFC6749]</a> and SASL <a href="#RFC4422">[RFC4422]</a>.</p>
 <p id="rfc.section.2.p.3">In examples, "C:" and "S:" indicate lines sent by the client and server respectively. Line breaks have been inserted for readability.</p>
 <p id="rfc.section.2.p.4">Note that the IMAP SASL specification requires base64 encoding, see Section 4 of <a href="#RFC4648">[RFC4648]</a>, not this memo.</p>
@@ -718,9 +718,9 @@ S: * OK IMAP4rev1 Server Ready
 C: t0 CAPABILITY
 S: * CAPABILITY IMAP4rev1 AUTH=OAUTHBEARER SASL-IR
 S: t0 OK Completed
-C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9c2
-      VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9QmVhcmVyIHZGOWRmdDRxb
-      VRjMk52YjNSbGNrQmhiSFJoZG1semRHRXVZMjl0Q2c9PQEB
+C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9c2Vy
+      dmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9QmVhcmVyIHZGOWRmd
+      DRxbVRjMk52YjNSbGNrQmhiSFJoZG1semRHRXVZMjl0Q2c9PQEB
 S: t1 OK SASL authentication succeeded
 </pre>
 <p/>
@@ -743,12 +743,12 @@ S: 250-ENHANCEDSTATUSCODES
 S: 250-STARTTLS
 S: 250 PIPELINING
 [Negotiate TLS...]
-C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9c
-      2VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9QmVhcmVyIHZGOWRmdDR
-      xbVRjMk52YjNSbGNrQmhiSFJoZG1semRHRXVZMjl0Q2c9PQEB
+C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9c2Vy
+      dmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9QmVhcmVyIHZGOWRmd
+      DRxbVRjMk52YjNSbGNrQmhiSFJoZG1semRHRXVZMjl0Q2c9PQEB
 S: 235 Authentication successful.
 [connection continues...]
-            </pre>
+</pre>
 <p/>
 <h1 id="rfc.section.4.2"><a href="#rfc.section.4.2">4.2.</a> Successful OAuth 1.0a Token Exchange</h1>
 <p id="rfc.section.4.2.p.1">This IMAP example shows a successful OAuth 1.0a token exchange. Note that line breaks are inserted for readability.  This example assumes that TLS is already established. Signature computation is discussed in <a href="#keyed-digests">Section 3.3</a>.</p>
@@ -809,7 +809,7 @@ port=143^Aauth=^A^A
 {
 "status":"invalid_token",
 "scope":"example_scope",
-"openid-configuration":"https://example.com/.well-known/openid-configuration"
+"openid-configuration":"https://example.com/.well-known/openid-config"
 }
             </pre>
 <p/>

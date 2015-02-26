@@ -116,28 +116,28 @@ Hence, this document  takes
       <t>
         <figure anchor="overview" title="OAuth 2.0 Protocol Flow">
           <artwork><![CDATA[
-                                                              ----+
-   +--------+                                  +---------------+  |
-   |        |--(A)-- Authorization Request --->|   Resource    |  |
-   |        |                                  |     Owner     |  |Plain
-   |        |<-(B)------ Access Grant ---------|               |  |OAuth
-   |        |                                  +---------------+  |2.0
-   |        |                                                     | 
-   |        |         Client Credentials &     +---------------+  |
-   |        |--(C)------ Access Grant -------->| Authorization |  |
-   | Client |                                  |     Server    |  |
-   |        |<-(D)------ Access Token ---------|               |  |
-   |        |      (w/ Optional Refresh Token) +---------------+  |
-   |        |                                                 ----+
-   |        |                                                 ----+
-   |        |                                  +---------------+  |
-   |        |                                  |               |  |OAuth
-   |        |--(E)------ Access Token -------->|    Resource   |  |over
-   |        |                                  |     Server    |  |SASL
-   |        |<-(F)---- Protected Resource -----|               |  |
-   |        |                                  |               |  |
-   +--------+                                  +---------------+  |
-                                                              ----+
+                                                           ----+
++--------+                                  +---------------+  |
+|        |--(A)-- Authorization Request --->|   Resource    |  |
+|        |                                  |     Owner     |  |Plain
+|        |<-(B)------ Access Grant ---------|               |  |OAuth
+|        |                                  +---------------+  |2.0
+|        |                                                     | 
+|        |         Client Credentials &     +---------------+  |
+|        |--(C)------ Access Grant -------->| Authorization |  |
+| Client |                                  |     Server    |  |
+|        |<-(D)------ Access Token ---------|               |  |
+|        |      (w/ Optional Refresh Token) +---------------+  |
+|        |                                                 ----+
+|        |                                                 ----+
+|        |                                  +---------------+  |
+|        |                                  |               |  |OAuth
+|        |--(E)------ Access Token -------->|    Resource   |  |over
+|        |                                  |     Server    |  |SASL
+|        |<-(F)---- Protected Resource -----|               |  |
+|        |                                  |               |  |
++--------+                                  +---------------+  |
+                                                           ----+
 ]]></artwork>
         </figure>
       </t>
@@ -202,7 +202,7 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
 
     <section anchor="terminology" title="Terminology">
       <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
-        "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in
+        "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in
 	<xref target="RFC2119"/>.</t>
       <t>The reader is assumed to be familiar with the terms used in the OAuth 2.0 specification <xref
           target="RFC6749"/> and SASL <xref target="RFC4422"/>.</t>
@@ -529,9 +529,9 @@ S: * OK IMAP4rev1 Server Ready
 C: t0 CAPABILITY
 S: * CAPABILITY IMAP4rev1 AUTH=OAUTHBEARER SASL-IR
 S: t0 OK Completed
-C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9c2
-      VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9QmVhcmVyIHZGOWRmdDRxb
-      VRjMk52YjNSbGNrQmhiSFJoZG1semRHRXVZMjl0Q2c9PQEB
+C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9c2Vy
+      dmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9QmVhcmVyIHZGOWRmd
+      DRxbVRjMk52YjNSbGNrQmhiSFJoZG1semRHRXVZMjl0Q2c9PQEB
 S: t1 OK SASL authentication succeeded
 ]]></artwork>
           </figure>
@@ -567,12 +567,12 @@ S: 250-ENHANCEDSTATUSCODES
 S: 250-STARTTLS
 S: 250 PIPELINING
 [Negotiate TLS...]
-C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9c
-      2VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9QmVhcmVyIHZGOWRmdDR
-      xbVRjMk52YjNSbGNrQmhiSFJoZG1semRHRXVZMjl0Q2c9PQEB
+C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9c2Vy
+      dmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9QmVhcmVyIHZGOWRmd
+      DRxbVRjMk52YjNSbGNrQmhiSFJoZG1semRHRXVZMjl0Q2c9PQEB
 S: 235 Authentication successful.
 [connection continues...]
-            ]]></artwork>
+]]></artwork>
           </figure>
         </t>
 
@@ -668,7 +668,7 @@ port=143^Aauth=^A^A
 {
 "status":"invalid_token",
 "scope":"example_scope",
-"openid-configuration":"https://example.com/.well-known/openid-configuration"
+"openid-configuration":"https://example.com/.well-known/openid-config"
 }
             ]]></artwork>
           </figure>
