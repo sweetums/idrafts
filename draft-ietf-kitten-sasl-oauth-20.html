@@ -406,7 +406,7 @@
 
   <meta name="dct.creator" content="Mills, W., Showalter, T., and H. Tschofenig" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-kitten-sasl-oauth-19.txt" />
-  <meta name="dct.issued" scheme="ISO8601" content="2015-2-26" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-2-27" />
   <meta name="dct.abstract" content="OAuth enables a third-party application to obtain limited access to a protected resource, either on behalf of a resource owner by orchestrating an approval interaction, or by allowing the third-party application to obtain access on its own behalf.  " />
   <meta name="description" content="OAuth enables a third-party application to obtain limited access to a protected resource, either on behalf of a resource owner by orchestrating an approval interaction, or by allowing the third-party application to obtain access on its own behalf.  " />
 
@@ -430,7 +430,7 @@
   <td class="right">T. Showalter</td>
 </tr>
 <tr>
-  <td class="left">Expires: August 30, 2015</td>
+  <td class="left">Expires: August 31, 2015</td>
   <td class="right"></td>
 </tr>
 <tr>
@@ -443,7 +443,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">February 26, 2015</td>
+  <td class="right">February 27, 2015</td>
 </tr>
 
     	
@@ -465,7 +465,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on August 30, 2015.</p>
+<p>This Internet-Draft will expire on August 31, 2015.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -647,7 +647,7 @@
 <p> </p>
 <h1 id="rfc.section.3.2"><a href="#rfc.section.3.2">3.2.</a> Server's Response</h1>
 <p id="rfc.section.3.2.p.1">The server validates the response according the specification for the OAuth Access Token Types used.  If the OAuth Access Token Type utilizes a keyed message digest of the request parameters then the client must provide a client response that satisfies the data requirements for the scheme in use.  </p>
-<p id="rfc.section.3.2.p.2">The server responds to a successfully verified client message by completing the SASL negotiation. The authenticated identity reported by the SASL mechanism is the identity securely established for the client with the OAuth credential.  The application, not the SASL mechanism, based on local access policy determines whether the identity reported by the mechanism is allowed access to the requested resource.  Note that the semantics of the authorization identity is specified by the SASL framework <a href="#RFC4422">[RFC4422]</a>.</p>
+<p id="rfc.section.3.2.p.2">The server responds to a successfully verified client message by completing the SASL negotiation. The authenticated identity reported by the SASL mechanism is the identity securely established for the client with the OAuth credential.  The application, not the SASL mechanism, based on local access policy determines whether the identity reported by the mechanism is allowed access to the requested resource.  Note that the semantics of the authzid is specified by the SASL framework <a href="#RFC4422">[RFC4422]</a>.</p>
 <h1 id="rfc.section.3.2.1"><a href="#rfc.section.3.2.1">3.2.1.</a> OAuth Identifiers in the SASL Context</h1>
 <p id="rfc.section.3.2.1.p.1">In the OAuth framework the client may be authenticated by the authorization server and the resource owner is authenticated to the authorization server. OAuth access tokens may contain information about the authentication of the resource owner and about the client and may therefore make this information accessible to the resource server.</p>
 <p id="rfc.section.3.2.1.p.2">If both identifiers are needed by an application the developer will need to provide a way to communicate that from the SASL mechanism back to the application.  </p>
@@ -660,7 +660,7 @@
       <dt>status (REQUIRED):</dt>
       <dd style="margin-left: 8">The authorization error code. Valid error codes are defined in the IANA "OAuth Extensions Error Registry" specified in the OAuth 2 core specification.  </dd>
       <dt>scope (OPTIONAL):</dt>
-      <dd style="margin-left: 8">An OAuth scope which is valid to access the service.  This may be empty which implies that unscoped tokens are required, or a scope value.  If a scope is specified then a single scope is preferred, use of a space separated list of scopes is NOT RECOMMENDED.  </dd>
+      <dd style="margin-left: 8">An OAuth scope which is valid to access the service.  This may be omitted which implies that unscoped tokens are required.  If a scope is specified then a single scope is preferred, use of a space separated list of scopes is NOT RECOMMENDED.  </dd>
       <dt>openid-configuration (OPTIONAL):</dt>
       <dd style="margin-left: 8">The URL for a document following the OpenID Provider Configuration Information schema as described in OpenID Connect Discovery (OIDCD) <a href="#OpenID.Discovery">[OpenID.Discovery]</a> section 3 that is appropriate for the user.  As specified in OIDCD this will have the "https" URL scheme. This document MUST have all OAuth related data elements populated.  The server MAY return different URLs for users in different domains and the client SHOULD NOT cache a single returned value and assume it applies for all users/domains that the server suports.  The returned discovery document SHOULD have all data elements required by the OpenID Connect Discovery specification populated.  In addition, the discovery document SHOULD contain the 'registration_endpoint' element to identify the endpoint to be used with the Dynamic Client Registration protocol <a href="#I-D.ietf-oauth-dyn-reg">[I-D.ietf-oauth-dyn-reg]</a> to obtain the minimum number of parameters necessary for the OAuth protocol exchange to function.  Another comparable discovery or client registration mechanism MAY be used if available.  </dd>
       <dt></dt>
@@ -671,8 +671,8 @@
 </ul>
 
 <p> </p>
-<p id="rfc.section.3.2.2.p.2">If the resource server provides a scope then the client MUST always request scoped tokens from the token endpoint.  If the resource server provides no scope to the client then the client SHOULD presume an empty scope (unscoped token) is required to access the resource.  </p>
-<p id="rfc.section.3.2.2.p.3">Since clients may interact with a number of application servers, such as email servers and XMPP servers, they need to have a way to determine whether dynamic client registration has been performed already and whether an already available refresh token can be re-used to obtain an access token for the desired resource server.  This specification RECOMMENDs that a client uses the information in the 'iss' element defined in OpenID Connect Core <a href="#OpenID.Core">[OpenID.Core]</a> to make this determination.  </p>
+<p id="rfc.section.3.2.2.p.2">If the resource server provides a scope then the client MUST always request scoped tokens from the token endpoint.  If the resource server does not return a scope the client SHOULD presume an empty scope (unscoped token) is required to access the resource.  </p>
+<p id="rfc.section.3.2.2.p.3">Since clients may interact with a number of application servers, such as email servers and XMPP <a href="#RFC6120">[RFC6120]</a> servers, they need to have a way to determine whether dynamic client registration has been performed already and whether an already available refresh token can be re-used to obtain an access token for the desired resource server.  This specification RECOMMENDs that a client uses the information in the 'iss' element defined in OpenID Connect Core <a href="#OpenID.Core">[OpenID.Core]</a> to make this determination.  </p>
 <h1 id="rfc.section.3.2.3"><a href="#rfc.section.3.2.3">3.2.3.</a> Completing an Error Message Sequence</h1>
 <p id="rfc.section.3.2.3.p.1">Section 3.6 of SASL <a href="#RFC4422">[RFC4422]</a> explicitly prohibits additional information in an unsuccessful authentication outcome.  Therefore, the error message is sent in a normal message.  The client MUST then send either an additional client response consisting of a single %x01 (control A) character to the server in order to allow the server to finish the exchange or send a SASL cancellation token as generally defined in section 3.5 of SASL <a href="#RFC4422">[RFC4422]</a>.  A specific example of a cancellation token can be found in IMAP <a href="#RFC3501">[RFC3501]</a> section 6.2.2.  </p>
 <h1 id="rfc.section.3.3"><a href="#rfc.section.3.3">3.3.</a> <a href="#keyed-digests" id="keyed-digests">OAuth Access Token Types using Keyed Message Digests</a></h1>
@@ -792,8 +792,7 @@ C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAW
       hvc3Q9c2VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9AQE=
 S: + eyJzdGF0dXMiOiJpbnZhbGlkX3Rva2VuIiwic2NvcGUiOiJleGFtcGxl
      X3Njb3BlIiwib3BlbmlkLWNvbmZpZ3VyYXRpb24iOiJodHRwczovL2V4
-     YW1wbGUuY29tLy53ZWxsLWtub3duL29wZW5pZC1jb25maWd1cmF0aW9u
-     In0=
+     YW1wbGUuY29tLy53ZWxsLWtub3duL29wZW5pZC1jb25maWcifQ==
 C: AQ==
 S: t1 NO SASL authentication failed
 </pre>
@@ -843,8 +842,8 @@ S: 250-ENHANCEDSTATUSCODES
 S: 250 PIPELINING
 C: AUTH OAUTHBEARER bix1c2VyPXNvbWV1c2VyQGV4YW1wbGUuY29tLAFhdXRoPUJlYXJl
        ciB2RjlkZnQ0cW1UYzJOdmIzUmxja0JoZEhSaGRtbHpkR0V1WTI5dENnPT0BAQ==
-S: 334 eyJzdGF0dXMiOiI0MDEiLCJzY2hlbWVzIjoiYmVhcmVyIG1hYyIsInNjb3BlIjoia
-       HR0cHM6Ly9tYWlsLmdvb2dsZS5jb20vIn0K
+S: 334 eyJzdGF0dXMiOiJpbnZhbGlkX3Rva2VuIiwic2NoZW1lcyI6ImJlYXJlciBtYWMiL
+       CJzY29wZSI6Imh0dHBzOi8vbWFpbC5nb29nbGUuY29tLyJ9
 C: AQ==
 S: 535-5.7.1 Username and Password not accepted. Learn more at
 S: 535 5.7.1 http://support.example.com/mail/oauth

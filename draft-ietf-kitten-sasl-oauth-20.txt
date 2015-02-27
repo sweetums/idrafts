@@ -5,10 +5,10 @@
 KITTEN                                                          W. Mills
 Internet-Draft                                                 Microsoft
 Intended status: Standards Track                            T. Showalter
-Expires: August 30, 2015
+Expires: August 31, 2015
                                                            H. Tschofenig
                                                                 ARM Ltd.
-                                                       February 26, 2015
+                                                       February 27, 2015
 
 
                    A set of SASL Mechanisms for OAuth
@@ -53,12 +53,12 @@ Status of This Memo
 
 
 
-Mills, et al.            Expires August 30, 2015                [Page 1]
+Mills, et al.            Expires August 31, 2015                [Page 1]
 
 Internet-Draft                 SASL OAuth                  February 2015
 
 
-   This Internet-Draft will expire on August 30, 2015.
+   This Internet-Draft will expire on August 31, 2015.
 
 Copyright Notice
 
@@ -91,16 +91,16 @@ Table of Contents
      4.1.  Successful Bearer Token Exchange  . . . . . . . . . . . .  12
      4.2.  Successful OAuth 1.0a Token Exchange  . . . . . . . . . .  13
      4.3.  Failed Exchange . . . . . . . . . . . . . . . . . . . . .  13
-     4.4.  SMTP Example of a Failed Negotiation  . . . . . . . . . .  15
+     4.4.  SMTP Example of a Failed Negotiation  . . . . . . . . . .  14
    5.  Security Considerations . . . . . . . . . . . . . . . . . . .  15
-   6.  Internationalization Considerations . . . . . . . . . . . . .  17
+   6.  Internationalization Considerations . . . . . . . . . . . . .  16
    7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  17
      7.1.  SASL Registration . . . . . . . . . . . . . . . . . . . .  17
-   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  18
-     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  18
-     8.2.  Informative References  . . . . . . . . . . . . . . . . .  19
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  17
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  17
+     8.2.  Informative References  . . . . . . . . . . . . . . . . .  18
    Appendix A.  Acknowlegements  . . . . . . . . . . . . . . . . . .  19
-   Appendix B.  Document History . . . . . . . . . . . . . . . . . .  20
+   Appendix B.  Document History . . . . . . . . . . . . . . . . . .  19
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  23
 
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Mills, et al.            Expires August 30, 2015                [Page 2]
+Mills, et al.            Expires August 31, 2015                [Page 2]
 
 Internet-Draft                 SASL OAuth                  February 2015
 
@@ -165,7 +165,7 @@ Internet-Draft                 SASL OAuth                  February 2015
 
 
 
-Mills, et al.            Expires August 30, 2015                [Page 3]
+Mills, et al.            Expires August 31, 2015                [Page 3]
 
 Internet-Draft                 SASL OAuth                  February 2015
 
@@ -221,7 +221,7 @@ Internet-Draft                 SASL OAuth                  February 2015
 
 
 
-Mills, et al.            Expires August 30, 2015                [Page 4]
+Mills, et al.            Expires August 31, 2015                [Page 4]
 
 Internet-Draft                 SASL OAuth                  February 2015
 
@@ -277,7 +277,7 @@ Internet-Draft                 SASL OAuth                  February 2015
 
 
 
-Mills, et al.            Expires August 30, 2015                [Page 5]
+Mills, et al.            Expires August 31, 2015                [Page 5]
 
 Internet-Draft                 SASL OAuth                  February 2015
 
@@ -333,7 +333,7 @@ Internet-Draft                 SASL OAuth                  February 2015
 
 
 
-Mills, et al.            Expires August 30, 2015                [Page 6]
+Mills, et al.            Expires August 31, 2015                [Page 6]
 
 Internet-Draft                 SASL OAuth                  February 2015
 
@@ -389,7 +389,7 @@ Internet-Draft                 SASL OAuth                  February 2015
 
 
 
-Mills, et al.            Expires August 30, 2015                [Page 7]
+Mills, et al.            Expires August 31, 2015                [Page 7]
 
 Internet-Draft                 SASL OAuth                  February 2015
 
@@ -435,8 +435,8 @@ Internet-Draft                 SASL OAuth                  February 2015
    client with the OAuth credential.  The application, not the SASL
    mechanism, based on local access policy determines whether the
    identity reported by the mechanism is allowed access to the requested
-   resource.  Note that the semantics of the authorization identity is
-   specified by the SASL framework [RFC4422].
+   resource.  Note that the semantics of the authzid is specified by the
+   SASL framework [RFC4422].
 
 
 
@@ -445,7 +445,7 @@ Internet-Draft                 SASL OAuth                  February 2015
 
 
 
-Mills, et al.            Expires August 30, 2015                [Page 8]
+Mills, et al.            Expires August 31, 2015                [Page 8]
 
 Internet-Draft                 SASL OAuth                  February 2015
 
@@ -476,10 +476,10 @@ Internet-Draft                 SASL OAuth                  February 2015
          specified in the OAuth 2 core specification.
 
       scope (OPTIONAL):  An OAuth scope which is valid to access the
-         service.  This may be empty which implies that unscoped tokens
-         are required, or a scope value.  If a scope is specified then a
-         single scope is preferred, use of a space separated list of
-         scopes is NOT RECOMMENDED.
+         service.  This may be omitted which implies that unscoped
+         tokens are required.  If a scope is specified then a single
+         scope is preferred, use of a space separated list of scopes is
+         NOT RECOMMENDED.
 
       openid-configuration (OPTIONAL):  The URL for a document following
          the OpenID Provider Configuration Information schema as
@@ -501,7 +501,7 @@ Internet-Draft                 SASL OAuth                  February 2015
 
 
 
-Mills, et al.            Expires August 30, 2015                [Page 9]
+Mills, et al.            Expires August 31, 2015                [Page 9]
 
 Internet-Draft                 SASL OAuth                  February 2015
 
@@ -515,12 +515,12 @@ Internet-Draft                 SASL OAuth                  February 2015
 
    If the resource server provides a scope then the client MUST always
    request scoped tokens from the token endpoint.  If the resource
-   server provides no scope to the client then the client SHOULD presume
-   an empty scope (unscoped token) is required to access the resource.
+   server does not return a scope the client SHOULD presume an empty
+   scope (unscoped token) is required to access the resource.
 
    Since clients may interact with a number of application servers, such
-   as email servers and XMPP servers, they need to have a way to
-   determine whether dynamic client registration has been performed
+   as email servers and XMPP [RFC6120] servers, they need to have a way
+   to determine whether dynamic client registration has been performed
    already and whether an already available refresh token can be re-used
    to obtain an access token for the desired resource server.  This
    specification RECOMMENDs that a client uses the information in the
@@ -557,7 +557,7 @@ Internet-Draft                 SASL OAuth                  February 2015
 
 
 
-Mills, et al.            Expires August 30, 2015               [Page 10]
+Mills, et al.            Expires August 31, 2015               [Page 10]
 
 Internet-Draft                 SASL OAuth                  February 2015
 
@@ -613,7 +613,7 @@ Internet-Draft                 SASL OAuth                  February 2015
 
 
 
-Mills, et al.            Expires August 30, 2015               [Page 11]
+Mills, et al.            Expires August 31, 2015               [Page 11]
 
 Internet-Draft                 SASL OAuth                  February 2015
 
@@ -669,7 +669,7 @@ Internet-Draft                 SASL OAuth                  February 2015
 
 
 
-Mills, et al.            Expires August 30, 2015               [Page 12]
+Mills, et al.            Expires August 31, 2015               [Page 12]
 
 Internet-Draft                 SASL OAuth                  February 2015
 
@@ -725,7 +725,7 @@ Internet-Draft                 SASL OAuth                  February 2015
 
 
 
-Mills, et al.            Expires August 30, 2015               [Page 13]
+Mills, et al.            Expires August 31, 2015               [Page 13]
 
 Internet-Draft                 SASL OAuth                  February 2015
 
@@ -738,8 +738,7 @@ Internet-Draft                 SASL OAuth                  February 2015
          hvc3Q9c2VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9AQE=
    S: + eyJzdGF0dXMiOiJpbnZhbGlkX3Rva2VuIiwic2NvcGUiOiJleGFtcGxl
         X3Njb3BlIiwib3BlbmlkLWNvbmZpZ3VyYXRpb24iOiJodHRwczovL2V4
-        YW1wbGUuY29tLy53ZWxsLWtub3duL29wZW5pZC1jb25maWd1cmF0aW9u
-        In0=
+        YW1wbGUuY29tLy53ZWxsLWtub3duL29wZW5pZC1jb25maWcifQ==
    C: AQ==
    S: t1 NO SASL authentication failed
 
@@ -774,23 +773,19 @@ Internet-Draft                 SASL OAuth                  February 2015
    C: *
    S: t1 NO SASL authentication failed
 
-
-
-
-
-
-
-
-Mills, et al.            Expires August 30, 2015               [Page 14]
-
-Internet-Draft                 SASL OAuth                  February 2015
-
-
 4.4.  SMTP Example of a Failed Negotiation
 
    This example shows an authorization failure in an SMTP exchange.
    Note that line breaks are inserted for readability, and that the SMTP
    protocol terminates lines with CR and LF characters (ASCII values
+
+
+
+Mills, et al.            Expires August 31, 2015               [Page 14]
+
+Internet-Draft                 SASL OAuth                  February 2015
+
+
    0x0D and 0x0A), these are not displayed explicitly in the example.
    TLS negotiation is not shown but as noted above it is required for
    the use of Bearer Tokens.
@@ -806,8 +801,8 @@ S: 250-ENHANCEDSTATUSCODES
 S: 250 PIPELINING
 C: AUTH OAUTHBEARER bix1c2VyPXNvbWV1c2VyQGV4YW1wbGUuY29tLAFhdXRoPUJlYXJl
        ciB2RjlkZnQ0cW1UYzJOdmIzUmxja0JoZEhSaGRtbHpkR0V1WTI5dENnPT0BAQ==
-S: 334 eyJzdGF0dXMiOiI0MDEiLCJzY2hlbWVzIjoiYmVhcmVyIG1hYyIsInNjb3BlIjoia
-       HR0cHM6Ly9tYWlsLmdvb2dsZS5jb20vIn0K
+S: 334 eyJzdGF0dXMiOiJpbnZhbGlkX3Rva2VuIiwic2NoZW1lcyI6ImJlYXJlciBtYWMiL
+       CJzY29wZSI6Imh0dHBzOi8vbWFpbC5nb29nbGUuY29tLyJ9
 C: AQ==
 S: 535-5.7.1 Username and Password not accepted. Learn more at
 S: 535 5.7.1 http://support.example.com/mail/oauth
@@ -833,21 +828,19 @@ S: 535 5.7.1 http://support.example.com/mail/oauth
    This document specifies two SASL Mechanisms for OAuth and each comes
    with different security properties.
 
-
-
-
-
-Mills, et al.            Expires August 30, 2015               [Page 15]
-
-Internet-Draft                 SASL OAuth                  February 2015
-
-
    OAUTHBEARER:  This mechanism borrows from OAuth 2.0 bearer tokens
       [RFC6750].  It relies on the application using TLS to protect the
       OAuth 2.0 Bearer Token exchange; without TLS usage at the
       application layer this method is completely insecure.
       Consequently, TLS MUST be provided by the application when
       choosing this authentication mechanism.
+
+
+
+Mills, et al.            Expires August 31, 2015               [Page 15]
+
+Internet-Draft                 SASL OAuth                  February 2015
+
 
    OAUTH10A:  This mechanism re-uses OAuth 1.0a MAC tokens (using the
       HMAC-SHA1 keyed message digest), as described in Section 3.4.2 of
@@ -888,16 +881,6 @@ Internet-Draft                 SASL OAuth                  February 2015
       access token for each connection to a resource server, but it
       SHOULD cache and re-use valid credentials.
 
-
-
-
-
-
-Mills, et al.            Expires August 30, 2015               [Page 16]
-
-Internet-Draft                 SASL OAuth                  February 2015
-
-
 6.  Internationalization Considerations
 
    The identifer asserted by the OAuth authorization server about the
@@ -907,6 +890,14 @@ Internet-Draft                 SASL OAuth                  February 2015
    usage in an email-based application.  The identifier may therefore
    contain internationalized characters and an application needs to
    ensure that the mapping between the identifier provided by OAuth is
+
+
+
+Mills, et al.            Expires August 31, 2015               [Page 16]
+
+Internet-Draft                 SASL OAuth                  February 2015
+
+
    suitable for use with the application layer protocol SASL is
    incorporated into.
 
@@ -946,14 +937,6 @@ Internet-Draft                 SASL OAuth                  February 2015
 
       Owner/Change controller: the IETF
 
-
-
-
-Mills, et al.            Expires August 30, 2015               [Page 17]
-
-Internet-Draft                 SASL OAuth                  February 2015
-
-
       Note: None
 
 8.  References
@@ -963,6 +946,13 @@ Internet-Draft                 SASL OAuth                  February 2015
    [OpenID.Core]
               Sakimura, N., Bradley, J., Jones, M., de Medeiros, B., and
               C. Mortimore, "OpenID Connect Core 1.0", February 2014.
+
+
+
+Mills, et al.            Expires August 31, 2015               [Page 17]
+
+Internet-Draft                 SASL OAuth                  February 2015
+
 
    [OpenID.Discovery]
               Sakimura, N., Bradley, J., Jones, M., and E. Jay, "OpenID
@@ -1000,16 +990,6 @@ Internet-Draft                 SASL OAuth                  February 2015
    [RFC7159]  Bray, T., "The JavaScript Object Notation (JSON) Data
               Interchange Format", RFC 7159, March 2014.
 
-
-
-
-
-
-Mills, et al.            Expires August 30, 2015               [Page 18]
-
-Internet-Draft                 SASL OAuth                  February 2015
-
-
 8.2.  Informative References
 
    [I-D.ietf-oauth-dyn-reg]
@@ -1022,6 +1002,13 @@ Internet-Draft                 SASL OAuth                  February 2015
               Jones, M., Bradley, J., and N. Sakimura, "JSON Web Token
               (JWT)", draft-ietf-oauth-json-web-token-32 (work in
               progress), December 2014.
+
+
+
+Mills, et al.            Expires August 31, 2015               [Page 18]
+
+Internet-Draft                 SASL OAuth                  February 2015
+
 
    [RFC3501]  Crispin, M., "INTERNET MESSAGE ACCESS PROTOCOL - VERSION
               4rev1", RFC 3501, March 2003.
@@ -1058,14 +1045,6 @@ Appendix A.  Acknowlegements
    Tom Yu, Shawn Emery, Josh Howlett, Sam Hartman.  The supervising area
    director was Stephen Farrell.
 
-
-
-
-Mills, et al.            Expires August 30, 2015               [Page 19]
-
-Internet-Draft                 SASL OAuth                  February 2015
-
-
 Appendix B.  Document History
 
    [[ to be removed by RFC editor before publication as an RFC ]]
@@ -1079,6 +1058,13 @@ Appendix B.  Document History
       for that.
 
    -18
+
+
+
+Mills, et al.            Expires August 31, 2015               [Page 19]
+
+Internet-Draft                 SASL OAuth                  February 2015
+
 
    o  Last call feedback round #5.  Fixed -17 change log.
 
@@ -1115,13 +1101,6 @@ Appendix B.  Document History
    o  Added the "user" parameter back, which was pulled when we started
       down the GS2 path.  Same language as -03.
 
-
-
-Mills, et al.            Expires August 30, 2015               [Page 20]
-
-Internet-Draft                 SASL OAuth                  February 2015
-
-
    o  Defined a stub GS2 header to make sure that when the GS2 bride is
       defined for this that nothing will break when it actually starts
       to get populated.
@@ -1135,6 +1114,13 @@ Internet-Draft                 SASL OAuth                  February 2015
    o  Removed -PLUS components from the specification.
 
    -11
+
+
+
+Mills, et al.            Expires August 31, 2015               [Page 20]
+
+Internet-Draft                 SASL OAuth                  February 2015
+
 
    o  Removed GSS-API components from the specification.
 
@@ -1171,13 +1157,6 @@ Internet-Draft                 SASL OAuth                  February 2015
 
    o  Removed the user field.  Fixed the examples again.
 
-
-
-Mills, et al.            Expires August 30, 2015               [Page 21]
-
-Internet-Draft                 SASL OAuth                  February 2015
-
-
    o  Added canonicalization language.
 
    o
@@ -1191,6 +1170,13 @@ Internet-Draft                 SASL OAuth                  February 2015
       the IANA registrations.
 
    o  Added the user field back into the SASL message.
+
+
+
+Mills, et al.            Expires August 31, 2015               [Page 21]
+
+Internet-Draft                 SASL OAuth                  February 2015
+
 
    o  Fixed the examples (again).
 
@@ -1227,13 +1213,6 @@ Internet-Draft                 SASL OAuth                  February 2015
 
    o  Minor editorial changes.
 
-
-
-Mills, et al.            Expires August 30, 2015               [Page 22]
-
-Internet-Draft                 SASL OAuth                  February 2015
-
-
    -01
 
    o  Ripping out discovery.  Changed to refer to I-D.jones-appsawg-
@@ -1247,6 +1226,13 @@ Internet-Draft                 SASL OAuth                  February 2015
       adopted.
 
    o  Minor fixes.
+
+
+
+Mills, et al.            Expires August 31, 2015               [Page 22]
+
+Internet-Draft                 SASL OAuth                  February 2015
+
 
 Authors' Addresses
 
@@ -1285,4 +1271,18 @@ Authors' Addresses
 
 
 
-Mills, et al.            Expires August 30, 2015               [Page 23]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mills, et al.            Expires August 31, 2015               [Page 23]

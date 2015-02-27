@@ -351,7 +351,7 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
    	the OAuth credential.  The application, not the SASL mechanism, based on local
 	access policy determines whether the identity reported by the mechanism 
 	is allowed access to the requested resource.  Note that the semantics of the 
-	authorization identity is specified by the SASL framework <xref target="RFC4422"/>.</t>
+	authzid is specified by the SASL framework <xref target="RFC4422"/>.</t>
         
           <section title="OAuth Identifiers in the SASL Context">
           
@@ -380,8 +380,8 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
 				  specified in the OAuth 2 core specification. 
             </t>
 	    <t hangText="scope (OPTIONAL):">An OAuth scope which is valid to access the service. 
-				This may be empty which implies that unscoped tokens are required, 
-				or a scope value.  If a scope is specified then a single scope is 
+				This may be omitted which implies that unscoped tokens are required.
+				If a scope is specified then a single scope is 
 				preferred, use of a space separated list of scopes is NOT RECOMMENDED.
                   </t>
 	    <t hangText="openid-configuration (OPTIONAL):">The URL for a document following the 
@@ -412,14 +412,13 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
 
 
     <t>If the resource server provides a scope then the client MUST always request scoped
-	tokens from the token endpoint.  If the resource server provides no scope to the 
-	client then the client SHOULD presume 
-	an empty scope (unscoped token) is required to access the resource.
+	tokens from the token endpoint.  If the resource server does not return a scope 
+	the client SHOULD presume an empty scope (unscoped token) is required to access the resource.
     </t>
 
     <t>
       Since clients may interact with a number of application servers,
-      such as email servers and XMPP servers, they need to have a way
+      such as email servers and XMPP <xref target="RFC6120"/> servers, they need to have a way
       to determine whether dynamic client registration has been performed
       already and whether an already available refresh token can be
       re-used to obtain an access token for the desired resource server.
@@ -645,8 +644,7 @@ C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAW
       hvc3Q9c2VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9AQE=
 S: + eyJzdGF0dXMiOiJpbnZhbGlkX3Rva2VuIiwic2NvcGUiOiJleGFtcGxl
      X3Njb3BlIiwib3BlbmlkLWNvbmZpZ3VyYXRpb24iOiJodHRwczovL2V4
-     YW1wbGUuY29tLy53ZWxsLWtub3duL29wZW5pZC1jb25maWd1cmF0aW9u
-     In0=
+     YW1wbGUuY29tLy53ZWxsLWtub3duL29wZW5pZC1jb25maWcifQ==
 C: AQ==
 S: t1 NO SASL authentication failed
 ]]></artwork>
@@ -724,8 +722,8 @@ S: 250-ENHANCEDSTATUSCODES
 S: 250 PIPELINING
 C: AUTH OAUTHBEARER bix1c2VyPXNvbWV1c2VyQGV4YW1wbGUuY29tLAFhdXRoPUJlYXJl
        ciB2RjlkZnQ0cW1UYzJOdmIzUmxja0JoZEhSaGRtbHpkR0V1WTI5dENnPT0BAQ==
-S: 334 eyJzdGF0dXMiOiI0MDEiLCJzY2hlbWVzIjoiYmVhcmVyIG1hYyIsInNjb3BlIjoia
-       HR0cHM6Ly9tYWlsLmdvb2dsZS5jb20vIn0K
+S: 334 eyJzdGF0dXMiOiJpbnZhbGlkX3Rva2VuIiwic2NoZW1lcyI6ImJlYXJlciBtYWMiL
+       CJzY29wZSI6Imh0dHBzOi8vbWFpbC5nb29nbGUuY29tLyJ9
 C: AQ==
 S: 535-5.7.1 Username and Password not accepted. Learn more at
 S: 535 5.7.1 http://support.example.com/mail/oauth
