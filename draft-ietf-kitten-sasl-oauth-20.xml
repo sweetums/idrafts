@@ -412,8 +412,7 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
 
 
     <t>If the resource server provides a scope then the client MUST always request scoped
-	tokens from the token endpoint.  If the resource server does not return a scope or returns
-	a scope with an empty value, i.e. scope="",
+	tokens from the token endpoint.  If the resource server does not return a scope 
 	the client SHOULD presume an empty scope (unscoped token) is required to access the resource.
     </t>
 

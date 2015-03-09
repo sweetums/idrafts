@@ -401,12 +401,12 @@
 <link href="#rfc.authors" rel="Chapter"/>
 
 
-  <meta name="generator" content="xml2rfc version 2.4.9 - http://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.4.9dev0 - http://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Mills, W., Showalter, T., and H. Tschofenig" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-kitten-sasl-oauth-19.txt" />
-  <meta name="dct.issued" scheme="ISO8601" content="2015-3-5" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-2-27" />
   <meta name="dct.abstract" content="OAuth enables a third-party application to obtain limited access to a protected resource, either on behalf of a resource owner by orchestrating an approval interaction, or by allowing the third-party application to obtain access on its own behalf.  " />
   <meta name="description" content="OAuth enables a third-party application to obtain limited access to a protected resource, either on behalf of a resource owner by orchestrating an approval interaction, or by allowing the third-party application to obtain access on its own behalf.  " />
 
@@ -430,7 +430,7 @@
   <td class="right">T. Showalter</td>
 </tr>
 <tr>
-  <td class="left">Expires: September 6, 2015</td>
+  <td class="left">Expires: August 31, 2015</td>
   <td class="right"></td>
 </tr>
 <tr>
@@ -443,7 +443,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">March 5, 2015</td>
+  <td class="right">February 27, 2015</td>
 </tr>
 
     	
@@ -465,7 +465,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on September 6, 2015.</p>
+<p>This Internet-Draft will expire on August 31, 2015.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -671,7 +671,7 @@
 </ul>
 
 <p> </p>
-<p id="rfc.section.3.2.2.p.2">If the resource server provides a scope then the client MUST always request scoped tokens from the token endpoint.  If the resource server does not return a scope or returns a scope with an empty value, i.e. scope="", the client SHOULD presume an empty scope (unscoped token) is required to access the resource.  </p>
+<p id="rfc.section.3.2.2.p.2">If the resource server provides a scope then the client MUST always request scoped tokens from the token endpoint.  If the resource server does not return a scope the client SHOULD presume an empty scope (unscoped token) is required to access the resource.  </p>
 <p id="rfc.section.3.2.2.p.3">Since clients may interact with a number of application servers, such as email servers and XMPP <a href="#RFC6120">[RFC6120]</a> servers, they need to have a way to determine whether dynamic client registration has been performed already and whether an already available refresh token can be re-used to obtain an access token for the desired resource server.  This specification RECOMMENDs that a client uses the information in the 'iss' element defined in OpenID Connect Core <a href="#OpenID.Core">[OpenID.Core]</a> to make this determination.  </p>
 <h1 id="rfc.section.3.2.3"><a href="#rfc.section.3.2.3">3.2.3.</a> Completing an Error Message Sequence</h1>
 <p id="rfc.section.3.2.3.p.1">Section 3.6 of SASL <a href="#RFC4422">[RFC4422]</a> explicitly prohibits additional information in an unsuccessful authentication outcome.  Therefore, the error message is sent in a normal message.  The client MUST then send either an additional client response consisting of a single %x01 (control A) character to the server in order to allow the server to finish the exchange or send a SASL cancellation token as generally defined in section 3.5 of SASL <a href="#RFC4422">[RFC4422]</a>.  A specific example of a cancellation token can be found in IMAP <a href="#RFC3501">[RFC3501]</a> section 6.2.2.  </p>
