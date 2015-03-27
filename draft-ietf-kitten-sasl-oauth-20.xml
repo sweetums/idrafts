@@ -11,7 +11,7 @@
 <?rfc linkmailto="yes" ?>
 
 
-<rfc ipr="trust200902" docName="draft-ietf-kitten-sasl-oauth-19.txt" category="std">
+<rfc ipr="trust200902" docName="draft-ietf-kitten-sasl-oauth-20.txt" category="std">
 
   <front>
     <title abbrev="SASL OAuth">A set of SASL Mechanisms for OAuth</title>
