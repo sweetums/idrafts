@@ -596,16 +596,29 @@ TD-CERT-DIGEST-ALGORITHMS-DATA ::= SEQUENCE {
 <p id="rfc.section.6.p.3">A new KDF is identified by an object identifier.  The following KDF object identifiers are defined: </p>
 <div id="#rfc.figure.4"></div>
 <pre>
-id-pkinit-kdf OBJECT IDENTIFIER           ::= { id-pkinit 6 }
+id-pkinit OBJECT IDENTIFIER ::=
+         { iso(1) identified-organization(3) dod(6) internet(1)
+           security(5) kerberosv5(2) pkinit (3) }
+    -- Defined in RFC 4556 and quoted here for the reader.
+
+id-pkinit-kdf OBJECT IDENTIFIER      ::= { id-pkinit kdf(6) }
     -- PKINIT KDFs
-id-pkinit-kdf-ah-sha1 OBJECT IDENTIFIER   ::= { id-pkinit-kdf 1 }
-    -- SP800 56A ASN.1 structured hash based KDF using SHA-1
-id-pkinit-kdf-ah-sha256 OBJECT IDENTIFIER ::= { id-pkinit-kdf 2 }
-    -- SP800 56A ASN.1 structured hash based KDF using SHA-256
-id-pkinit-kdf-ah-sha512 OBJECT IDENTIFIER ::= { id-pkinit-kdf 3 }
-    -- SP800 56A ASN.1 structured hash based KDF using SHA-512
-id-pkinit-kdf-ah-sha384 OBJECT IDENTIFIER ::= { id-pkinit-kdf 4 }
-    -- SP800 56A ASN.1 structured hash based KDF using SHA-384
+
+id-pkinit-kdf-ah-sha1 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha1(1) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-1
+
+id-pkinit-kdf-ah-sha256 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha256(2) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-256
+
+id-pkinit-kdf-ah-sha512 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha512(3) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-512
+
+id-pkinit-kdf-ah-sha384 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha384(4) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-384
 
           </pre>
 <p></p>
@@ -713,10 +726,10 @@ DHRepInfo ::= SEQUENCE {
 <p id="rfc.section.6.p.18">This document introduces the following new PKINIT error code: </p>
 <p></p>
 
-<ul><li>KDC_ERR_NO_ACCEPTABLE_KDF 82 </li></ul>
+<ul><li>KDC_ERR_NO_ACCEPTABLE_KDF 100 </li></ul>
 
 <p> </p>
-<p id="rfc.section.6.p.20">If no acceptable KDF is found, the error KDC_ERR_NO_ACCEPTABLE_KDF (82) will be returned..  </p>
+<p id="rfc.section.6.p.20">If no acceptable KDF is found, the error KDC_ERR_NO_ACCEPTABLE_KDF (100) will be returned..  </p>
 <h1 id="rfc.section.7">
 <a href="#rfc.section.7">7.</a> Test vectors</h1>
 <p id="rfc.section.7.p.1">This section contains test vectors for the KDF defined above.  </p>
@@ -951,11 +964,30 @@ IMPORTS
          modules(4) krb5spec2(2) }
          -- as defined in RFC 4120.
 
-   PKAuthenticator, DHNonce
+   PKAuthenticator, DHNonce, id-pkinit
        FROM KerberosV5-PK-INIT-SPEC {
          iso(1) identified-organization(3) dod(6) internet(1)
          security(5) kerberosV5(2) modules(4) pkinit(5) };
          -- as defined in RFC 4556.
+
+id-pkinit-kdf OBJECT IDENTIFIER      ::= { id-pkinit kdf(6) }
+    -- PKINIT KDFs
+
+id-pkinit-kdf-ah-sha1 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha1(1) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-1
+
+id-pkinit-kdf-ah-sha256 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha256(2) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-256
+
+id-pkinit-kdf-ah-sha512 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha512(3) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-512
+
+id-pkinit-kdf-ah-sha384 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha384(4) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-384
 
 TD-CMS-DIGEST-ALGORITHMS-DATA ::= SEQUENCE OF
     AlgorithmIdentifier
