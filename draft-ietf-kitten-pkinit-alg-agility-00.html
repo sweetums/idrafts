@@ -1,0 +1,1146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>PKINIT Algorithm Agility</title>
+
+  <style type="text/css" title="Xml2Rfc (sans serif)">
+  /*<![CDATA[*/
+	  a {
+	  text-decoration: none;
+	  }
+      /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+      a.info {
+          /* This is the key. */
+          position: relative;
+          z-index: 24;
+          text-decoration: none;
+      }
+      a.info:hover {
+          z-index: 25;
+          color: #FFF; background-color: #900;
+      }
+      a.info span { display: none; }
+      a.info:hover span.info {
+          /* The span will display just on :hover state. */
+          display: block;
+          position: absolute;
+          font-size: smaller;
+          top: 2em; left: -5em; width: 15em;
+          padding: 2px; border: 1px solid #333;
+          color: #900; background-color: #EEE;
+          text-align: left;
+      }
+	  a.smpl {
+	  color: black;
+	  }
+	  a:hover {
+	  text-decoration: underline;
+	  }
+	  a:active {
+	  text-decoration: underline;
+	  }
+	  address {
+	  margin-top: 1em;
+	  margin-left: 2em;
+	  font-style: normal;
+	  }
+	  body {
+	  color: black;
+	  font-family: verdana, helvetica, arial, sans-serif;
+	  font-size: 10pt;
+	  max-width: 55em;
+	  
+	  }
+	  cite {
+	  font-style: normal;
+	  }
+	  dd {
+	  margin-right: 2em;
+	  }
+	  dl {
+	  margin-left: 2em;
+	  }
+	
+	  ul.empty {
+	  list-style-type: none;
+	  }
+	  ul.empty li {
+	  margin-top: .5em;
+	  }
+	  dl p {
+	  margin-left: 0em;
+	  }
+	  dt {
+	  margin-top: .5em;
+	  }
+	  h1 {
+	  font-size: 14pt;
+	  line-height: 21pt;
+	  page-break-after: avoid;
+	  }
+	  h1.np {
+	  page-break-before: always;
+	  }
+	  h1 a {
+	  color: #333333;
+	  }
+	  h2 {
+	  font-size: 12pt;
+	  line-height: 15pt;
+	  page-break-after: avoid;
+	  }
+	  h3, h4, h5, h6 {
+	  font-size: 10pt;
+	  page-break-after: avoid;
+	  }
+	  h2 a, h3 a, h4 a, h5 a, h6 a {
+	  color: black;
+	  }
+	  img {
+	  margin-left: 3em;
+	  }
+	  li {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol p {
+	  margin-left: 0em;
+	  }
+	  p {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  pre {
+	  margin-left: 3em;
+	  background-color: lightyellow;
+	  padding: .25em;
+	  }
+	  pre.text2 {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f0f0f0;
+	  width: 69em;
+	  }
+	  pre.inline {
+	  background-color: white;
+	  padding: 0em;
+	  }
+	  pre.text {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  width: 69em;
+	  }
+	  pre.drawing {
+	  border-style: solid;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  padding: 2em;
+	  }
+	  table {
+	  margin-left: 2em;
+	  }
+	  table.tt {
+	  vertical-align: top;
+	  }
+	  table.full {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.headers {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.tt td {
+	  vertical-align: top;
+	  }
+	  table.full td {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.tt th {
+	  vertical-align: top;
+	  }
+	  table.full th {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.headers th {
+	  border-style: none none inset none;
+	  border-width: 1px;
+	  }
+	  table.left {
+	  margin-right: auto;
+	  }
+	  table.right {
+	  margin-left: auto;
+	  }
+	  table.center {
+	  margin-left: auto;
+	  margin-right: auto;
+	  }
+	  caption {
+	  caption-side: bottom;
+	  font-weight: bold;
+	  font-size: 9pt;
+	  margin-top: .5em;
+	  }
+	
+	  table.header {
+	  border-spacing: 1px;
+	  width: 95%;
+	  font-size: 10pt;
+	  color: white;
+	  }
+	  td.top {
+	  vertical-align: top;
+	  }
+	  td.topnowrap {
+	  vertical-align: top;
+	  white-space: nowrap; 
+	  }
+	  table.header td {
+	  background-color: gray;
+	  width: 50%;
+	  }
+	  table.header a {
+	  color: white;
+	  }
+	  td.reference {
+	  vertical-align: top;
+	  white-space: nowrap;
+	  padding-right: 1em;
+	  }
+	  thead {
+	  display:table-header-group;
+	  }
+	  ul.toc, ul.toc ul {
+	  list-style: none;
+	  margin-left: 1.5em;
+	  margin-right: 0em;
+	  padding-left: 0em;
+	  }
+	  ul.toc li {
+	  line-height: 150%;
+	  font-weight: bold;
+	  font-size: 10pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  ul.toc li li {
+	  line-height: normal;
+	  font-weight: normal;
+	  font-size: 9pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  li.excluded {
+	  font-size: 0pt;
+	  }
+	  ul p {
+	  margin-left: 0em;
+	  }
+	
+	  .comment {
+	  background-color: yellow;
+	  }
+	  .center {
+	  text-align: center;
+	  }
+	  .error {
+	  color: red;
+	  font-style: italic;
+	  font-weight: bold;
+	  }
+	  .figure {
+	  font-weight: bold;
+	  text-align: center;
+	  font-size: 9pt;
+	  }
+	  .filename {
+	  color: #333333;
+	  font-weight: bold;
+	  font-size: 12pt;
+	  line-height: 21pt;
+	  text-align: center;
+	  }
+	  .fn {
+	  font-weight: bold;
+	  }
+	  .hidden {
+	  display: none;
+	  }
+	  .left {
+	  text-align: left;
+	  }
+	  .right {
+	  text-align: right;
+	  }
+	  .title {
+	  color: #990000;
+	  font-size: 18pt;
+	  line-height: 18pt;
+	  font-weight: bold;
+	  text-align: center;
+	  margin-top: 36pt;
+	  }
+	  .vcardline {
+	  display: block;
+	  }
+	  .warning {
+	  font-size: 14pt;
+	  background-color: yellow;
+	  }
+	
+	
+	  @media print {
+	  .noprint {
+		display: none;
+	  }
+	
+	  a {
+		color: black;
+		text-decoration: none;
+	  }
+	
+	  table.header {
+		width: 90%;
+	  }
+	
+	  td.header {
+		width: 50%;
+		color: black;
+		background-color: white;
+		vertical-align: top;
+		font-size: 12pt;
+	  }
+	
+	  ul.toc a::after {
+		content: leader('.') target-counter(attr(href), page);
+	  }
+	
+	  ul.ind li li a {
+		content: target-counter(attr(href), page);
+	  }
+	
+	  .print2col {
+		column-count: 2;
+		-moz-column-count: 2;
+		column-fill: auto;
+	  }
+	  }
+	
+	  @page {
+	  @top-left {
+		   content: "Internet-Draft"; 
+	  } 
+	  @top-right {
+		   content: "December 2010"; 
+	  } 
+	  @top-center {
+		   content: "Abbreviated Title";
+	  } 
+	  @bottom-left {
+		   content: "Doe"; 
+	  } 
+	  @bottom-center {
+		   content: "Expires June 2011"; 
+	  } 
+	  @bottom-right {
+		   content: "[Page " counter(page) "]"; 
+	  } 
+	  }
+	
+	  @page:first { 
+		@top-left {
+		  content: normal;
+		}
+		@top-right {
+		  content: normal;
+		}
+		@top-center {
+		  content: normal;
+		}
+	  }
+  /*]]>*/
+  </style>
+
+  <link href="#rfc.toc" rel="Contents"/>
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction"/>
+<link href="#rfc.section.2" rel="Chapter" title="2 Requirements Notation"/>
+<link href="#rfc.section.3" rel="Chapter" title="3 paChecksum Agility"/>
+<link href="#rfc.section.4" rel="Chapter" title="4 CMS Digest Algorithm Agility"/>
+<link href="#rfc.section.5" rel="Chapter" title="5 X.509 Certificate Signer Algorithm Agility"/>
+<link href="#rfc.section.6" rel="Chapter" title="6 KDF agility"/>
+<link href="#rfc.section.7" rel="Chapter" title="7 Test vectors"/>
+<link href="#rfc.section.7.1" rel="Chapter" title="7.1 Common Inputs"/>
+<link href="#rfc.section.7.2" rel="Chapter" title="7.2 Test Vector for SHA-1, enctype 18"/>
+<link href="#rfc.section.7.2.1" rel="Chapter" title="7.2.1 Specific Inputs"/>
+<link href="#rfc.section.7.2.2" rel="Chapter" title="7.2.2 Outputs"/>
+<link href="#rfc.section.7.3" rel="Chapter" title="7.3 Test Vector for SHA-256, enctype"/>
+<link href="#rfc.section.7.3.1" rel="Chapter" title="7.3.1 Specific Inputs"/>
+<link href="#rfc.section.7.3.2" rel="Chapter" title="7.3.2 Outputs"/>
+<link href="#rfc.section.7.4" rel="Chapter" title="7.4 Test Vector for SHA-512, enctype"/>
+<link href="#rfc.section.7.4.1" rel="Chapter" title="7.4.1 Specific Inputs"/>
+<link href="#rfc.section.7.4.2" rel="Chapter" title="7.4.2 Outputs"/>
+<link href="#rfc.section.8" rel="Chapter" title="8 Security Considerations"/>
+<link href="#rfc.section.9" rel="Chapter" title="9 Acknowledgements"/>
+<link href="#rfc.section.10" rel="Chapter" title="10 IANA Considerations"/>
+<link href="#rfc.references" rel="Chapter" title="11 References"/>
+<link href="#rfc.references.1" rel="Chapter" title="11.1 Normative References"/>
+<link href="#rfc.references.2" rel="Chapter" title="11.2 Informative References"/>
+<link href="#rfc.appendix.A" rel="Chapter" title="A PKINIT ASN.1 Module"/>
+<link href="#rfc.authors" rel="Chapter"/>
+
+
+  <meta name="generator" content="xml2rfc version 2.4.10 - http://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Hornquist Astrand, L., Zhu, L., Wasserman, M., and W. Mills, Ed." />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-kitten-pkinit-alg-agility-00.txt" />
+  <meta name="dct.issued" scheme="ISO8601" content="2014-11-17" />
+  <meta name="dct.abstract" content="This document updates PKINIT, as defined in RFC 4556, to remove protocol structures tied to specific cryptographic algorithms.  The PKINIT key derivation function is made negotiable, the digest algorithms for signing the pre-authentication data and the client's X.509 certificates are made discoverable.  " />
+  <meta name="description" content="This document updates PKINIT, as defined in RFC 4556, to remove protocol structures tied to specific cryptographic algorithms.  The PKINIT key derivation function is made negotiable, the digest algorithms for signing the pre-authentication data and the client's X.509 certificates are made discoverable.  " />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+  <td class="left">Kitten Working Group</td>
+  <td class="right">L. Hornquist Astrand</td>
+</tr>
+<tr>
+  <td class="left">Internet-Draft</td>
+  <td class="right">Apple, Inc</td>
+</tr>
+<tr>
+  <td class="left">Updates: 4556 (if approved)</td>
+  <td class="right">L. Zhu</td>
+</tr>
+<tr>
+  <td class="left">Intended status: Standards Track</td>
+  <td class="right">Microsoft Corporation</td>
+</tr>
+<tr>
+  <td class="left">Expires: May 21, 2015</td>
+  <td class="right">M. Wasserman</td>
+</tr>
+<tr>
+  <td class="left"></td>
+  <td class="right">Painless Security</td>
+</tr>
+<tr>
+  <td class="left"></td>
+  <td class="right">W. Mills, Ed.</td>
+</tr>
+<tr>
+  <td class="left"></td>
+  <td class="right">Microsoft Corporation</td>
+</tr>
+<tr>
+  <td class="left"></td>
+  <td class="right">November 17, 2014</td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">PKINIT Algorithm Agility<br />
+  <span class="filename">draft-ietf-kitten-pkinit-alg-agility-00.txt</span></p>
+  
+  <h1 id="rfc.abstract">
+  <a href="#rfc.abstract">Abstract</a>
+</h1>
+<p>This document updates PKINIT, as defined in RFC 4556, to remove protocol structures tied to specific cryptographic algorithms.  The PKINIT key derivation function is made negotiable, the digest algorithms for signing the pre-authentication data and the client's X.509 certificates are made discoverable.  </p>
+<p>These changes provide preemptive protection against vulnerabilities discovered in the future against any specific cryptographic algorithm, and allow incremental deployment of newer algorithms.  </p>
+<h1 id="rfc.status">
+  <a href="#rfc.status">Status of This Memo</a>
+</h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on May 21, 2015.</p>
+<h1 id="rfc.copyrightnotice">
+  <a href="#rfc.copyrightnotice">Copyright Notice</a>
+</h1>
+<p>Copyright (c) 2014 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+<p>This document may contain material from IETF Documents or IETF Contributions published or made publicly available before November 10, 2008.  The person(s) controlling the copyright in some of this material may not have granted the IETF Trust the right to allow modifications of such material outside the IETF Standards Process. Without obtaining an adequate license from the person(s) controlling the copyright in such materials, this document may not be modified outside the IETF Standards Process, and derivative works of it may not be created outside the IETF Standards Process, except to format it for publication as an RFC or to translate it into languages other than English.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Introduction</a></li>
+<li>2.   <a href="#rfc.section.2">Requirements Notation</a></li>
+<li>3.   <a href="#rfc.section.3">paChecksum Agility</a></li>
+<li>4.   <a href="#rfc.section.4">CMS Digest Algorithm Agility</a></li>
+<li>5.   <a href="#rfc.section.5">X.509 Certificate Signer Algorithm Agility</a></li>
+<li>6.   <a href="#rfc.section.6">KDF agility</a></li>
+<li>7.   <a href="#rfc.section.7">Test vectors</a></li>
+<ul><li>7.1.   <a href="#rfc.section.7.1">Common Inputs</a></li>
+<li>7.2.   <a href="#rfc.section.7.2">Test Vector for SHA-1, enctype 18</a></li>
+<ul><li>7.2.1.   <a href="#rfc.section.7.2.1">Specific Inputs</a></li>
+<li>7.2.2.   <a href="#rfc.section.7.2.2">Outputs</a></li>
+</ul><li>7.3.   <a href="#rfc.section.7.3">Test Vector for SHA-256, enctype</a></li>
+<ul><li>7.3.1.   <a href="#rfc.section.7.3.1">Specific Inputs</a></li>
+<li>7.3.2.   <a href="#rfc.section.7.3.2">Outputs</a></li>
+</ul><li>7.4.   <a href="#rfc.section.7.4">Test Vector for SHA-512, enctype</a></li>
+<ul><li>7.4.1.   <a href="#rfc.section.7.4.1">Specific Inputs</a></li>
+<li>7.4.2.   <a href="#rfc.section.7.4.2">Outputs</a></li>
+</ul></ul><li>8.   <a href="#rfc.section.8">Security Considerations</a></li>
+<li>9.   <a href="#rfc.section.9">Acknowledgements</a></li>
+<li>10.   <a href="#rfc.section.10">IANA Considerations</a></li>
+<li>11.   <a href="#rfc.references">References</a></li>
+<ul><li>11.1.   <a href="#rfc.references.1">Normative References</a></li>
+<li>11.2.   <a href="#rfc.references.2">Informative References</a></li>
+</ul><li>Appendix A.   <a href="#rfc.appendix.A">PKINIT ASN.1 Module</a></li>
+<li><a href="#rfc.authors">Authors' Addresses</a></li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> Introduction</h1>
+<p id="rfc.section.1.p.1">This document updates PKINIT <a href="#RFC4556">[RFC4556]</a> to remove protocol structures tied to specific cryptographic algorithms.  The PKINIT key derivation function is made negotiable, the digest algorithms for signing the pre-authentication data and the client's X.509 certificates are made discoverable.  </p>
+<p id="rfc.section.1.p.2">These changes provide preemptive protection against vulnerabilities discovered in the future against any specific cryptographic algorithm, and allow incremental deployment of newer algorithms.  </p>
+<p id="rfc.section.1.p.3">In August 2004, Xiaoyun Wang's research group reported MD4 <a href="#RFC6150">[RFC6150]</a> collisions generated using hand calculation <a href="#WANG04">[WANG04]</a>, alongside attacks on later hash function designs in the MD4, MD5 <a href="#RFC1321">[RFC1321]</a> and SHA <a href="#RFC6234">[RFC6234]</a> family.  These attacks and their consequences are discussed in <a href="#RFC6194">[RFC6194]</a>.  These discoveries challenged the security of protocols relying on the collision resistance properties of these hashes.  </p>
+<p id="rfc.section.1.p.4">The Internet Engineering Task Force (IETF) called for actions to update existing protocols to provide crypto algorithm agility so that protocols support multiple cryptographic algorithms (including hash functions) and provide clean, tested transition strategies between algorithms.  </p>
+<p id="rfc.section.1.p.5">This document updates PKINIT to provide crypto algorithm agility.  Several protocol structures used in the <a href="#RFC4556">[RFC4556]</a> protocol are either tied to SHA-1, or do not support negotiation or discovery, but are instead based on local policy.  The following concerns have been addressed in this update: </p>
+<p/>
+
+<ul>
+  <li>The checksum algorithm in the authentication request is hardwired to use SHA-1 <a href="#RFC6234">[RFC6234]</a>.  </li>
+  <li>The acceptable digest algorithms for signing the authentication data are not discoverable.  </li>
+  <li>The key derivation function in Section 3.2.3 of <a href="#RFC4556">[RFC4556]</a> is hardwired to use SHA-1.  </li>
+  <li>The acceptable digest algorithms for signing the client X.509 certificates are not discoverable.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.1.p.7">To address these concerns, new key derivation functions (KDFs), identified by object identifiers, are defined.  The PKINIT client provides a list of KDFs in the request and the Key Distribution Center (KDC) picks one in the response, thus a mutually-supported KDF is negotiated.  </p>
+<p id="rfc.section.1.p.8">Furthermore, structures are defined to allow the client to discover the Cryptographic Message Syntax (CMS) <a href="#RFC5652">[RFC5652]</a> digest algorithms supported by the KDC for signing the pre-authentication data and signing the client X.509 certificate.  </p>
+<h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> Requirements Notation</h1>
+<p id="rfc.section.2.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119">[RFC2119]</a>.</p>
+<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#paChecksum" id="paChecksum">paChecksum Agility</a></h1>
+<p id="rfc.section.3.p.1">The paChecksum defined in Section 3.2.1 of <a href="#RFC4556">[RFC4556]</a> provides a cryptographic binding between the client's pre-authentication data and the corresponding Kerberos request body.  This also prevents the KDC body from being tampered with.  SHA-1 is the only allowed checksum algorithm defined in <a href="#RFC4556">[RFC4556]</a>. This facility relies on the collision resistance properties of the SHA-1 checksum <a href="#RFC6234">[RFC6234]</a>.  </p>
+<p id="rfc.section.3.p.2">When the reply key delivery mechanism is based on public key encryption as described in Section 3.2.3. of <a href="#RFC4556">[RFC4556]</a>, the asChecksum in the KDC reply provides the binding between the pre- authentication and the ticket request and response messages, and integrity protection for the unauthenticated clear text in these messages.  However, if the reply key delivery mechanism is based on the Diffie-Hellman key agreement as described in Section 3.2.3.1 of <a href="#RFC4556">[RFC4556]</a>, the security provided by using SHA-1 in the paChecksum is weak.  In this case, the new KDF selected by the KDC as described in Section 6 provides the cryptographic binding and integrity protection.  </p>
+<h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> CMS Digest Algorithm Agility</h1>
+<p id="rfc.section.4.p.1">When the KDC_ERR_DIGEST_IN_SIGNED_DATA_NOT_ACCEPTED error is returned as described In section 3.2.2 of <a href="#RFC4556">[RFC4556]</a>, implementations comforming to this specification can OPTIONALLY send back a list of supported CMS types signifying the digest algorithms supported by the KDC, in the decreasing preference order.  This is accomplished by including a TD_CMS_DATA_DIGEST_ALGORITHMS typed data element in the error data.  </p>
+<pre>
+            
+td-cms-digest-algorithms INTEGER ::= 111
+
+          </pre>
+<p/>
+<p id="rfc.section.4.p.3">The corresponding data for the TD_CMS_DATA_DIGEST_ALGORITHMS contains the ASN.1 Distinguished Encoding Rules (DER) <a href="#X680">[X680]</a> <a href="#X690">[X690]</a> encoded TD-CMS-DIGEST-ALGORITHMS-DATA structure defined as follows: </p>
+<pre>
+TD-CMS-DIGEST-ALGORITHMS-DATA ::= SEQUENCE OF
+    AlgorithmIdentifier
+        -- Contains the list of CMS algorithm [RFC5652]
+        -- identifiers that identify the digest algorithms
+        -- acceptable by the KDC for signing CMS data in
+        -- the order of decreasing preference.
+
+          </pre>
+<p/>
+<p id="rfc.section.4.p.5">This information sent by the KDC via TD_CMS_DATA_DIGEST_ALGORITHMS can facilitate trouble-shooting when none of the digest algorithms supported by the client is supported by the KDC.  </p>
+<h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> X.509 Certificate Signer Algorithm Agility</h1>
+<pre>
+td-cert-digest-algorithms INTEGER ::= 112
+
+TD-CERT-DIGEST-ALGORITHMS-DATA ::= SEQUENCE {
+        allowedAlgorithms [0] SEQUENCE OF AlgorithmIdentifier,
+                   -- Contains the list of CMS algorithm [RFC5652]
+                   -- identifiers that identify the digest algorithms
+                   -- that are used by the CA to sign the client's
+                   -- X.509 certificate and acceptable by the KDC in
+                   -- the process of validating the client's X.509
+                   -- certificate, in the order of decreasing
+                   -- preference.
+        rejectedAlgorithm [1] AlgorithmIdentifier OPTIONAL,
+                   -- This identifies the digest algorithm that was
+                   -- used to sign the client's X.509 certificate and
+                   -- has been rejected by the KDC in the process of
+                   -- validating the client's X.509 certificate
+                   -- [RFC5280].
+        ...
+}
+
+          </pre>
+<p id="rfc.section.5.p.1">When the client's X.509 certificate is rejected and the KDC_ERR_DIGEST_IN_SIGNED_DATA_NOT_ACCEPTED error is returned as described in section 3.2.2 of <a href="#RFC4556">[RFC4556]</a>, conforming implementations can OPTIONALLY send a list of digest algorithms acceptable by the KDC for use by the Certificate Authority (CA) in signing the client's X.509 certificate, in the decreasing preference order.  This is accomplished by including a TD_CERT_DIGEST_ALGORITHMS typed data element in the error data.  The corresponding data contains the ASN.1 DER encoding of the structure TD-CERT-DIGEST-ALGORITHMS-DATA defined as follows: <a href="#RFC5652">[RFC5652]</a> identifiers that identify digest algorithms that are used by the CA to sign the client's X.509 certificate and acceptable by the KDC in the process of validating the client's X.509 certificate, in the order of decreasing preference.  The rejectedAlgorithm field identifies the signing algorithm for use in signing the client's X.509 certificate that has been rejected by the KDC in the process of validating the client's certificate <a href="#RFC5280">[RFC5280]</a>.  </p>
+<h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> <a href="#KDF" id="KDF">KDF agility</a></h1>
+<p id="rfc.section.6.p.1">Based on <a href="#RFC3766">[RFC3766]</a> and <a href="#X9.42">[X9.42]</a>, Section 3.2.3.1 of <a href="#RFC4556">[RFC4556]</a> defines a Key Derivation Function (KDF) that derives a Kerberos protocol key based on the secret value generated by the Diffie-Hellman key exchange.  This KDF requires the use of SHA-1 <a href="#RFC6234">[RFC6234]</a>.  </p>
+<p id="rfc.section.6.p.2">New KDFs defined in this document based on <a href="#SP80056A">[SP80056A]</a> can be used in conjunction with any hash functions.  </p>
+<p id="rfc.section.6.p.3">A new KDF is identified by an object identifier.  The following KDF object identifiers are defined: </p>
+<pre>
+id-pkinit OBJECT IDENTIFIER ::=
+         { iso(1) identified-organization(3) dod(6) internet(1)
+           security(5) kerberosv5(2) pkinit (3) }
+    -- Defined in RFC 4556 and quoted here for the reader.
+
+id-pkinit-kdf OBJECT IDENTIFIER      ::= { id-pkinit kdf(6) }
+    -- PKINIT KDFs
+
+id-pkinit-kdf-ah-sha1 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha1(1) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-1
+
+id-pkinit-kdf-ah-sha256 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha256(2) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-256
+
+id-pkinit-kdf-ah-sha512 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha512(3) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-512
+
+id-pkinit-kdf-ah-sha384 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha384(4) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-384
+
+          </pre>
+<p/>
+<p id="rfc.section.6.p.5">Where id-pkinit is defined in <a href="#RFC4556">[RFC4556]</a>.  The id-pkinit-kdf-ah-sha1 KDF is the ASN.1 structured hash based KDF (HKDF) <a href="#SP80056A">[SP80056A]</a> that uses SHA-1 <a href="#RFC6234">[RFC6234]</a> as the hash function.  Similarly id-pkinit-kdf-ah-sha256 and id-pkinit-kdf-ah-sha512 are the ASN.1 structured HKDF using SHA-256 <a href="#RFC6234">[RFC6234]</a> and SHA-512 <a href="#RFC6234">[RFC6234]</a> respectively.  </p>
+<p id="rfc.section.6.p.6">To name the input parameters, an abbreviated version of the ASN.1 version of the KDF from <a href="#SP80056A">[SP80056A]</a> is described below, use <a href="#SP80056A">[SP80056A]</a> for the full reference.  </p>
+
+<ol>
+  <li>reps = ceiling (keydatalen/hash length (H)) </li>
+  <li>Initialize a 32-bit, big-endian bit string counter as 1.  </li>
+  <li>For i = 1 to reps by 1, do the following: <ol><li>Compute Hashi = H(counter || Z || OtherInfo).  </li><li>Increment counter (modulo 2^32) </li></ol><p> </p></li>
+  <li>Set key_material = Hash1 || Hash2 || ... so that length of key is K bits.  </li>
+  <li>The above ASN.1 structured <a href="#SP80056A">[SP80056A]</a> HKDF produces a bit string of length K in bits as the keying material, and then the AS reply key is the output of random-to-key() <a href="#RFC3961">[RFC3961]</a> using that returned keying material as the input.  </li>
+</ol>
+
+<p> </p>
+<p id="rfc.section.6.p.7">The input parameters for these KDFs are provided as follows: </p>
+<p/>
+
+<ul>
+  <li>The key data length (K) is the key-generation seed length in bits <a href="#RFC3961">[RFC3961]</a> for the Authentication Service (AS) reply key.  The enctype of the AS reply key is selected according to <a href="#RFC4120">[RFC4120]</a>.  </li>
+  <li>The hash length (H) is 160 bits for id-pkinit-kdf-ah-sha1, 256 bits for id-pkinit-kdf-ah-sha256, 384 bits for id-pkinit-kdf-ah-sha384 and 512 bits for id-pkinit-kdf-ah-sha512.  </li>
+  <li>The secret value (Z) is the shared secret value generated by the Diffie-Hellman exchange.  The Diffie-Hellman shared value is first padded with leading zeros such that the size of the secret value in octets is the same as that of the modulus, then represented as a string of octets in big-endian order.  </li>
+  <li>The algorithm identifier (algorithmID) input parameter is the identifier of the respective KDF.  For example, this is id-pkinit-kdf-ah-sha1 if the KDF is the <a href="#SP80056A">[SP80056A]</a> ASN.1 structured HKDF using SHA-1 as the hash.  </li>
+  <li>The initiator identifier (partyUInfo) contains the ASN.1 DER encoding of the KRB5PrincipalName <a href="#RFC4556">[RFC4556]</a> that identifies the client as specified in the AS-REQ <a href="#RFC4120">[RFC4120]</a> in the request.  </li>
+  <li>The recipient identifier (partyVInfo) contains the ASN.1 DER encoding of the KRB5PrincipalName <a href="#RFC4556">[RFC4556]</a> that identifies the TGS as specified in the AS-REQ <a href="#RFC4120">[RFC4120]</a> in the request.  </li>
+  <li>The supplemental public information (suppPubInfo) is the ASN.1 DER encoding of the structure PkinitSuppPubInfo as defined later in this section.  </li>
+  <li>The supplemental private information (suppPrivInfo) is absent.  </li>
+  <li>The maximum hash input length is 2^64 in bits.  </li>
+</ul>
+
+<p> </p>
+<pre>
+OtherInfo ::= SEQUENCE { 
+        algorithmID   AlgorithmIdentifier, 
+        partyUInfo     [0] OCTET STRING, 
+        partyVInfo     [1] OCTET STRING, 
+        suppPubInfo    [2] OCTET STRING OPTIONAL, 
+        suppPrivInfo   [3] OCTET STRING OPTIONAL 
+}
+
+          </pre>
+<p id="rfc.section.6.p.9">The structure for OtherInfo is defined as follows: </p>
+<pre>
+PkinitSuppPubInfo ::= SEQUENCE {
+       enctype           [0] Int32,
+              -- The enctype of the AS reply key
+       as-REQ            [1] OCTET STRING,
+           -- This contains the AS-REQ in the request.
+       pk-as-rep         [2] OCTET STRING,
+           -- Contains the DER encoding of the type
+           -- PA-PK-AS-REP [RFC4556] in the KDC reply.
+       ...
+}
+
+          </pre>
+<p id="rfc.section.6.p.10">The structure PkinitSuppPubInfo is defined as follows: <a href="#RFC4120">[RFC4120]</a>.  The as-REQ field contains the DER encoding of the type AS-REQ <a href="#RFC4120">[RFC4120]</a> in the request sent from the client to the KDC.  Note that the as-REQ field does not include the wrapping 4 octet length field when TCP is used.  The pk-as-rep field contains the DER encoding of the type PA-PK-AS-REP <a href="#RFC4556">[RFC4556]</a> in the KDC reply.  The PkinitSuppPubInfo provides a cryptographic bindings between the pre-authentication data and the corresponding ticket request and response, thus addressing the concerns described in Section 3.  </p>
+<p id="rfc.section.6.p.11">The KDF is negotiated between the client and the KDC.  The client sends an unordered set of supported KDFs in the request, and the KDC picks one from the set in the reply.  </p>
+<pre>
+AuthPack ::= SEQUENCE {
+       pkAuthenticator   [0] PKAuthenticator,
+       clientPublicValue [1] SubjectPublicKeyInfo OPTIONAL,
+       supportedCMSTypes [2] SEQUENCE OF AlgorithmIdentifier
+                OPTIONAL,
+       clientDHNonce     [3] DHNonce OPTIONAL,
+       ...,
+       supportedKDFs     [4] SEQUENCE OF KDFAlgorithmId OPTIONAL,
+           -- Contains an unordered set of KDFs supported by the
+           -- client.
+       ...
+}
+
+KDFAlgorithmId ::= SEQUENCE {
+       kdf-id            [0] OBJECT IDENTIFIER,
+           -- The object identifier of the KDF
+       ...
+}
+
+          </pre>
+<p id="rfc.section.6.p.12">To acomplish this, the AuthPack structure in <a href="#RFC4556">[RFC4556]</a> is extended as follows: </p>
+<p id="rfc.section.6.p.13">The KDFAlgorithmId structure contains an object identifier that identifies a KDF.  The algorithm of the KDF and its parameters are defined by the corresponding specification of that KDF.  </p>
+<pre>
+DHRepInfo ::= SEQUENCE {
+        dhSignedData         [0] IMPLICIT OCTET STRING,
+        serverDHNonce        [1] DHNonce OPTIONAL,
+        ...,
+        kdf                  [2] KDFAlgorithmId OPTIONAL,
+            -- The KDF picked by the KDC.
+        ...
+}
+
+          </pre>
+<p id="rfc.section.6.p.14">The DHRepInfo structure in <a href="#RFC4556">[RFC4556]</a> is extended as follows: </p>
+<p id="rfc.section.6.p.15">If the supportedKDFs field is not present in the request, the kdf field in the reply MUST be absent.  </p>
+<p id="rfc.section.6.p.16">If the client fills the supportedKDFs field in the request, but the kdf field in the reply is not present, the client can deduce that the KDC is not updated to conform with this specification.  In that case, it is a matter of local policy on the client whether to reject the reply when the kdf field is absent in the reply.  </p>
+<p id="rfc.section.6.p.17">Implementations comforming to this specification MUST support id-pkinit-kdf-ah-sha256.  </p>
+<p id="rfc.section.6.p.18">This document introduces the following new PKINIT error code: </p>
+<p/>
+
+<ul>
+  <li>KDC_ERR_NO_ACCEPTABLE_KDF 100 </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.6.p.20">If no acceptable KDF is found, the error KDC_ERR_NO_ACCEPTABLE_KDF (100) will be returned..  </p>
+<h1 id="rfc.section.7"><a href="#rfc.section.7">7.</a> Test vectors</h1>
+<p id="rfc.section.7.p.1">This section contains test vectors for the KDF defined above.  </p>
+<h1 id="rfc.section.7.1"><a href="#rfc.section.7.1">7.1.</a> Common Inputs</h1>
+<pre>
+Z: Length = 256 bytes, Hex Representation = (All Zeros)
+00000000 00000000 00000000 00000000 000000000 00000000 00000000 00000000
+00000000 00000000 00000000 00000000 000000000 00000000 00000000 00000000
+00000000 00000000 00000000 00000000 000000000 00000000 00000000 00000000
+00000000 00000000 00000000 00000000 000000000 00000000 00000000 00000000
+00000000 00000000 00000000 00000000 000000000 00000000 00000000 00000000
+00000000 00000000 00000000 00000000 000000000 00000000 00000000 00000000
+00000000 00000000 00000000 00000000 000000000 00000000 00000000 00000000
+00000000 00000000 00000000 00000000 000000000 00000000 00000000 00000000
+
+client: Length = 9 bytes, ASCII Representation = lha@SU.SE
+
+server: Length = 18 bytes, ASCII Representation = krbtgt/SU.SE@SU.SE
+
+as-req: Length = 10 bytes, Hex Representation =
+AAAAAAAA AAAAAAAA AAAA
+
+pk-as-rep:  Length = 9 bytes, Hex Representation =
+BBBBBBBB BBBBBBBB BB
+
+ticket: Length =  55 bytes, Hex Representation =
+61353033 A0030201 05A1071B 0553552E 5345A210 300EA003 020101A1 0730051B
+036C6861 A311300F A0030201 12A20804 0668656A 68656A
+
+            </pre>
+<p/>
+<h1 id="rfc.section.7.2"><a href="#rfc.section.7.2">7.2.</a> Test Vector for SHA-1, enctype 18</h1>
+<h1 id="rfc.section.7.2.1"><a href="#rfc.section.7.2.1">7.2.1.</a> Specific Inputs</h1>
+<pre>algorithm-id: (id-pkinit-kdf-ah-sha1) Length = 8 bytes, Hex 
+Representation = 2B060105 02030601
+
+enctype: (aes256-cts-hmac-sha1-96) Length = 1 byte, Decimal
+Representation = 18
+
+              </pre>
+<p/>
+<h1 id="rfc.section.7.2.2"><a href="#rfc.section.7.2.2">7.2.2.</a> Outputs</h1>
+<pre>
+key-material: Length = 32 bytes, Hex Representation =
+E6AB38C9 413E035B B079201E D0B6B73D 8D49A814 A737C04E E6649614 206F73AD
+
+key: Length = 32 bytes, Hex Representation =
+E6AB38C9 413E035B B079201E D0B6B73D 8D49A814 A737C04E E6649614 206F73AD
+
+              </pre>
+<p/>
+<h1 id="rfc.section.7.3"><a href="#rfc.section.7.3">7.3.</a> Test Vector for SHA-256, enctype </h1>
+<h1 id="rfc.section.7.3.1"><a href="#rfc.section.7.3.1">7.3.1.</a> Specific Inputs</h1>
+<pre>
+algorithm-id: (id-pkinit-kdf-ah-sha256) Length = 8 bytes, Hex 
+Representation = 2B060105 02030602
+
+enctype: (aes256-cts-hmac-sha1-96) Length = 1 byte, Decimal
+Representation = 18
+
+              </pre>
+<p/>
+<h1 id="rfc.section.7.3.2"><a href="#rfc.section.7.3.2">7.3.2.</a> Outputs</h1>
+<pre>
+key-material: Length = 32 bytes, Hex Representation =
+77EF4E48 C420AE3F EC75109D 7981697E ED5D295C 90C62564 F7BFD101 FA9bC1D5
+
+key: Length = 32 bytes, Hex Representation =
+77EF4E48 C420AE3F EC75109D 7981697E ED5D295C 90C62564 F7BFD101 FA9bC1D5
+
+              </pre>
+<p/>
+<h1 id="rfc.section.7.4"><a href="#rfc.section.7.4">7.4.</a> Test Vector for SHA-512, enctype </h1>
+<h1 id="rfc.section.7.4.1"><a href="#rfc.section.7.4.1">7.4.1.</a> Specific Inputs</h1>
+<pre>
+algorithm-id: (id-pkinit-kdf-ah-sha512) Length = 8 bytes, Hex 
+Representation = 2B060105 02030603
+
+enctype: (des3-cbc-sha1-kd) Length = 1 byte, Decimal Representation = 16
+
+              </pre>
+<p/>
+<h1 id="rfc.section.7.4.2"><a href="#rfc.section.7.4.2">7.4.2.</a> Outputs</h1>
+<pre>
+key-material: Length = 24 bytes, Hex Representation =
+D3C78A79 D65213EF E9A826F7 5DFB01F7 2362FB16 FB01DAD6
+
+key: Length = 32 bytes, Hex Representation =
+D3C78A79 D65213EF E9A826F7 5DFB01F7 2362FB16 FB01DAD6
+
+              </pre>
+<p/>
+<h1 id="rfc.section.8"><a href="#rfc.section.8">8.</a> Security Considerations</h1>
+<p id="rfc.section.8.p.1">This document describes negotiation of checksum types, key derivation functions and other cryptographic functions.  If negotiation is done unauthenticated, care MUST be taken to accept only acceptable values.  </p>
+<h1 id="rfc.section.9"><a href="#rfc.section.9">9.</a> Acknowledgements</h1>
+<p id="rfc.section.9.p.1">Jeffery Hutzelman, Shawn Emery, Tim Polk and Kelley Burgin reviewed the document and provided suggestions for improvements.  </p>
+<h1 id="rfc.section.10"><a href="#rfc.section.10">10.</a> IANA Considerations</h1>
+<p id="rfc.section.10.p.1">IANA is requested to update the following registrations in the Kerberos Pre-authentication and Typed Data Registry created by section 7.1 of RFC 6113 to refer to this specification. These values were reserved for this specification in the initial registrations.  </p>
+<pre>
+      
+            TD-CMS-DIGEST-ALGORITHMS   111  [ALG-AGILITY]
+            TD-CERT-DIGEST-ALGORITHMS  112  [ALG-AGILITY]
+
+          </pre>
+<p/>
+<h1 id="rfc.references"><a href="#rfc.references">11.</a> References</h1>
+<h1 id="rfc.references.1"><a href="#rfc.references.1">11.1.</a> Normative References</h1>
+<table>
+  <tbody>
+    <tr>
+      <td class="reference">
+        <b id="RFC2119">[RFC2119]</b>
+      </td>
+      <td class="top"><a href="mailto:sob@harvard.edu" title="Harvard University">Bradner, S.</a>, "<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, March 1997.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC3961">[RFC3961]</b>
+      </td>
+      <td class="top"><a>Raeburn, K.</a>, "<a href="http://tools.ietf.org/html/rfc3961">Encryption and Checksum Specifications for Kerberos 5</a>", RFC 3961, February 2005.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC4120">[RFC4120]</b>
+      </td>
+      <td class="top"><a>Neuman, C.</a>, <a>Yu, T.</a>, <a>Hartman, S.</a> and <a>K. Raeburn</a>, "<a href="http://tools.ietf.org/html/rfc4120">The Kerberos Network Authentication Service (V5)</a>", RFC 4120, July 2005.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC4556">[RFC4556]</b>
+      </td>
+      <td class="top"><a>Zhu, L.</a> and <a>B. Tung</a>, "<a href="http://tools.ietf.org/html/rfc4556">Public Key Cryptography for Initial Authentication in Kerberos (PKINIT)</a>", RFC 4556, June 2006.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC5280">[RFC5280]</b>
+      </td>
+      <td class="top"><a>Cooper, D.</a>, <a>Santesson, S.</a>, <a>Farrell, S.</a>, <a>Boeyen, S.</a>, <a>Housley, R.</a> and <a>W. Polk</a>, "<a href="http://tools.ietf.org/html/rfc5280">Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a>", RFC 5280, May 2008.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC5652">[RFC5652]</b>
+      </td>
+      <td class="top"><a>Housley, R.</a>, "<a href="http://tools.ietf.org/html/rfc5652">Cryptographic Message Syntax (CMS)</a>", STD 70, RFC 5652, September 2009.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC6234">[RFC6234]</b>
+      </td>
+      <td class="top"><a>Eastlake, D.</a> and <a>T. Hansen</a>, "<a href="http://tools.ietf.org/html/rfc6234">US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)</a>", RFC 6234, May 2011.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="SP80056A">[SP80056A]</b>
+      </td>
+      <td class="top"><a title="National Institute of Standards and Technology">Barker, E.</a>, <a title="National Institute of Standards and Technology">Don, D.</a> and <a title="National Institute of Standards and Technology">M. Smid</a>, "<a>Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography</a>", March 2006.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="X680">[X680]</b>
+      </td>
+      <td class="top"><a>ITU</a>, "<a>ITU-T Recommendation X.680 (2002) | ISO/IEC 8824-1:2002, Information technology - Abstract Syntax Notation One (ASN.1): Specification of basic notation</a>", November 2008.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="X690">[X690]</b>
+      </td>
+      <td class="top"><a>ITU</a>, "<a>ITU-T Recommendation X.690 (2002) | ISO/IEC 8825-1:2002, Information technology - ASN.1 encoding Rules: Specification of Basic Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding Rules (DER)</a>", November 2008.</td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="rfc.references.2"><a href="#rfc.references.2">11.2.</a> Informative References</h1>
+<table>
+  <tbody>
+    <tr>
+      <td class="reference">
+        <b id="RFC1321">[RFC1321]</b>
+      </td>
+      <td class="top"><a href="mailto:rivest@theory.lcs.mit.edu" title="Massachusetts Institute of Technology, (MIT) Laboratory for Computer Science">Rivest, R.</a>, "<a href="http://tools.ietf.org/html/rfc1321">The MD5 Message-Digest Algorithm</a>", RFC 1321, April 1992.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC3766">[RFC3766]</b>
+      </td>
+      <td class="top"><a>Orman, H.</a> and <a>P. Hoffman</a>, "<a href="http://tools.ietf.org/html/rfc3766">Determining Strengths For Public Keys Used For Exchanging Symmetric Keys</a>", BCP 86, RFC 3766, April 2004.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC6150">[RFC6150]</b>
+      </td>
+      <td class="top"><a>Turner, S.</a> and <a>L. Chen</a>, "<a href="http://tools.ietf.org/html/rfc6150">MD4 to Historic Status</a>", RFC 6150, March 2011.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC6194">[RFC6194]</b>
+      </td>
+      <td class="top"><a>Polk, T.</a>, <a>Chen, L.</a>, <a>Turner, S.</a> and <a>P. Hoffman</a>, "<a href="http://tools.ietf.org/html/rfc6194">Security Considerations for the SHA-0 and SHA-1 Message-Digest Algorithms</a>", RFC 6194, March 2011.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="WANG04">[WANG04]</b>
+      </td>
+      <td class="top"><a>Wang, X.</a>, <a>Lai, X.</a>, <a>Fheg, D.</a>, <a>Chen, H.</a> and <a>X. Yu</a>, "<a>Cryptanalysis of Hash functions MD4 and RIPEMD</a>", August 2004.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="X9.42">[X9.42]</b>
+      </td>
+      <td class="top"><a>ANSI</a>, "<a>Public Key Cryptography for the Financial Services Industry: Agreement of Symmetric Keys Using Discrete Logarithm Cryptography</a>", 2003.</td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="rfc.appendix.A"><a href="#rfc.appendix.A">Appendix A.</a> PKINIT ASN.1 Module</h1>
+<pre>
+            
+KerberosV5-PK-INIT-Agility-SPEC {
+       iso(1) identified-organization(3) dod(6) internet(1)
+       security(5) kerberosV5(2) modules(4) pkinit(5) agility (1)
+} DEFINITIONS EXPLICIT TAGS ::= BEGIN
+
+IMPORTS
+   AlgorithmIdentifier, SubjectPublicKeyInfo
+       FROM PKIX1Explicit88 { iso (1)
+         identified-organization (3) dod (6) internet (1)
+         security (5) mechanisms (5) pkix (7) id-mod (0)
+         id-pkix1-explicit (18) }
+         -- As defined in RFC 5280.
+
+   Ticket, Int32, Realm, EncryptionKey, Checksum
+       FROM KerberosV5Spec2 { iso(1) identified-organization(3)
+         dod(6) internet(1) security(5) kerberosV5(2)
+         modules(4) krb5spec2(2) }
+         -- as defined in RFC 4120.
+
+   PKAuthenticator, DHNonce, id-pkinit
+       FROM KerberosV5-PK-INIT-SPEC {
+         iso(1) identified-organization(3) dod(6) internet(1)
+         security(5) kerberosV5(2) modules(4) pkinit(5) };
+         -- as defined in RFC 4556.
+
+id-pkinit-kdf OBJECT IDENTIFIER      ::= { id-pkinit kdf(6) }
+    -- PKINIT KDFs
+
+id-pkinit-kdf-ah-sha1 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha1(1) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-1
+
+id-pkinit-kdf-ah-sha256 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha256(2) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-256
+
+id-pkinit-kdf-ah-sha512 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha512(3) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-512
+
+id-pkinit-kdf-ah-sha384 OBJECT IDENTIFIER
+    ::= { id-pkinit-kdf sha384(4) }
+    -- SP800-56A ASN.1 structured hash based KDF using SHA-384
+
+TD-CMS-DIGEST-ALGORITHMS-DATA ::= SEQUENCE OF
+    AlgorithmIdentifier
+        -- Contains the list of CMS algorithm [RFC5652]
+        -- identifiers that identify the digest algorithms
+        -- acceptable by the KDC for signing CMS data in
+        -- the order of decreasing preference.
+
+TD-CERT-DIGEST-ALGORITHMS-DATA ::= SEQUENCE {
+       allowedAlgorithms [0] SEQUENCE OF AlgorithmIdentifier,
+           -- Contains the list of CMS algorithm [RFC5652]
+           -- identifiers that identify the digest algorithms
+           -- that are used by the CA to sign the client's
+           -- X.509 certificate and acceptable by the KDC in
+           -- the process of validating the client's X.509
+           -- certificate, in the order of decreasing
+           -- preference.
+       rejectedAlgorithm [1] AlgorithmIdentifier OPTIONAL,
+           -- This identifies the digest algorithm that was
+           -- used to sign the client's X.509 certificate and
+           -- has been rejected by the KDC in the process of
+           -- validating the client's X.509 certificate
+           -- [RFC5280].
+       ...
+}
+
+OtherInfo ::= SEQUENCE { 
+        algorithmID   AlgorithmIdentifier, 
+        partyUInfo     [0] OCTET STRING, 
+        partyVInfo     [1] OCTET STRING, 
+        suppPubInfo    [2] OCTET STRING OPTIONAL, 
+        suppPrivInfo   [3] OCTET STRING OPTIONAL 
+}
+
+PkinitSuppPubInfo ::= SEQUENCE {
+       enctype           [0] Int32,
+           -- The enctype of the AS reply key.
+       as-REQ            [1] OCTET STRING,
+           -- This contains the AS-REQ in the request.
+       pk-as-rep         [2] OCTET STRING,
+           -- Contains the DER encoding of the type
+           -- PA-PK-AS-REP [RFC4556] in the KDC reply.
+       ...
+}
+
+AuthPack ::= SEQUENCE {
+       pkAuthenticator   [0] PKAuthenticator,
+       clientPublicValue [1] SubjectPublicKeyInfo OPTIONAL,
+       supportedCMSTypes [2] SEQUENCE OF AlgorithmIdentifier
+                OPTIONAL,
+       clientDHNonce     [3] DHNonce OPTIONAL,
+       ...,
+       supportedKDFs     [4] SEQUENCE OF KDFAlgorithmId OPTIONAL,
+           -- Contains an unordered set of KDFs supported by the
+           -- client.
+       ...
+}
+
+KDFAlgorithmId ::= SEQUENCE {
+       kdf-id            [0] OBJECT IDENTIFIER,
+           -- The object identifier of the KDF
+       ...
+}
+
+DHRepInfo ::= SEQUENCE {
+       dhSignedData      [0] IMPLICIT OCTET STRING,
+       serverDHNonce     [1] DHNonce OPTIONAL,
+       ...,
+       kdf               [2] KDFAlgorithmId OPTIONAL,
+           -- The KDF picked by the KDC.
+       ...
+}
+END
+
+          </pre>
+<p/>
+<h1 id="rfc.authors">
+  <a href="#rfc.authors">Authors' Addresses</a>
+</h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Love Hornquist Astrand</span> 
+	  <span class="n hidden">
+		<span class="family-name">Hornquist Astrand</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Apple, Inc</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality">Cupertino, CA</span>,  
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline">USA</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:lha@apple.com">lha@apple.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Larry Zhu</span> 
+	  <span class="n hidden">
+		<span class="family-name">Zhu</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Microsoft Corporation</span>
+	<span class="adr">
+	  <span class="vcardline">One Microsoft Way</span>
+
+	  <span class="vcardline">
+		<span class="locality">Redmond, WA</span>,  
+		<span class="region"></span>
+		<span class="code">98052</span>
+	  </span>
+	  <span class="country-name vcardline">USA</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:lzhu@microsoft.com">lzhu@microsoft.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Margaret Wasserman</span> 
+	  <span class="n hidden">
+		<span class="family-name">Wasserman</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Painless Security</span>
+	<span class="adr">
+	  <span class="vcardline">356 Abbott Street</span>
+
+	  <span class="vcardline">
+		<span class="locality">North Andover</span>,  
+		<span class="region">MA</span> 
+		<span class="code">01845</span>
+	  </span>
+	  <span class="country-name vcardline">USA</span>
+	</span>
+	<span class="vcardline">Phone: +1 781 405-7464</span>
+
+<span class="vcardline">EMail: <a href="mailto:mrw@painless-security.com">mrw@painless-security.com</a></span>
+
+<span class="vcardline">URI: <a href="http://www.painless-security.com">http://www.painless-security.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">William J. Mills</span> (editor)
+	  <span class="n hidden">
+		<span class="family-name">Mills</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Microsoft Corporation</span>
+	<span class="adr">
+	  <span class="vcardline">3210 Porter Dr.</span>
+
+	  <span class="vcardline">
+		<span class="locality">Palo Alto</span>,  
+		<span class="region">CA</span> 
+		<span class="code">94304</span>
+	  </span>
+	  <span class="country-name vcardline">USA</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:wimills@microsoft.com">wimills@microsoft.com</a></span>
+
+  </address>
+</div>
+
+</body>
+</html>
