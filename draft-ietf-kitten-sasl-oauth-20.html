@@ -401,12 +401,12 @@
 <link href="#rfc.authors" rel="Chapter"/>
 
 
-  <meta name="generator" content="xml2rfc version 2.4.9dev0 - http://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.4.11 - http://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Mills, W., Showalter, T., and H. Tschofenig" />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-kitten-sasl-oauth-19.txt" />
-  <meta name="dct.issued" scheme="ISO8601" content="2015-2-27" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-kitten-sasl-oauth-20.txt" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-4-16" />
   <meta name="dct.abstract" content="OAuth enables a third-party application to obtain limited access to a protected resource, either on behalf of a resource owner by orchestrating an approval interaction, or by allowing the third-party application to obtain access on its own behalf.  " />
   <meta name="description" content="OAuth enables a third-party application to obtain limited access to a protected resource, either on behalf of a resource owner by orchestrating an approval interaction, or by allowing the third-party application to obtain access on its own behalf.  " />
 
@@ -430,7 +430,7 @@
   <td class="right">T. Showalter</td>
 </tr>
 <tr>
-  <td class="left">Expires: August 31, 2015</td>
+  <td class="left">Expires: October 18, 2015</td>
   <td class="right"></td>
 </tr>
 <tr>
@@ -443,7 +443,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">February 27, 2015</td>
+  <td class="right">April 16, 2015</td>
 </tr>
 
     	
@@ -451,7 +451,7 @@
   </table>
 
   <p class="title">A set of SASL Mechanisms for OAuth<br />
-  <span class="filename">draft-ietf-kitten-sasl-oauth-19.txt</span></p>
+  <span class="filename">draft-ietf-kitten-sasl-oauth-20.txt</span></p>
   
   <h1 id="rfc.abstract">
   <a href="#rfc.abstract">Abstract</a>
@@ -465,7 +465,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on August 31, 2015.</p>
+<p>This Internet-Draft will expire on October 18, 2015.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -538,9 +538,8 @@
                                                            ----+
 </pre>
 <p class="figure">Figure 1: OAuth 2.0 Protocol Flow</p>
-<p/>
-<p id="rfc.section.1.p.6">The Simple Authentication and Security Layer (SASL) is a framework for providing authentication and data security services in connection-oriented protocols via replaceable authentication mechanisms.  It provides a structured interface between protocols and mechanisms.  The resulting framework allows new protocols to reuse existing authentication mechanisms and allows old protocols to make use of new authentication mechanisms.  The framework also provides a protocol for securing subsequent exchanges within a data security layer.</p>
-<p id="rfc.section.1.p.7">When OAuth is integrated into SASL the high-level steps are as follows: </p>
+<p id="rfc.section.1.p.5">The Simple Authentication and Security Layer (SASL) is a framework for providing authentication and data security services in connection-oriented protocols via replaceable authentication mechanisms.  It provides a structured interface between protocols and mechanisms.  The resulting framework allows new protocols to reuse existing authentication mechanisms and allows old protocols to make use of new authentication mechanisms.  The framework also provides a protocol for securing subsequent exchanges within a data security layer.</p>
+<p id="rfc.section.1.p.6">When OAuth is integrated into SASL the high-level steps are as follows: </p>
 
 <ul class="empty">
   <li>(A)  The client requests authorization from the resource owner.  The authorization request can be made directly to the resource owner (as shown), or preferably indirectly via the authorization server as an intermediary.</li>
@@ -552,14 +551,14 @@
 </ul>
 
 <p> </p>
-<p id="rfc.section.1.p.8">Again, steps (E) and (F) are not defined in <a href="#RFC6749">[RFC6749]</a> (but are described in, for example, <a href="#RFC6750">[RFC6750]</a> for the OAuth Bearer Token instead) and are the main functionality specified within this document. Consequently, the message exchange shown in <a href="#overview">Figure 1</a> is the result of this specification. The client will generally need to determine the authentication endpoints (and perhaps the service endpoints) before the OAuth 2.0 protocol exchange messages in steps (A)-(D) are executed. The discovery of the resource owner, authorization server endpoints, and client registration are outside the scope of this specification. The client must discover the authorization endpoints using a discovery mechanism such as OpenID Connect Discovery <a href="#OpenID.Discovery">[OpenID.Discovery]</a> or Webfinger using host-meta <a href="#RFC7033">[RFC7033]</a>.  Once credentials are obtained the client proceeds to steps (E) and (F) defined in this specification.  Authorization endpoints MAY require client registration and generic clients SHOULD support the Dynamic Client Registration protocol  <a href="#I-D.ietf-oauth-dyn-reg">[I-D.ietf-oauth-dyn-reg]</a>.  </p>
-<p id="rfc.section.1.p.9">OAuth 1.0 follows a similar model but uses a different terminology and does not separate the resource server from the authorization server.</p>
-<h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#terminology" id="terminology">Terminology</a></h1>
+<p id="rfc.section.1.p.7">Again, steps (E) and (F) are not defined in <a href="#RFC6749">[RFC6749]</a> (but are described in, for example, <a href="#RFC6750">[RFC6750]</a> for the OAuth Bearer Token instead) and are the main functionality specified within this document. Consequently, the message exchange shown in <a href="#overview">Figure 1</a> is the result of this specification. The client will generally need to determine the authentication endpoints (and perhaps the service endpoints) before the OAuth 2.0 protocol exchange messages in steps (A)-(D) are executed. The discovery of the resource owner, authorization server endpoints, and client registration are outside the scope of this specification. The client must discover the authorization endpoints using a discovery mechanism such as OpenID Connect Discovery <a href="#OpenID.Discovery">[OpenID.Discovery]</a> or Webfinger using host-meta <a href="#RFC7033">[RFC7033]</a>.  Once credentials are obtained the client proceeds to steps (E) and (F) defined in this specification.  Authorization endpoints MAY require client registration and generic clients SHOULD support the Dynamic Client Registration protocol  <a href="#I-D.ietf-oauth-dyn-reg">[I-D.ietf-oauth-dyn-reg]</a>.  </p>
+<p id="rfc.section.1.p.8">OAuth 1.0 follows a similar model but uses a different terminology and does not separate the resource server from the authorization server.</p>
+<h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> Terminology</h1>
 <p id="rfc.section.2.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119">[RFC2119]</a>.</p>
 <p id="rfc.section.2.p.2">The reader is assumed to be familiar with the terms used in the OAuth 2.0 specification <a href="#RFC6749">[RFC6749]</a> and SASL <a href="#RFC4422">[RFC4422]</a>.</p>
 <p id="rfc.section.2.p.3">In examples, "C:" and "S:" indicate lines sent by the client and server respectively. Line breaks have been inserted for readability.</p>
 <p id="rfc.section.2.p.4">Note that the IMAP SASL specification requires base64 encoding, see Section 4 of <a href="#RFC4648">[RFC4648]</a>, not this memo.</p>
-<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#SASL-OAUTH" id="SASL-OAUTH">OAuth SASL Mechanism Specifications</a></h1>
+<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> OAuth SASL Mechanism Specifications</h1>
 <p id="rfc.section.3.p.1">SASL is used as an authentication framework in a variety of application layer protocols. This document defines the following SASL mechanisms for usage with OAuth: </p>
 
 <ul class="empty">
@@ -603,10 +602,9 @@
 ;;gs2-header     = See RFC 5801
   client_resp    = (gs2-header kvsep *kvpair kvsep) / kvsep
 </pre>
-<p/>
-<p id="rfc.section.3.1.p.3">The GS2 header MAY include the user name associated with the resource being accessed, the "authzid".  It is worth noting that application protocols are allowed to require an authzid, as are specific server implementations.  </p>
-<p id="rfc.section.3.1.p.4">The client response consisting of only a single kvsep is used only when authentication fails, and is only valid in that context.  If sent as the first message from the client the server MAY simply fail the authentication without returning discovery information since there is no user or server name indication.  </p>
-<p id="rfc.section.3.1.p.5">The following keys and corresponding values are defined in the client response: </p>
+<p id="rfc.section.3.1.p.2">The GS2 header MAY include the user name associated with the resource being accessed, the "authzid".  It is worth noting that application protocols are allowed to require an authzid, as are specific server implementations.  </p>
+<p id="rfc.section.3.1.p.3">The client response consisting of only a single kvsep is used only when authentication fails, and is only valid in that context.  If sent as the first message from the client the server MAY simply fail the authentication without returning discovery information since there is no user or server name indication.  </p>
+<p id="rfc.section.3.1.p.4">The following keys and corresponding values are defined in the client response: </p>
 <p/>
 
 <ul class="empty">
@@ -624,7 +622,7 @@
 </ul>
 
 <p> </p>
-<p id="rfc.section.3.1.p.7">For OAuth token types such as OAuth 1.0a that use keyed message digests the client MUST send host and port number key/values, and the server MUST fail an authorization request requiring keyed message digests that are not accompanied by host and port values.   In OAuth 1.0a for example, the so-called "signature base string calculation" includes the reconstructed HTTP URL.  </p>
+<p id="rfc.section.3.1.p.6">For OAuth token types such as OAuth 1.0a that use keyed message digests the client MUST send host and port number key/values, and the server MUST fail an authorization request requiring keyed message digests that are not accompanied by host and port values.   In OAuth 1.0a for example, the so-called "signature base string calculation" includes the reconstructed HTTP URL.  </p>
 <h1 id="rfc.section.3.1.1"><a href="#rfc.section.3.1.1">3.1.1.</a> Reserved Key/Values</h1>
 <p id="rfc.section.3.1.1.p.1">In these mechanisms values for path, query string and post body are assigned default values.  OAuth authorization schemes MAY define usage of these in the SASL context and extend this specification.  For OAuth Access Token Types that include a keyed message digest of the request the default values MUST be used unless explicit values are provided in the client response.  The following key values are reserved for future use: </p>
 
@@ -691,8 +689,7 @@ auth=OAuth realm="Example",
            oauth_nonce="7d8f3e4a",
            oauth_signature="Tm90IGEgcmVhbCBzaWduYXR1cmU"^A^A
 </pre>
-<p/>
-<p id="rfc.section.3.3.p.5">The signature base string would be constructed per the OAuth 1.0 specification <a href="#RFC5849">[RFC5849]</a> with the following things noted: </p>
+<p id="rfc.section.3.3.p.4">The signature base string would be constructed per the OAuth 1.0 specification <a href="#RFC5849">[RFC5849]</a> with the following things noted: </p>
 
 <ul>
   <li>The method value is defaulted to POST.</li>
@@ -707,7 +704,6 @@ POST&amp;http%3A%2F%2Fexample.com:143%2F&amp;oauth_consumer_key%3D9djdj82h4
 8djs9d2%26oauth_nonce%3D7d8f3e4a%26oauth_signature_method%3DHMAC-SH
 A1%26oauth_timestamp%3D137131201%26oauth_token%3Dkkk9d7dh3k39sjv7
 </pre>
-<p/>
 <h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> Examples</h1>
 <p id="rfc.section.4.p.1">These examples illustrate exchanges between IMAP and SMTP clients and servers.  All IMAP examples use SASL-IR  <a href="#RFC4959">[RFC4959]</a> and send payload in the initial client response.   The Bearer Token examples assume encrypted transport; if the underlying connection is not already TLS then STARTTLS MUST be used as TLS is required in the Bearer Token specification. </p>
 <p id="rfc.section.4.p.2">Note to implementers:  The SASL OAuth method names are case insensitive.  One example uses "Bearer" but that could as easily be "bearer", "BEARER", or "BeArEr".  </p>
@@ -723,14 +719,12 @@ C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9c2Vy
       DRxbVRjMk52YjNSbGNrQmhiSFJoZG1semRHRXVZMjl0Q2c9PQEB
 S: t1 OK SASL authentication succeeded
 </pre>
-<p/>
-<p id="rfc.section.4.1.p.3">As required by IMAP <a href="#RFC3501">[RFC3501]</a>, the payloads are base64-encoded. The decoded initial client response (with %x01 represented as ^A and long lines wrapped for readability) is: </p>
+<p id="rfc.section.4.1.p.2">As required by IMAP <a href="#RFC3501">[RFC3501]</a>, the payloads are base64-encoded. The decoded initial client response (with %x01 represented as ^A and long lines wrapped for readability) is: </p>
 <pre>
 n,a=user@example.com,^Ahost=server.example.com^Aport=143^A
 auth=Bearer vF9dft4qmTc2Nvb3RlckBhbHRhdmlzdGEuY29tCg==^A^A
 </pre>
-<p/>
-<p id="rfc.section.4.1.p.5">The same credential used in an SMTP exchange is shown below.  Note that line breaks are inserted for readability, and that the SMTP protocol terminates lines with CR and LF characters (ASCII values 0x0D and 0x0A), these are not displayed explicitly in the example.  Again this example assumes that TLS is already established per the Bearer Token specification requirements.</p>
+<p id="rfc.section.4.1.p.3">The same credential used in an SMTP exchange is shown below.  Note that line breaks are inserted for readability, and that the SMTP protocol terminates lines with CR and LF characters (ASCII values 0x0D and 0x0A), these are not displayed explicitly in the example.  Again this example assumes that TLS is already established per the Bearer Token specification requirements.</p>
 <pre>
 [connection begins]
 S: 220 mx.example.com ESMTP 12sm2095603fks.9
@@ -748,8 +742,7 @@ C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9c2Vy
       DRxbVRjMk52YjNSbGNrQmhiSFJoZG1semRHRXVZMjl0Q2c9PQEB
 S: 235 Authentication successful.
 [connection continues...]
-</pre>
-<p/>
+          </pre>
 <h1 id="rfc.section.4.2"><a href="#rfc.section.4.2">4.2.</a> Successful OAuth 1.0a Token Exchange</h1>
 <p id="rfc.section.4.2.p.1">This IMAP example shows a successful OAuth 1.0a token exchange. Note that line breaks are inserted for readability.  This example assumes that TLS is already established. Signature computation is discussed in <a href="#keyed-digests">Section 3.3</a>.</p>
 <pre>
@@ -766,8 +759,7 @@ C: t1 AUTH OAUTH10A bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9ZXhhb
       WVhSMWNtVSUzRCIBAQ==
 S: t1 OK SASL authentication succeeded
 </pre>
-<p/>
-<p id="rfc.section.4.2.p.3">As required by IMAP <a href="#RFC3501">[RFC3501]</a>, the payloads are base64-encoded. The decoded initial client response (with %x01 represented as ^A and lines wrapped for readability) is: </p>
+<p id="rfc.section.4.2.p.2">As required by IMAP <a href="#RFC3501">[RFC3501]</a>, the payloads are base64-encoded. The decoded initial client response (with %x01 represented as ^A and lines wrapped for readability) is: </p>
 <pre>
 n,a=user@example.com,^A
 host=example.com^A
@@ -780,7 +772,6 @@ auth=OAuth realm="Example",
            oauth_nonce="7d8f3e4a",
            oauth_signature="SSdtIGEgbGl0dGxlIHRlYSBwb3Qu"^A^A
 </pre>
-<p/>
 <h1 id="rfc.section.4.3"><a href="#rfc.section.4.3">4.3.</a> Failed Exchange</h1>
 <p id="rfc.section.4.3.p.1">This IMAP example shows a failed exchange because of the empty Authorization header, which is how a client can query for the needed scope. Note that line breaks are inserted for readability.</p>
 <pre>
@@ -796,14 +787,12 @@ S: + eyJzdGF0dXMiOiJpbnZhbGlkX3Rva2VuIiwic2NvcGUiOiJleGFtcGxl
 C: AQ==
 S: t1 NO SASL authentication failed
 </pre>
-<p/>
-<p id="rfc.section.4.3.p.3">The decoded initial client response is: </p>
+<p id="rfc.section.4.3.p.2">The decoded initial client response is: </p>
 <pre>
 n,a=user@example.com,^Ahost=server.example.com^A
 port=143^Aauth=^A^A
             </pre>
-<p/>
-<p id="rfc.section.4.3.p.5">The decoded server error response is: </p>
+<p id="rfc.section.4.3.p.3">The decoded server error response is: </p>
 <pre>
 {
 "status":"invalid_token",
@@ -811,8 +800,7 @@ port=143^Aauth=^A^A
 "openid-configuration":"https://example.com/.well-known/openid-config"
 }
             </pre>
-<p/>
-<p id="rfc.section.4.3.p.7">The client responds with the required dummy response, "AQ==" is the base64 encoding of the ASCII value 0x01.  The same exchange using the IMAP specific method of cancelling an AUTHENTICATE command sends "*" and is shown below.  </p>
+<p id="rfc.section.4.3.p.4">The client responds with the required dummy response, "AQ==" is the base64 encoding of the ASCII value 0x01.  The same exchange using the IMAP specific method of cancelling an AUTHENTICATE command sends "*" and is shown below.  </p>
 <pre>
 S: * OK IMAP4rev1 Server Ready
 C: t0 CAPABILITY
@@ -827,7 +815,6 @@ S: + eyJzdGF0dXMiOiJpbnZhbGlkX3Rva2VuIiwic2NvcGUiOiJleGFtcGxl
 C: *
 S: t1 NO SASL authentication failed
 </pre>
-<p/>
 <h1 id="rfc.section.4.4"><a href="#rfc.section.4.4">4.4.</a> SMTP Example of a Failed Negotiation</h1>
 <p id="rfc.section.4.4.p.1">This example shows an authorization failure in an SMTP exchange.  Note that line breaks are inserted for readability, and that the SMTP protocol terminates lines with CR and LF characters (ASCII values 0x0D and 0x0A), these are not displayed explicitly in the example.  TLS negotiation is not shown but as noted above it is required for the use of Bearer Tokens.</p>
 <pre>
@@ -849,8 +836,7 @@ S: 535-5.7.1 Username and Password not accepted. Learn more at
 S: 535 5.7.1 http://support.example.com/mail/oauth
 [connection continues...]
             </pre>
-<p/>
-<p id="rfc.section.4.4.p.3">The server returned an error message in the 334 SASL message, the client responds with the required dummy response, and the server finalizes the negotiation.  </p>
+<p id="rfc.section.4.4.p.2">The server returned an error message in the 334 SASL message, the client responds with the required dummy response, and the server finalizes the negotiation.  </p>
 <h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> Security Considerations</h1>
 <p id="rfc.section.5.p.1">OAuth 1.0a and OAuth 2 allow for a variety of deployment scenarios, and the security properties of these profiles vary. As shown in <a href="#overview">Figure 1</a> this specification is aimed to be integrated into a larger OAuth deployment. Application developers therefore need to understand their security requirements based on a threat assessment before selecting a specific SASL OAuth mechanism. For OAuth 2.0 a detailed security document <a href="#RFC6819">[RFC6819]</a> provides guidance to select those OAuth 2.0 components that help to mitigate threats for a given deployment. For OAuth 1.0a Section 4 of RFC 5849 <a href="#RFC5849">[RFC5849]</a> provides guidance specific to OAuth 1.0.</p>
 <p id="rfc.section.5.p.2">This document specifies two SASL  Mechanisms for OAuth and each comes with different security properties.  </p>
@@ -989,7 +975,7 @@ S: 535 5.7.1 http://support.example.com/mail/oauth
       <td class="reference">
         <b id="I-D.ietf-oauth-dyn-reg">[I-D.ietf-oauth-dyn-reg]</b>
       </td>
-      <td class="top"><a>ietf@justin.richer.org, i.</a>, <a>Jones, M.</a>, <a>Bradley, J.</a>, <a>Machulak, M.</a> and <a>P. Hunt</a>, "<a href="http://tools.ietf.org/html/draft-ietf-oauth-dyn-reg-24">OAuth 2.0 Dynamic Client Registration Protocol</a>", Internet-Draft draft-ietf-oauth-dyn-reg-24, February 2015.</td>
+      <td class="top"><a>Richer, J.</a>, <a>Jones, M.</a>, <a>Bradley, J.</a>, <a>Machulak, M.</a> and <a>P. Hunt</a>, "<a href="http://tools.ietf.org/html/draft-ietf-oauth-dyn-reg-27">OAuth 2.0 Dynamic Client Registration Protocol</a>", Internet-Draft draft-ietf-oauth-dyn-reg-27, March 2015.</td>
     </tr>
     <tr>
       <td class="reference">
