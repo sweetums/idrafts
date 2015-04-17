@@ -1,0 +1,1296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>A set of SASL Mechanisms for OAuth</title>
+
+  <style type="text/css" title="Xml2Rfc (sans serif)">
+  /*<![CDATA[*/
+	  a {
+	  text-decoration: none;
+	  }
+      /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+      a.info {
+          /* This is the key. */
+          position: relative;
+          z-index: 24;
+          text-decoration: none;
+      }
+      a.info:hover {
+          z-index: 25;
+          color: #FFF; background-color: #900;
+      }
+      a.info span { display: none; }
+      a.info:hover span.info {
+          /* The span will display just on :hover state. */
+          display: block;
+          position: absolute;
+          font-size: smaller;
+          top: 2em; left: -5em; width: 15em;
+          padding: 2px; border: 1px solid #333;
+          color: #900; background-color: #EEE;
+          text-align: left;
+      }
+	  a.smpl {
+	  color: black;
+	  }
+	  a:hover {
+	  text-decoration: underline;
+	  }
+	  a:active {
+	  text-decoration: underline;
+	  }
+	  address {
+	  margin-top: 1em;
+	  margin-left: 2em;
+	  font-style: normal;
+	  }
+	  body {
+	  color: black;
+	  font-family: verdana, helvetica, arial, sans-serif;
+	  font-size: 10pt;
+	  max-width: 55em;
+	  
+	  }
+	  cite {
+	  font-style: normal;
+	  }
+	  dd {
+	  margin-right: 2em;
+	  }
+	  dl {
+	  margin-left: 2em;
+	  }
+	
+	  ul.empty {
+	  list-style-type: none;
+	  }
+	  ul.empty li {
+	  margin-top: .5em;
+	  }
+	  dl p {
+	  margin-left: 0em;
+	  }
+	  dt {
+	  margin-top: .5em;
+	  }
+	  h1 {
+	  font-size: 14pt;
+	  line-height: 21pt;
+	  page-break-after: avoid;
+	  }
+	  h1.np {
+	  page-break-before: always;
+	  }
+	  h1 a {
+	  color: #333333;
+	  }
+	  h2 {
+	  font-size: 12pt;
+	  line-height: 15pt;
+	  page-break-after: avoid;
+	  }
+	  h3, h4, h5, h6 {
+	  font-size: 10pt;
+	  page-break-after: avoid;
+	  }
+	  h2 a, h3 a, h4 a, h5 a, h6 a {
+	  color: black;
+	  }
+	  img {
+	  margin-left: 3em;
+	  }
+	  li {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol p {
+	  margin-left: 0em;
+	  }
+	  p {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  pre {
+	  margin-left: 3em;
+	  background-color: lightyellow;
+	  padding: .25em;
+	  }
+	  pre.text2 {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f0f0f0;
+	  width: 69em;
+	  }
+	  pre.inline {
+	  background-color: white;
+	  padding: 0em;
+	  }
+	  pre.text {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  width: 69em;
+	  }
+	  pre.drawing {
+	  border-style: solid;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  padding: 2em;
+	  }
+	  table {
+	  margin-left: 2em;
+	  }
+	  table.tt {
+	  vertical-align: top;
+	  }
+	  table.full {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.headers {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.tt td {
+	  vertical-align: top;
+	  }
+	  table.full td {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.tt th {
+	  vertical-align: top;
+	  }
+	  table.full th {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.headers th {
+	  border-style: none none inset none;
+	  border-width: 1px;
+	  }
+	  table.left {
+	  margin-right: auto;
+	  }
+	  table.right {
+	  margin-left: auto;
+	  }
+	  table.center {
+	  margin-left: auto;
+	  margin-right: auto;
+	  }
+	  caption {
+	  caption-side: bottom;
+	  font-weight: bold;
+	  font-size: 9pt;
+	  margin-top: .5em;
+	  }
+	
+	  table.header {
+	  border-spacing: 1px;
+	  width: 95%;
+	  font-size: 10pt;
+	  color: white;
+	  }
+	  td.top {
+	  vertical-align: top;
+	  }
+	  td.topnowrap {
+	  vertical-align: top;
+	  white-space: nowrap; 
+	  }
+	  table.header td {
+	  background-color: gray;
+	  width: 50%;
+	  }
+	  table.header a {
+	  color: white;
+	  }
+	  td.reference {
+	  vertical-align: top;
+	  white-space: nowrap;
+	  padding-right: 1em;
+	  }
+	  thead {
+	  display:table-header-group;
+	  }
+	  ul.toc, ul.toc ul {
+	  list-style: none;
+	  margin-left: 1.5em;
+	  margin-right: 0em;
+	  padding-left: 0em;
+	  }
+	  ul.toc li {
+	  line-height: 150%;
+	  font-weight: bold;
+	  font-size: 10pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  ul.toc li li {
+	  line-height: normal;
+	  font-weight: normal;
+	  font-size: 9pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  li.excluded {
+	  font-size: 0pt;
+	  }
+	  ul p {
+	  margin-left: 0em;
+	  }
+	
+	  .comment {
+	  background-color: yellow;
+	  }
+	  .center {
+	  text-align: center;
+	  }
+	  .error {
+	  color: red;
+	  font-style: italic;
+	  font-weight: bold;
+	  }
+	  .figure {
+	  font-weight: bold;
+	  text-align: center;
+	  font-size: 9pt;
+	  }
+	  .filename {
+	  color: #333333;
+	  font-weight: bold;
+	  font-size: 12pt;
+	  line-height: 21pt;
+	  text-align: center;
+	  }
+	  .fn {
+	  font-weight: bold;
+	  }
+	  .hidden {
+	  display: none;
+	  }
+	  .left {
+	  text-align: left;
+	  }
+	  .right {
+	  text-align: right;
+	  }
+	  .title {
+	  color: #990000;
+	  font-size: 18pt;
+	  line-height: 18pt;
+	  font-weight: bold;
+	  text-align: center;
+	  margin-top: 36pt;
+	  }
+	  .vcardline {
+	  display: block;
+	  }
+	  .warning {
+	  font-size: 14pt;
+	  background-color: yellow;
+	  }
+	
+	
+	  @media print {
+	  .noprint {
+		display: none;
+	  }
+	
+	  a {
+		color: black;
+		text-decoration: none;
+	  }
+	
+	  table.header {
+		width: 90%;
+	  }
+	
+	  td.header {
+		width: 50%;
+		color: black;
+		background-color: white;
+		vertical-align: top;
+		font-size: 12pt;
+	  }
+	
+	  ul.toc a::after {
+		content: leader('.') target-counter(attr(href), page);
+	  }
+	
+	  ul.ind li li a {
+		content: target-counter(attr(href), page);
+	  }
+	
+	  .print2col {
+		column-count: 2;
+		-moz-column-count: 2;
+		column-fill: auto;
+	  }
+	  }
+	
+	  @page {
+	  @top-left {
+		   content: "Internet-Draft"; 
+	  } 
+	  @top-right {
+		   content: "December 2010"; 
+	  } 
+	  @top-center {
+		   content: "Abbreviated Title";
+	  } 
+	  @bottom-left {
+		   content: "Doe"; 
+	  } 
+	  @bottom-center {
+		   content: "Expires June 2011"; 
+	  } 
+	  @bottom-right {
+		   content: "[Page " counter(page) "]"; 
+	  } 
+	  }
+	
+	  @page:first { 
+		@top-left {
+		  content: normal;
+		}
+		@top-right {
+		  content: normal;
+		}
+		@top-center {
+		  content: normal;
+		}
+	  }
+  /*]]>*/
+  </style>
+
+  <link href="#rfc.toc" rel="Contents"/>
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction"/>
+<link href="#rfc.section.2" rel="Chapter" title="2 Terminology"/>
+<link href="#rfc.section.3" rel="Chapter" title="3 OAuth SASL Mechanism Specifications"/>
+<link href="#rfc.section.3.1" rel="Chapter" title="3.1 Initial Client Response"/>
+<link href="#rfc.section.3.1.1" rel="Chapter" title="3.1.1 Reserved Key/Values"/>
+<link href="#rfc.section.3.2" rel="Chapter" title="3.2 Server's Response"/>
+<link href="#rfc.section.3.2.1" rel="Chapter" title="3.2.1 OAuth Identifiers in the SASL Context"/>
+<link href="#rfc.section.3.2.2" rel="Chapter" title="3.2.2 Server Response to Failed Authentication"/>
+<link href="#rfc.section.3.2.3" rel="Chapter" title="3.2.3 Completing an Error Message Sequence"/>
+<link href="#rfc.section.3.3" rel="Chapter" title="3.3 OAuth Access Token Types using Keyed Message Digests"/>
+<link href="#rfc.section.4" rel="Chapter" title="4 Examples"/>
+<link href="#rfc.section.4.1" rel="Chapter" title="4.1 Successful Bearer Token Exchange"/>
+<link href="#rfc.section.4.2" rel="Chapter" title="4.2 Successful OAuth 1.0a Token Exchange"/>
+<link href="#rfc.section.4.3" rel="Chapter" title="4.3 Failed Exchange"/>
+<link href="#rfc.section.4.4" rel="Chapter" title="4.4 SMTP Example of a Failed Negotiation"/>
+<link href="#rfc.section.5" rel="Chapter" title="5 Security Considerations"/>
+<link href="#rfc.section.6" rel="Chapter" title="6 Internationalization Considerations"/>
+<link href="#rfc.section.7" rel="Chapter" title="7 IANA Considerations"/>
+<link href="#rfc.section.7.1" rel="Chapter" title="7.1 SASL Registration"/>
+<link href="#rfc.references" rel="Chapter" title="8 References"/>
+<link href="#rfc.references.1" rel="Chapter" title="8.1 Normative References"/>
+<link href="#rfc.references.2" rel="Chapter" title="8.2 Informative References"/>
+<link href="#rfc.appendix.A" rel="Chapter" title="A Acknowlegements"/>
+<link href="#rfc.appendix.B" rel="Chapter" title="B Document History"/>
+<link href="#rfc.authors" rel="Chapter"/>
+
+
+  <meta name="generator" content="xml2rfc version 2.4.12.dev0 - http://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Mills, W., Showalter, T., and H. Tschofenig" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-kitten-sasl-oauth-21.txt" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-4-17" />
+  <meta name="dct.abstract" content="OAuth enables a third-party application to obtain limited access to a protected resource, either on behalf of a resource owner by orchestrating an approval interaction, or by allowing the third-party application to obtain access on its own behalf.  " />
+  <meta name="description" content="OAuth enables a third-party application to obtain limited access to a protected resource, either on behalf of a resource owner by orchestrating an approval interaction, or by allowing the third-party application to obtain access on its own behalf.  " />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+  <td class="left">KITTEN</td>
+  <td class="right">W. Mills</td>
+</tr>
+<tr>
+  <td class="left">Internet-Draft</td>
+  <td class="right">Microsoft</td>
+</tr>
+<tr>
+  <td class="left">Intended status: Standards Track</td>
+  <td class="right">T. Showalter</td>
+</tr>
+<tr>
+  <td class="left">Expires: October 19, 2015</td>
+  <td class="right"></td>
+</tr>
+<tr>
+  <td class="left"></td>
+  <td class="right">H. Tschofenig</td>
+</tr>
+<tr>
+  <td class="left"></td>
+  <td class="right">ARM Ltd.</td>
+</tr>
+<tr>
+  <td class="left"></td>
+  <td class="right">April 17, 2015</td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">A set of SASL Mechanisms for OAuth<br />
+  <span class="filename">draft-ietf-kitten-sasl-oauth-21.txt</span></p>
+  
+  <h1 id="rfc.abstract">
+  <a href="#rfc.abstract">Abstract</a>
+</h1>
+<p>OAuth enables a third-party application to obtain limited access to a protected resource, either on behalf of a resource owner by orchestrating an approval interaction, or by allowing the third-party application to obtain access on its own behalf.  </p>
+<p>This document defines how an application client uses credentials obtained via OAuth over the Simple Authentication and Security Layer (SASL) to access a protected resource at a resource serve.  Thereby, it enables schemes defined within the OAuth framework for non-HTTP-based application protocols.  </p>
+<p>Clients typically store the user's long-term credential. This does, however, lead to significant security vulnerabilities, for example, when such a credential leaks. A significant benefit of OAuth for usage in those clients is that the password is replaced by a shared secret with higher entropy, i.e., the token. Tokens typically provide limited access rights and can be managed and revoked separately from the user's long-term password.  </p>
+<h1 id="rfc.status">
+  <a href="#rfc.status">Status of This Memo</a>
+</h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on October 19, 2015.</p>
+<h1 id="rfc.copyrightnotice">
+  <a href="#rfc.copyrightnotice">Copyright Notice</a>
+</h1>
+<p>Copyright (c) 2015 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Introduction</a></li>
+<li>2.   <a href="#rfc.section.2">Terminology</a></li>
+<li>3.   <a href="#rfc.section.3">OAuth SASL Mechanism Specifications</a></li>
+<ul><li>3.1.   <a href="#rfc.section.3.1">Initial Client Response</a></li>
+<ul><li>3.1.1.   <a href="#rfc.section.3.1.1">Reserved Key/Values</a></li>
+</ul><li>3.2.   <a href="#rfc.section.3.2">Server's Response</a></li>
+<ul><li>3.2.1.   <a href="#rfc.section.3.2.1">OAuth Identifiers in the SASL Context</a></li>
+<li>3.2.2.   <a href="#rfc.section.3.2.2">Server Response to Failed Authentication</a></li>
+<li>3.2.3.   <a href="#rfc.section.3.2.3">Completing an Error Message Sequence</a></li>
+</ul><li>3.3.   <a href="#rfc.section.3.3">OAuth Access Token Types using Keyed Message Digests</a></li>
+</ul><li>4.   <a href="#rfc.section.4">Examples</a></li>
+<ul><li>4.1.   <a href="#rfc.section.4.1">Successful Bearer Token Exchange</a></li>
+<li>4.2.   <a href="#rfc.section.4.2">Successful OAuth 1.0a Token Exchange</a></li>
+<li>4.3.   <a href="#rfc.section.4.3">Failed Exchange</a></li>
+<li>4.4.   <a href="#rfc.section.4.4">SMTP Example of a Failed Negotiation</a></li>
+</ul><li>5.   <a href="#rfc.section.5">Security Considerations</a></li>
+<li>6.   <a href="#rfc.section.6">Internationalization Considerations</a></li>
+<li>7.   <a href="#rfc.section.7">IANA Considerations</a></li>
+<ul><li>7.1.   <a href="#rfc.section.7.1">SASL Registration</a></li>
+</ul><li>8.   <a href="#rfc.references">References</a></li>
+<ul><li>8.1.   <a href="#rfc.references.1">Normative References</a></li>
+<li>8.2.   <a href="#rfc.references.2">Informative References</a></li>
+</ul><li>Appendix A.   <a href="#rfc.appendix.A">Acknowlegements</a></li>
+<li>Appendix B.   <a href="#rfc.appendix.B">Document History</a></li>
+<li><a href="#rfc.authors">Authors' Addresses</a></li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> Introduction</h1>
+<p id="rfc.section.1.p.1">OAuth 1.0a <a href="#RFC5849">[RFC5849]</a> and OAuth 2.0 <a href="#RFC6749">[RFC6749]</a> are protocol frameworks that enable a third-party application to obtain limited access to a protected resource, either on behalf of a resource owner by orchestrating an approval interaction, or by allowing the third-party application to obtain access on its own behalf. </p>
+<p id="rfc.section.1.p.2">The core OAuth 2.0 specification <a href="#RFC6749">[RFC6749]</a> specifies the interaction between the OAuth client and the authorization server; it does not define the interaction between the OAuth client and the resource server for the access to a protected resource using an Access Token.  Instead, the OAuth client to resource server interaction is described in separate specifications, such as the bearer token specification <a href="#RFC6750">[RFC6750]</a>. OAuth 1.0a included the protocol specification for the communication between the OAuth client and the resource server in <a href="#RFC5849">[RFC5849]</a>.  </p>
+<p id="rfc.section.1.p.3">The main use cases for OAuth 2.0 and OAuth 1.0a have so far focused on an HTTP-based <a href="#RFC7230">[RFC7230]</a> environment only.  This document integrates OAuth 1.0a and OAuth 2.0 into non-HTTP-based applications using the integration into SASL.  Hence, this document  takes advantage of the OAuth protocol and its deployment base to provide a way to use the Simple Authentication and Security Layer (SASL) <a href="#RFC4422">[RFC4422]</a> to gain access to resources when using non-HTTP-based protocols, such as the Internet Message Access Protocol (IMAP) <a href="#RFC3501">[RFC3501]</a> and the Simple Mail Transfer Protocol (SMTP) <a href="#RFC5321">[RFC5321]</a>, which is what this memo uses in the examples.</p>
+<p id="rfc.section.1.p.4">To illustrate the impact of integrating this specification into an OAuth-enabled application environment, <a href="#overview">Figure 1</a> shows the abstract message flow of OAuth 2.0 <a href="#RFC6749">[RFC6749]</a>. As indicated in the figure, this document impacts the exchange of messages (E) and (F) since SASL is used for interaction between the client and the resource server instead of HTTP.</p>
+<div id="rfc.figure.1"/>
+<div id="overview"/>
+<pre>
+                                                           ----+
++--------+                                  +---------------+  |
+|        |--(A)-- Authorization Request ---&gt;|   Resource    |  |
+|        |                                  |     Owner     |  |Plain
+|        |&lt;-(B)------ Access Grant ---------|               |  |OAuth
+|        |                                  +---------------+  |2.0
+|        |                                                     | 
+|        |         Client Credentials &amp;     +---------------+  |
+|        |--(C)------ Access Grant --------&gt;| Authorization |  |
+| Client |                                  |     Server    |  |
+|        |&lt;-(D)------ Access Token ---------|               |  |
+|        |      (w/ Optional Refresh Token) +---------------+  |
+|        |                                                 ----+
+|        |                                                 ----+
+|        |                                  +---------------+  |
+|        |                                  |               |  |OAuth
+|        |--(E)------ Access Token --------&gt;|    Resource   |  |over
+|        |                                  |     Server    |  |SASL
+|        |&lt;-(F)---- Protected Resource -----|               |  |
+|        |                                  |               |  |
++--------+                                  +---------------+  |
+                                                           ----+
+</pre>
+<p class="figure">Figure 1: OAuth 2.0 Protocol Flow</p>
+<p id="rfc.section.1.p.5">The Simple Authentication and Security Layer (SASL) is a framework for providing authentication and data security services in connection-oriented protocols via replaceable authentication mechanisms.  It provides a structured interface between protocols and mechanisms.  The resulting framework allows new protocols to reuse existing authentication mechanisms and allows old protocols to make use of new authentication mechanisms.  The framework also provides a protocol for securing subsequent exchanges within a data security layer.</p>
+<p id="rfc.section.1.p.6">When OAuth is integrated into SASL the high-level steps are as follows: </p>
+
+<ul class="empty">
+  <li>(A)  The client requests authorization from the resource owner.  The authorization request can be made directly to the resource owner (as shown), or preferably indirectly via the authorization server as an intermediary.</li>
+  <li>(B)  The client receives an authorization grant which is a credential representing the resource owner's authorization, expressed using one of the grant types defined in <a href="#RFC6749">[RFC6749]</a> or <a href="#RFC5849">[RFC5849]</a> or using an extension grant type.  The authorization grant type depends on the method used by the client to request authorization and the types supported by the authorization server.</li>
+  <li>(C)  The client requests an access token by authenticating with the authorization server and presenting the authorization grant.</li>
+  <li>(D)  The authorization server authenticates the client and validates the authorization grant, and if valid issues an access token.</li>
+  <li>(E)  The client requests the protected resource from the resource server and authenticates by presenting the access token.</li>
+  <li>(F)  The resource server validates the access token, and if valid, indicates a successful authentication.</li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.1.p.7">Again, steps (E) and (F) are not defined in <a href="#RFC6749">[RFC6749]</a> (but are described in, for example, <a href="#RFC6750">[RFC6750]</a> for the OAuth Bearer Token instead) and are the main functionality specified within this document. Consequently, the message exchange shown in <a href="#overview">Figure 1</a> is the result of this specification. The client will generally need to determine the authentication endpoints (and perhaps the service endpoints) before the OAuth 2.0 protocol exchange messages in steps (A)-(D) are executed. The discovery of the resource owner, authorization server endpoints, and client registration are outside the scope of this specification. The client must discover the authorization endpoints using a discovery mechanism such as OpenID Connect Discovery <a href="#OpenID.Discovery">[OpenID.Discovery]</a> or Webfinger using host-meta <a href="#RFC7033">[RFC7033]</a>.  Once credentials are obtained the client proceeds to steps (E) and (F) defined in this specification.  Authorization endpoints MAY require client registration and generic clients SHOULD support the Dynamic Client Registration protocol  <a href="#I-D.ietf-oauth-dyn-reg">[I-D.ietf-oauth-dyn-reg]</a>.  </p>
+<p id="rfc.section.1.p.8">OAuth 1.0 follows a similar model but uses a different terminology and does not separate the resource server from the authorization server.</p>
+<h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> Terminology</h1>
+<p id="rfc.section.2.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119">[RFC2119]</a>.</p>
+<p id="rfc.section.2.p.2">The reader is assumed to be familiar with the terms used in the OAuth 2.0 specification <a href="#RFC6749">[RFC6749]</a> and SASL <a href="#RFC4422">[RFC4422]</a>.</p>
+<p id="rfc.section.2.p.3">In examples, "C:" and "S:" indicate lines sent by the client and server respectively. Line breaks have been inserted for readability.</p>
+<p id="rfc.section.2.p.4">Note that the IMAP SASL specification requires base64 encoding, see Section 4 of <a href="#RFC4648">[RFC4648]</a>, not this memo.</p>
+<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> OAuth SASL Mechanism Specifications</h1>
+<p id="rfc.section.3.p.1">SASL is used as an authentication framework in a variety of application layer protocols. This document defines the following SASL mechanisms for usage with OAuth: </p>
+
+<ul class="empty">
+  <li>
+    <dl>
+      <dt>OAUTHBEARER:</dt>
+      <dd style="margin-left: 8">OAuth 2.0 bearer tokens, as described in <a href="#RFC6750">[RFC6750]</a>. RFC 6750 uses Transport Layer Security (TLS) <a href="#RFC5246">[RFC5246]</a> to secure the protocol interaction between the client and the resource server.</dd>
+      <dt>OAUTH10A:</dt>
+      <dd style="margin-left: 8">OAuth 1.0a MAC tokens (using the HMAC-SHA1 keyed message digest), as described in Section 3.4.2 of <a href="#RFC5849">[RFC5849]</a>.  </dd>
+    </dl>
+    <p> </p>
+  </li>
+</ul>
+
+<p> New extensions may be defined to add additional OAuth Access Token Types. Such a new SASL OAuth mechanism can be added by simply registering the new name(s) and citing this specification for the further definition.  </p>
+<p id="rfc.section.3.p.2">These mechanisms are client initiated and lock-step, the server always replying to a client message.  In the case where the client has and correctly uses a valid token the flow is: </p>
+
+<ol>
+  <li>Client sends a valid and correct initial client response.  </li>
+  <li>Server responds with a successful authentication.  </li>
+</ol>
+
+<p> In the case where authentication fails the server sends an error result, then client MUST then send an additional message to the server in order to allow the server to finish the exchange.  Some protocols and common SASL implementations do not support both sending a SASL message and finalizing a SASL negotiation. The additional client message in the error case deals with this problem.  This exchange is: </p>
+
+<ol>
+  <li>Client sends an invalid initial client response.</li>
+  <li>Server responds with an error message. </li>
+  <li>Client sends a dummy client response.</li>
+  <li>Server fails the authentication.</li>
+</ol>
+
+<p> </p>
+<h1 id="rfc.section.3.1"><a href="#rfc.section.3.1">3.1.</a> Initial Client Response</h1>
+<p id="rfc.section.3.1.p.1">Client responses are a GS2 <a href="#RFC5801">[RFC5801]</a> header followed by zero or more key/value pairs, or may be empty. The gs2-header is defined here for compatibility with GS2 if a GS2 mechanism is formally defined, but this document does not define one.  The key/value pairs take the place of the corresponding HTTP headers and values to convey the information necessary to complete an OAuth style HTTP authorization.  Unknown key/value pairs MUST be ignored by the server. The ABNF <a href="#RFC5234">[RFC5234]</a> syntax is: </p>
+<pre>
+            
+  kvsep          = %x01
+  key            = 1*(ALPHA)
+  value          = *(VCHAR / SP / HTAB / CR / LF )
+  kvpair         = key "=" value kvsep
+;;gs2-header     = See RFC 5801
+  client_resp    = (gs2-header kvsep *kvpair kvsep) / kvsep
+</pre>
+<p id="rfc.section.3.1.p.2">The GS2 header MAY include the user name associated with the resource being accessed, the "authzid".  It is worth noting that application protocols are allowed to require an authzid, as are specific server implementations.  </p>
+<p id="rfc.section.3.1.p.3">The client response consisting of only a single kvsep is used only when authentication fails, and is only valid in that context.  If sent as the first message from the client the server MAY simply fail the authentication without returning discovery information since there is no user or server name indication.  </p>
+<p id="rfc.section.3.1.p.4">The following keys and corresponding values are defined in the client response: </p>
+<p/>
+
+<ul class="empty">
+  <li>
+    <dl>
+      <dt>auth (REQUIRED):</dt>
+      <dd style="margin-left: 8">The payload that would be in the HTTP Authorization header if this OAuth exchange was being carried out over HTTP.</dd>
+      <dt>host:</dt>
+      <dd style="margin-left: 8">Contains the host name to which the client connected. In an HTTP context this is the value of the HTTP Host header. </dd>
+      <dt>port:</dt>
+      <dd style="margin-left: 8">Contains the port number represented as a decimal positive integer string without leading zeros to which the client connected.</dd>
+    </dl>
+    <p> </p>
+  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.3.1.p.6">For OAuth token types such as OAuth 1.0a that use keyed message digests the client MUST send host and port number key/values, and the server MUST fail an authorization request requiring keyed message digests that are not accompanied by host and port values.   In OAuth 1.0a for example, the so-called "signature base string calculation" includes the reconstructed HTTP URL.  </p>
+<h1 id="rfc.section.3.1.1"><a href="#rfc.section.3.1.1">3.1.1.</a> Reserved Key/Values</h1>
+<p id="rfc.section.3.1.1.p.1">In these mechanisms values for path, query string and post body are assigned default values.  OAuth authorization schemes MAY define usage of these in the SASL context and extend this specification.  For OAuth Access Token Types that include a keyed message digest of the request the default values MUST be used unless explicit values are provided in the client response.  The following key values are reserved for future use: </p>
+
+<ul class="empty">
+  <li>
+    <dl>
+      <dt>mthd (RESERVED):</dt>
+      <dd style="margin-left: 8">HTTP method, the default value is "POST".  </dd>
+      <dt>path (RESERVED):</dt>
+      <dd style="margin-left: 8">HTTP path data, the default value is "/".  </dd>
+      <dt>post (RESERVED):</dt>
+      <dd style="margin-left: 8">HTTP post data, the default value is "".  </dd>
+      <dt>qs (RESERVED):</dt>
+      <dd style="margin-left: 8">The HTTP query string, the default value is "".  </dd>
+    </dl>
+    <p> </p>
+  </li>
+</ul>
+
+<p> </p>
+<h1 id="rfc.section.3.2"><a href="#rfc.section.3.2">3.2.</a> Server's Response</h1>
+<p id="rfc.section.3.2.p.1">The server validates the response according the specification for the OAuth Access Token Types used.  If the OAuth Access Token Type utilizes a keyed message digest of the request parameters then the client must provide a client response that satisfies the data requirements for the scheme in use.  </p>
+<p id="rfc.section.3.2.p.2">The server responds to a successfully verified client message by completing the SASL negotiation. The authenticated identity reported by the SASL mechanism is the identity securely established for the client with the OAuth credential.  The application, not the SASL mechanism, based on local access policy determines whether the identity reported by the mechanism is allowed access to the requested resource.  Note that the semantics of the authzid is specified by the SASL framework <a href="#RFC4422">[RFC4422]</a>.</p>
+<h1 id="rfc.section.3.2.1"><a href="#rfc.section.3.2.1">3.2.1.</a> OAuth Identifiers in the SASL Context</h1>
+<p id="rfc.section.3.2.1.p.1">In the OAuth framework the client may be authenticated by the authorization server and the resource owner is authenticated to the authorization server. OAuth access tokens may contain information about the authentication of the resource owner and about the client and may therefore make this information accessible to the resource server.</p>
+<p id="rfc.section.3.2.1.p.2">If both identifiers are needed by an application the developer will need to provide a way to communicate that from the SASL mechanism back to the application.  </p>
+<h1 id="rfc.section.3.2.2"><a href="#rfc.section.3.2.2">3.2.2.</a> Server Response to Failed Authentication</h1>
+<p id="rfc.section.3.2.2.p.1">For a failed authentication the server returns a JSON <a href="#RFC7159">[RFC7159]</a> formatted error result, and fails the authentication.  The error result consists of the following values: </p>
+
+<ul class="empty">
+  <li>
+    <dl>
+      <dt>status (REQUIRED):</dt>
+      <dd style="margin-left: 8">The authorization error code. Valid error codes are defined in the IANA "OAuth Extensions Error Registry" specified in the OAuth 2 core specification.  </dd>
+      <dt>scope (OPTIONAL):</dt>
+      <dd style="margin-left: 8">An OAuth scope which is valid to access the service.  This may be omitted which implies that unscoped tokens are required.  If a scope is specified then a single scope is preferred, use of a space separated list of scopes is NOT RECOMMENDED.  </dd>
+      <dt>openid-configuration (OPTIONAL):</dt>
+      <dd style="margin-left: 8">The URL for a document following the OpenID Provider Configuration Information schema as described in OpenID Connect Discovery (OIDCD) <a href="#OpenID.Discovery">[OpenID.Discovery]</a> section 3 that is appropriate for the user.  As specified in OIDCD this will have the "https" URL scheme. This document MUST have all OAuth related data elements populated.  The server MAY return different URLs for users in different domains and the client SHOULD NOT cache a single returned value and assume it applies for all users/domains that the server suports.  The returned discovery document SHOULD have all data elements required by the OpenID Connect Discovery specification populated.  In addition, the discovery document SHOULD contain the 'registration_endpoint' element to identify the endpoint to be used with the Dynamic Client Registration protocol <a href="#I-D.ietf-oauth-dyn-reg">[I-D.ietf-oauth-dyn-reg]</a> to obtain the minimum number of parameters necessary for the OAuth protocol exchange to function.  Another comparable discovery or client registration mechanism MAY be used if available.  </dd>
+      <dt></dt>
+      <dd style="margin-left: 8">The use of the 'offline_access' scope, as defined in <a href="#OpenID.Core">[OpenID.Core]</a> is RECOMMENDED to give clients the capability to explicitly request a refresh token.  </dd>
+    </dl>
+    <p> </p>
+  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.3.2.2.p.2">If the resource server provides a scope then the client MUST always request scoped tokens from the token endpoint.  If the resource server does not return a scope the client SHOULD presume an unscoped token is required to access the resource.  </p>
+<p id="rfc.section.3.2.2.p.3">Since clients may interact with a number of application servers, such as email servers and XMPP <a href="#RFC6120">[RFC6120]</a> servers, they need to have a way to determine whether dynamic client registration has been performed already and whether an already available refresh token can be re-used to obtain an access token for the desired resource server.  This specification RECOMMENDs that a client uses the information in the 'iss' element defined in OpenID Connect Core <a href="#OpenID.Core">[OpenID.Core]</a> to make this determination.  </p>
+<h1 id="rfc.section.3.2.3"><a href="#rfc.section.3.2.3">3.2.3.</a> Completing an Error Message Sequence</h1>
+<p id="rfc.section.3.2.3.p.1">Section 3.6 of SASL <a href="#RFC4422">[RFC4422]</a> explicitly prohibits additional information in an unsuccessful authentication outcome.  Therefore, the error message is sent in a normal message.  The client MUST then send either an additional client response consisting of a single %x01 (control A) character to the server in order to allow the server to finish the exchange or send a SASL cancellation token as generally defined in section 3.5 of SASL <a href="#RFC4422">[RFC4422]</a>.  A specific example of a cancellation token can be found in IMAP <a href="#RFC3501">[RFC3501]</a> section 6.2.2.  </p>
+<h1 id="rfc.section.3.3"><a href="#rfc.section.3.3">3.3.</a> <a href="#keyed-digests" id="keyed-digests">OAuth Access Token Types using Keyed Message Digests</a></h1>
+<p id="rfc.section.3.3.p.1">OAuth Access Token Types may use keyed message digests and the client and the resource server may need to perform a cryptographic computation for integrity protection and data origin authentication.</p>
+<p id="rfc.section.3.3.p.2">OAuth is designed for access to resources identified by URIs.  SASL is designed for user authentication, and has no facility for more fine-grained access control.  In this specification we require or define default values for the data elements from an HTTP request which allow the signature base string to be constructed properly.  The default HTTP path is "/" and the default post body is empty.  These atoms are defined as extension points so that no changes are needed if there is a revision of SASL which supports more specific resource authorization, e.g., IMAP access to a specific folder or FTP access limited to a specific directory. </p>
+<p id="rfc.section.3.3.p.3">Using the example in the OAuth 1.0a specification as a starting point, on an IMAP server running on port 143 and given the OAuth 1.0a style authorization request (with %x01 shown as ^A and line breaks added for readability) below: </p>
+<pre>
+n,a=user@example.com,^A
+host=example.com^A
+port=143^A
+auth=OAuth realm="Example",
+           oauth_consumer_key="9djdj82h48djs9d2",
+           oauth_token="kkk9d7dh3k39sjv7",
+           oauth_signature_method="HMAC-SHA1",
+           oauth_timestamp="137131201",
+           oauth_nonce="7d8f3e4a",
+           oauth_signature="Tm90IGEgcmVhbCBzaWduYXR1cmU"^A^A
+</pre>
+<p id="rfc.section.3.3.p.4">The signature base string would be constructed per the OAuth 1.0 specification <a href="#RFC5849">[RFC5849]</a> with the following things noted: </p>
+
+<ul>
+  <li>The method value is defaulted to POST.</li>
+  <li>The scheme defaults to be "http", and any port number other than 80 is included.</li>
+  <li>The path defaults to "/".</li>
+  <li>The query string defaults to "".</li>
+</ul>
+
+<p> In this example the signature base string with line breaks added for readability would be: </p>
+<pre>
+POST&amp;http%3A%2F%2Fexample.com:143%2F&amp;oauth_consumer_key%3D9djdj82h4
+8djs9d2%26oauth_nonce%3D7d8f3e4a%26oauth_signature_method%3DHMAC-SH
+A1%26oauth_timestamp%3D137131201%26oauth_token%3Dkkk9d7dh3k39sjv7
+</pre>
+<h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> Examples</h1>
+<p id="rfc.section.4.p.1">These examples illustrate exchanges between IMAP and SMTP clients and servers.  All IMAP examples use SASL-IR  <a href="#RFC4959">[RFC4959]</a> and send payload in the initial client response.   The Bearer Token examples assume encrypted transport; if the underlying connection is not already TLS then STARTTLS MUST be used as TLS is required in the Bearer Token specification. </p>
+<p id="rfc.section.4.p.2">Note to implementers:  The SASL OAuth method names are case insensitive.  One example uses "Bearer" but that could as easily be "bearer", "BEARER", or "BeArEr".  </p>
+<h1 id="rfc.section.4.1"><a href="#rfc.section.4.1">4.1.</a> Successful Bearer Token Exchange</h1>
+<p id="rfc.section.4.1.p.1">This example shows a successful OAuth 2.0 bearer token exchange in IMAP. Note that line breaks are inserted for readability.  The underlying TLS establishment is not shown but is required for using Bearer Tokens per that specification.</p>
+<pre>
+S: * OK IMAP4rev1 Server Ready
+C: t0 CAPABILITY
+S: * CAPABILITY IMAP4rev1 AUTH=OAUTHBEARER SASL-IR
+S: t0 OK Completed
+C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9c2Vy
+      dmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9QmVhcmVyIHZGOWRmd
+      DRxbVRjMk52YjNSbGNrQmhiSFJoZG1semRHRXVZMjl0Q2c9PQEB
+S: t1 OK SASL authentication succeeded
+</pre>
+<p id="rfc.section.4.1.p.2">As required by IMAP <a href="#RFC3501">[RFC3501]</a>, the payloads are base64-encoded. The decoded initial client response (with %x01 represented as ^A and long lines wrapped for readability) is: </p>
+<pre>
+n,a=user@example.com,^Ahost=server.example.com^Aport=143^A
+auth=Bearer vF9dft4qmTc2Nvb3RlckBhbHRhdmlzdGEuY29tCg==^A^A
+</pre>
+<p id="rfc.section.4.1.p.3">The same credential used in an SMTP exchange is shown below.  Note that line breaks are inserted for readability, and that the SMTP protocol terminates lines with CR and LF characters (ASCII values 0x0D and 0x0A), these are not displayed explicitly in the example.  Again this example assumes that TLS is already established per the Bearer Token specification requirements.</p>
+<pre>
+[connection begins]
+S: 220 mx.example.com ESMTP 12sm2095603fks.9
+C: EHLO sender.example.com
+S: 250-mx.example.com at your service,[172.31.135.47]
+S: 250-SIZE 35651584
+S: 250-8BITMIME
+S: 250-AUTH LOGIN PLAIN OAUTHBEARER 
+S: 250-ENHANCEDSTATUSCODES
+S: 250-STARTTLS
+S: 250 PIPELINING
+[Negotiate TLS...]
+C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9c2Vy
+      dmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9QmVhcmVyIHZGOWRmd
+      DRxbVRjMk52YjNSbGNrQmhiSFJoZG1semRHRXVZMjl0Q2c9PQEB
+S: 235 Authentication successful.
+[connection continues...]
+          </pre>
+<h1 id="rfc.section.4.2"><a href="#rfc.section.4.2">4.2.</a> Successful OAuth 1.0a Token Exchange</h1>
+<p id="rfc.section.4.2.p.1">This IMAP example shows a successful OAuth 1.0a token exchange. Note that line breaks are inserted for readability.  This example assumes that TLS is already established. Signature computation is discussed in <a href="#keyed-digests">Section 3.3</a>.</p>
+<pre>
+S: * OK IMAP4rev1 Server Ready
+C: t0 CAPABILITY
+S: * CAPABILITY IMAP4rev1 AUTH=OAUTHBEARER OAUTH10A SASL-IR 
+S: t0 OK Completed 
+C: t1 AUTH OAUTH10A bixhPXVzZXJAZXhhbXBsZS5jb20sAWhvc3Q9ZXhhb
+      XBsZS5jb20BcG9ydD0xNDMBYXV0aD1PQXV0aCByZWFsbT0iRXhhbXBsZSIsb2F1
+      dGhfY29uc3VtZXJfa2V5PSI5ZGpkajgyaDQ4ZGpzOWQyIixvYXV0aF90b2tlbj0
+      ia2trOWQ3ZGgzazM5c2p2NyIsb2F1dGhfc2lnbmF0dXJlX21ldGhvZD0iSE1BQy
+      1TSEExIixvYXV0aF90aW1lc3RhbXA9IjEzNzEzMTIwMSIsb2F1dGhfbm9uY2U9I
+      jdkOGYzZTRhIixvYXV0aF9zaWduYXR1cmU9IlRtOTBJR0VnY21WaGJDQnphV2R1
+      WVhSMWNtVSUzRCIBAQ==
+S: t1 OK SASL authentication succeeded
+</pre>
+<p id="rfc.section.4.2.p.2">As required by IMAP <a href="#RFC3501">[RFC3501]</a>, the payloads are base64-encoded. The decoded initial client response (with %x01 represented as ^A and lines wrapped for readability) is: </p>
+<pre>
+n,a=user@example.com,^A
+host=example.com^A
+port=143^A
+auth=OAuth realm="Example",
+           oauth_consumer_key="9djdj82h48djs9d2",
+           oauth_token="kkk9d7dh3k39sjv7",
+           oauth_signature_method="HMAC-SHA1",
+           oauth_timestamp="137131201",
+           oauth_nonce="7d8f3e4a",
+           oauth_signature="SSdtIGEgbGl0dGxlIHRlYSBwb3Qu"^A^A
+</pre>
+<h1 id="rfc.section.4.3"><a href="#rfc.section.4.3">4.3.</a> Failed Exchange</h1>
+<p id="rfc.section.4.3.p.1">This IMAP example shows a failed exchange because of the empty Authorization header, which is how a client can query for the needed scope. Note that line breaks are inserted for readability.</p>
+<pre>
+S: * OK IMAP4rev1 Server Ready
+C: t0 CAPABILITY
+S: * CAPABILITY IMAP4rev1 AUTH=OAUTHBEARER SASL-IR 
+S: t0 OK Completed 
+C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAW
+      hvc3Q9c2VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9AQE=
+S: + eyJzdGF0dXMiOiJpbnZhbGlkX3Rva2VuIiwic2NvcGUiOiJleGFtcGxl
+     X3Njb3BlIiwib3BlbmlkLWNvbmZpZ3VyYXRpb24iOiJodHRwczovL2V4
+     YW1wbGUuY29tLy53ZWxsLWtub3duL29wZW5pZC1jb25maWcifQ==
+C: AQ==
+S: t1 NO SASL authentication failed
+</pre>
+<p id="rfc.section.4.3.p.2">The decoded initial client response is: </p>
+<pre>
+n,a=user@example.com,^Ahost=server.example.com^A
+port=143^Aauth=^A^A
+            </pre>
+<p id="rfc.section.4.3.p.3">The decoded server error response is: </p>
+<pre>
+{
+"status":"invalid_token",
+"scope":"example_scope",
+"openid-configuration":"https://example.com/.well-known/openid-config"
+}
+            </pre>
+<p id="rfc.section.4.3.p.4">The client responds with the required dummy response, "AQ==" is the base64 encoding of the ASCII value 0x01.  The same exchange using the IMAP specific method of cancelling an AUTHENTICATE command sends "*" and is shown below.  </p>
+<pre>
+S: * OK IMAP4rev1 Server Ready
+C: t0 CAPABILITY
+S: * CAPABILITY IMAP4rev1 AUTH=OAUTHBEARER SASL-IR IMAP4rev1
+S: t0 OK Completed 
+C: t1 AUTH OAUTHBEARER bixhPXVzZXJAZXhhbXBsZS5jb20sAW
+      hvc3Q9c2VydmVyLmV4YW1wbGUuY29tAXBvcnQ9MTQzAWF1dGg9AQE=
+S: + eyJzdGF0dXMiOiJpbnZhbGlkX3Rva2VuIiwic2NvcGUiOiJleGFtcGxl
+     X3Njb3BlIiwib3BlbmlkLWNvbmZpZ3VyYXRpb24iOiJodHRwczovL2V4
+     YW1wbGUuY29tLy53ZWxsLWtub3duL29wZW5pZC1jb25maWd1cmF0aW9u
+     In0=
+C: *
+S: t1 NO SASL authentication failed
+</pre>
+<h1 id="rfc.section.4.4"><a href="#rfc.section.4.4">4.4.</a> SMTP Example of a Failed Negotiation</h1>
+<p id="rfc.section.4.4.p.1">This example shows an authorization failure in an SMTP exchange.  Note that line breaks are inserted for readability, and that the SMTP protocol terminates lines with CR and LF characters (ASCII values 0x0D and 0x0A), these are not displayed explicitly in the example.  TLS negotiation is not shown but as noted above it is required for the use of Bearer Tokens.</p>
+<pre>
+[connection begins]
+S: 220 mx.example.com ESMTP 12sm2095603fks.9
+C: EHLO sender.example.com
+S: 250-mx.example.com at your service,[172.31.135.47]
+S: 250-SIZE 35651584
+S: 250-8BITMIME
+S: 250-AUTH LOGIN PLAIN OAUTHBEARER
+S: 250-ENHANCEDSTATUSCODES
+S: 250 PIPELINING
+C: AUTH OAUTHBEARER bix1c2VyPXNvbWV1c2VyQGV4YW1wbGUuY29tLAFhdXRoPUJlYXJl
+       ciB2RjlkZnQ0cW1UYzJOdmIzUmxja0JoZEhSaGRtbHpkR0V1WTI5dENnPT0BAQ==
+S: 334 eyJzdGF0dXMiOiJpbnZhbGlkX3Rva2VuIiwic2NoZW1lcyI6ImJlYXJlciBtYWMiL
+       CJzY29wZSI6Imh0dHBzOi8vbWFpbC5nb29nbGUuY29tLyJ9
+C: AQ==
+S: 535-5.7.1 Username and Password not accepted. Learn more at
+S: 535 5.7.1 http://support.example.com/mail/oauth
+[connection continues...]
+            </pre>
+<p id="rfc.section.4.4.p.2">The server returned an error message in the 334 SASL message, the client responds with the required dummy response, and the server finalizes the negotiation.  </p>
+<h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> Security Considerations</h1>
+<p id="rfc.section.5.p.1">OAuth 1.0a and OAuth 2 allow for a variety of deployment scenarios, and the security properties of these profiles vary. As shown in <a href="#overview">Figure 1</a> this specification is aimed to be integrated into a larger OAuth deployment. Application developers therefore need to understand their security requirements based on a threat assessment before selecting a specific SASL OAuth mechanism. For OAuth 2.0 a detailed security document <a href="#RFC6819">[RFC6819]</a> provides guidance to select those OAuth 2.0 components that help to mitigate threats for a given deployment. For OAuth 1.0a Section 4 of RFC 5849 <a href="#RFC5849">[RFC5849]</a> provides guidance specific to OAuth 1.0.</p>
+<p id="rfc.section.5.p.2">This document specifies two SASL  Mechanisms for OAuth and each comes with different security properties.  </p>
+
+<dl>
+  <dt>OAUTHBEARER:</dt>
+  <dd style="margin-left: 8">This mechanism borrows from OAuth 2.0 bearer tokens <a href="#RFC6750">[RFC6750]</a>. It relies on the application using TLS to protect the OAuth 2.0 Bearer Token exchange; without TLS usage at the application layer this method is completely insecure. Consequently, TLS MUST be provided by the application when choosing this authentication mechanism.</dd>
+  <dt>OAUTH10A:</dt>
+  <dd style="margin-left: 8">This mechanism re-uses OAuth 1.0a MAC tokens (using the HMAC-SHA1 keyed message digest), as described in Section 3.4.2 of <a href="#RFC5849">[RFC5849]</a>. To compute the keyed message digest in the same way as in RFC 5839 this specification conveys additional parameters between the client and the server. This SASL mechanism only supports client authentication. If server-side authentication is desireable then it must be provided by the application underneath the SASL layer. The use of TLS is strongly RECOMMENDED.  </dd>
+</dl>
+
+<p> </p>
+<p id="rfc.section.5.p.3">Additionally, the following aspects are worth pointing out: </p>
+
+<dl>
+  <dt>An access token is not equivalent to the user's long term password.</dt>
+  <dd style="margin-left: 8"><br/><br/> Care has to be taken when these OAuth credentials are used for actions like changing passwords (as it is possible with some protocols, e.g., XMPP <a href="#RFC6120">[RFC6120]</a>). The resource server should ensure that actions taken in the authenticated channel are appropriate to the strength of the presented credential.</dd>
+  <dt>Lifetime of the appliation sessions.</dt>
+  <dd style="margin-left: 8"><br/><br/> It is possible that SASL will be authenticating a connection and the life of that connection may outlast the life of the access token used to establish it.  This is a common problem in application protocols where connections are long-lived, and not a problem with this mechanism per se. Resource servers may unilaterally disconnect clients in accordance with the application protocol.</dd>
+  <dt>Access tokens have a lifetime.</dt>
+  <dd style="margin-left: 8"><br/><br/> Reducing the lifetime of an access token provides security benefits and OAuth 2.0 introduces refresh tokens to obtain new access token on the fly without any need for a human interaction.  Additionally, a previously obtained access token might be revoked or rendered invalid at any time. The client MAY request a new access token for each connection to a resource server, but it SHOULD cache and re-use valid credentials.</dd>
+</dl>
+
+<p> </p>
+<h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> Internationalization Considerations</h1>
+<p id="rfc.section.6.p.1">The identifer asserted by the OAuth authorization server about the resource owner inside the access token may be displayed to a human. For example, when SASL is used in the context of IMAP the client may assert the resource owner's email address to the IMAP server for usage in an email-based application. The identifier may therefore contain internationalized characters and an application needs to ensure that the mapping between the identifier provided by OAuth is suitable for use with the application layer protocol SASL is incorporated into.</p>
+<p id="rfc.section.6.p.2">At the time of writing the standardization of the various claims in the access token (in JSON format) is still ongoing, see <a href="#I-D.ietf-oauth-json-web-token">[I-D.ietf-oauth-json-web-token]</a>. Once completed it will provide a standardized format for exchanging identity information between the authorization server and the resource server.</p>
+<h1 id="rfc.section.7"><a href="#rfc.section.7">7.</a> IANA Considerations</h1>
+<h1 id="rfc.section.7.1"><a href="#rfc.section.7.1">7.1.</a> SASL Registration</h1>
+<p id="rfc.section.7.1.p.1">The IANA is requested to register the following entry in the SASL Mechanisms registry: </p>
+
+<ul class="empty">
+  <li>SASL mechanism name: OAUTHBEARER</li>
+  <li>Security Considerations: See this document</li>
+  <li>Published Specification: See this document</li>
+  <li>For further information: Contact the authors of this document.</li>
+  <li>Intended usage: common</li>
+  <li>Owner/Change controller: the IESG</li>
+  <li>Note: None</li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.7.1.p.2">The IANA is requested to register the following entry in the SASL Mechanisms registry: </p>
+
+<ul class="empty">
+  <li>SASL mechanism name: OAUTH10A</li>
+  <li>Security Considerations: See this document</li>
+  <li>Published Specification: See this document</li>
+  <li>For further information: Contact the authors of this document.</li>
+  <li>Intended usage: common</li>
+  <li>Owner/Change controller: the IESG</li>
+  <li>Note: None</li>
+</ul>
+
+<p> </p>
+<h1 id="rfc.references"><a href="#rfc.references">8.</a> References</h1>
+<h1 id="rfc.references.1"><a href="#rfc.references.1">8.1.</a> Normative References</h1>
+<table>
+  <tbody>
+    <tr>
+      <td class="reference">
+        <b id="OpenID.Core">[OpenID.Core]</b>
+      </td>
+      <td class="top"><a title="Nomura Research Institute, Ltd.">Sakimura, N.</a>, <a title="Ping Identity">Bradley, J.</a>, <a title="Microsoft">Jones, M.</a>, <a title="Google">de Medeiros, B.</a> and <a title="Salesforce">C. Mortimore</a>, "<a>OpenID Connect Core 1.0</a>", February 2014.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="OpenID.Discovery">[OpenID.Discovery]</b>
+      </td>
+      <td class="top"><a title="Nomura Research Institute, Ltd.">Sakimura, N.</a>, <a title="Protiviti Government Services">Bradley, J.</a>, <a title="Microsoft">Jones, M.</a> and <a title="MGI1">E. Jay</a>, "<a>OpenID Connect Discovery 1.0</a>", July 2011.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC2119">[RFC2119]</b>
+      </td>
+      <td class="top"><a href="mailto:sob@harvard.edu" title="Harvard University">Bradner, S.</a>, "<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, March 1997.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC4422">[RFC4422]</b>
+      </td>
+      <td class="top"><a>Melnikov, A.</a> and <a>K. Zeilenga</a>, "<a href="http://tools.ietf.org/html/rfc4422">Simple Authentication and Security Layer (SASL)</a>", RFC 4422, June 2006.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC4648">[RFC4648]</b>
+      </td>
+      <td class="top"><a>Josefsson, S.</a>, "<a href="http://tools.ietf.org/html/rfc4648">The Base16, Base32, and Base64 Data Encodings</a>", RFC 4648, October 2006.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC5234">[RFC5234]</b>
+      </td>
+      <td class="top"><a>Crocker, D.</a> and <a>P. Overell</a>, "<a href="http://tools.ietf.org/html/rfc5234">Augmented BNF for Syntax Specifications: ABNF</a>", STD 68, RFC 5234, January 2008.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC5246">[RFC5246]</b>
+      </td>
+      <td class="top"><a>Dierks, T.</a> and <a>E. Rescorla</a>, "<a href="http://tools.ietf.org/html/rfc5246">The Transport Layer Security (TLS) Protocol Version 1.2</a>", RFC 5246, August 2008.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC5801">[RFC5801]</b>
+      </td>
+      <td class="top"><a>Josefsson, S.</a> and <a>N. Williams</a>, "<a href="http://tools.ietf.org/html/rfc5801">Using Generic Security Service Application Program Interface (GSS-API) Mechanisms in Simple Authentication and Security Layer (SASL): The GS2 Mechanism Family</a>", RFC 5801, July 2010.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC5849">[RFC5849]</b>
+      </td>
+      <td class="top"><a>Hammer-Lahav, E.</a>, "<a href="http://tools.ietf.org/html/rfc5849">The OAuth 1.0 Protocol</a>", RFC 5849, April 2010.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC6749">[RFC6749]</b>
+      </td>
+      <td class="top"><a>Hardt, D.</a>, "<a href="http://tools.ietf.org/html/rfc6749">The OAuth 2.0 Authorization Framework</a>", RFC 6749, October 2012.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC6750">[RFC6750]</b>
+      </td>
+      <td class="top"><a>Jones, M.</a> and <a>D. Hardt</a>, "<a href="http://tools.ietf.org/html/rfc6750">The OAuth 2.0 Authorization Framework: Bearer Token Usage</a>", RFC 6750, October 2012.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC7159">[RFC7159]</b>
+      </td>
+      <td class="top"><a>Bray, T.</a>, "<a href="http://tools.ietf.org/html/rfc7159">The JavaScript Object Notation (JSON) Data Interchange Format</a>", RFC 7159, March 2014.</td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="rfc.references.2"><a href="#rfc.references.2">8.2.</a> Informative References</h1>
+<table>
+  <tbody>
+    <tr>
+      <td class="reference">
+        <b id="I-D.ietf-oauth-dyn-reg">[I-D.ietf-oauth-dyn-reg]</b>
+      </td>
+      <td class="top"><a>Richer, J.</a>, <a>Jones, M.</a>, <a>Bradley, J.</a>, <a>Machulak, M.</a> and <a>P. Hunt</a>, "<a href="http://tools.ietf.org/html/draft-ietf-oauth-dyn-reg-27">OAuth 2.0 Dynamic Client Registration Protocol</a>", Internet-Draft draft-ietf-oauth-dyn-reg-27, March 2015.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="I-D.ietf-oauth-json-web-token">[I-D.ietf-oauth-json-web-token]</b>
+      </td>
+      <td class="top"><a>Jones, M.</a>, <a>Bradley, J.</a> and <a>N. Sakimura</a>, "<a href="http://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">JSON Web Token (JWT)</a>", Internet-Draft draft-ietf-oauth-json-web-token-32, December 2014.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC3501">[RFC3501]</b>
+      </td>
+      <td class="top"><a>Crispin, M.</a>, "<a href="http://tools.ietf.org/html/rfc3501">INTERNET MESSAGE ACCESS PROTOCOL - VERSION 4rev1</a>", RFC 3501, March 2003.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC4959">[RFC4959]</b>
+      </td>
+      <td class="top"><a>Siemborski, R.</a> and <a>A. Gulbrandsen</a>, "<a href="http://tools.ietf.org/html/rfc4959">IMAP Extension for Simple Authentication and Security Layer (SASL) Initial Client Response</a>", RFC 4959, September 2007.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC5321">[RFC5321]</b>
+      </td>
+      <td class="top"><a>Klensin, J.</a>, "<a href="http://tools.ietf.org/html/rfc5321">Simple Mail Transfer Protocol</a>", RFC 5321, October 2008.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC6120">[RFC6120]</b>
+      </td>
+      <td class="top"><a>Saint-Andre, P.</a>, "<a href="http://tools.ietf.org/html/rfc6120">Extensible Messaging and Presence Protocol (XMPP): Core</a>", RFC 6120, March 2011.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC6819">[RFC6819]</b>
+      </td>
+      <td class="top"><a>Lodderstedt, T.</a>, <a>McGloin, M.</a> and <a>P. Hunt</a>, "<a href="http://tools.ietf.org/html/rfc6819">OAuth 2.0 Threat Model and Security Considerations</a>", RFC 6819, January 2013.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC7033">[RFC7033]</b>
+      </td>
+      <td class="top"><a>Jones, P.</a>, <a>Salgueiro, G.</a>, <a>Jones, M.</a> and <a>J. Smarr</a>, "<a href="http://tools.ietf.org/html/rfc7033">WebFinger</a>", RFC 7033, September 2013.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC7230">[RFC7230]</b>
+      </td>
+      <td class="top"><a>Fielding, R.</a> and <a>J. Reschke</a>, "<a href="http://tools.ietf.org/html/rfc7230">Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</a>", RFC 7230, June 2014.</td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="rfc.appendix.A"><a href="#rfc.appendix.A">Appendix A.</a> Acknowlegements</h1>
+<p id="rfc.section.A.p.1">The authors would like to thank the members of the Kitten working group, and in addition and specifically: Simon Josefson, Torsten Lodderstadt, Ryan Troll, Alexey Melnikov, Jeffrey Hutzelman, Nico Williams, Matt Miller, and Benjamin Kaduk.  </p>
+<p id="rfc.section.A.p.2">This document was produced under the chairmanship of Alexey Melnikov, Tom Yu, Shawn Emery, Josh Howlett, Sam Hartman.  The supervising area director was Stephen Farrell.  </p>
+<h1 id="rfc.appendix.B"><a href="#rfc.appendix.B">Appendix B.</a> Document History</h1>
+<p id="rfc.section.B.p.1">[[ to be removed by RFC editor before publication as an RFC ]] </p>
+<p id="rfc.section.B.p.2">-19 </p>
+<p/>
+
+<ul>
+  <li>Last call feedback agaiun.  </li>
+  <li>Clarified usage of TLS in examples and fixed them some more.  Adding reference to RFC4422 and cancellation token and an example for that.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.4">-18 </p>
+<p/>
+
+<ul>
+  <li>Last call feedback round #5.  Fixed -17 change log.  </li>
+  <li>Corrected "issue" to "iss", other minor changes.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.6">-17 </p>
+<p/>
+
+<ul>
+  <li>Last call feedback again (WGLC #4).  eradicated comma splicing.  Removed extra server message in example 4.3.  </li>
+  <li>Added recommendations for discovery and dynamic client registration support.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.8">-16 </p>
+<p/>
+
+<ul>
+  <li>Last call feedback again.  Primarily editorial changes.  Corrected examples.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.10">-15 </p>
+<p/>
+
+<ul>
+  <li>Last call feedack on the GS2 stuff being ripped out completely.  </li>
+  <li>Removed the "user" parameter and put stuff back into the gs2-header.  Call out that the authzid goes in the gs2-header with some prose about when it might be required. Very comparable to -10.  </li>
+  <li>Added an OAuth 1.0A example explicitly.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.12">-14 </p>
+<p/>
+
+<ul>
+  <li>Last call feedack on RFC citations needed, small editorial.  </li>
+  <li>Added the "user" parameter back, which was pulled when we started down the GS2 path.  Same language as -03.  </li>
+  <li>Defined a stub GS2 header to make sure that when the GS2 bride is defined for this that nothing will break when it actually starts to get populated.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.14">-13 </p>
+<p/>
+
+<ul>
+  <li>Changed affiliation.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.16">-12 </p>
+<p/>
+
+<ul>
+  <li>Removed -PLUS components from the specification.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.18">-11 </p>
+<p/>
+
+<ul>
+  <li>Removed GSS-API components from the specification.  </li>
+  <li>Updated security consideration section.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.20">-10 </p>
+<p/>
+
+<ul>
+  <li>Clarifications throughout the document in response to the feedback from Jeffrey Hutzelman.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.22">-09 </p>
+<p/>
+
+<ul>
+  <li>Incorporated review by Alexey and Hannes.  </li>
+  <li>Clarified the three OAuth SASL mechanisms.  </li>
+  <li>Updated references</li>
+  <li>Extended acknowledgements</li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.24">-08 </p>
+<p/>
+
+<ul>
+  <li>Fixed the channel binding examples for p=$cbtype </li>
+  <li>More tuning of the authcid language and edited and renamed 3.2.1.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.26">-07 </p>
+<p/>
+
+<ul>
+  <li>Struck the MUST langiage from authzid.  </li>
+  <li/>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.28">-06 </p>
+<p/>
+
+<ul>
+  <li>Removed the user field.  Fixed the examples again.  </li>
+  <li>Added canonicalization language.  </li>
+  <li/>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.30">-05 </p>
+<p/>
+
+<ul>
+  <li>Fixed the GS2 header language again.  </li>
+  <li>Separated out different OAuth schemes into different SASL mechanisms.  Took out the scheme in the error return.  Tuned up the IANA registrations.  </li>
+  <li>Added the user field back into the SASL message.  </li>
+  <li>Fixed the examples (again).  </li>
+  <li/>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.32">-04 </p>
+<p/>
+
+<ul>
+  <li>Changed user field to be carried in the gs2-header, and made gs2 header explicit in all cases.  </li>
+  <li>Converted MAC examples to OAuth 1.0a.  Moved MAC to an informative reference.  </li>
+  <li>Changed to sending an empty client response (single control-A) as the second message of a failed sequence.  </li>
+  <li>Fixed channel binding prose to refer to the normative specs and removed the hashing of large channel binding data, which brought mroe problems than it solved.  </li>
+  <li>Added a SMTP examples for Bearer use case.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.34">-03 </p>
+<p/>
+
+<ul>
+  <li>Added user field into examples and fixed egregious errors there as well.  </li>
+  <li>Added text reminding developers that Authorization scheme names are case insensitive.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.36">-02 </p>
+<p/>
+
+<ul>
+  <li>Added the user data element back in.  </li>
+  <li>Minor editorial changes.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.38">-01 </p>
+<p/>
+
+<ul>
+  <li>Ripping out discovery.  Changed to refer to I-D.jones-appsawg-webfinger instead of WF and SWD older drafts.  </li>
+  <li>Replacing HTTP as the message format and adjusted all examples.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.B.p.40">-00 </p>
+<p/>
+
+<ul>
+  <li>Renamed draft into proper IETF naming format now that it's adopted.  </li>
+  <li>Minor fixes.  </li>
+</ul>
+
+<p> </p>
+<h1 id="rfc.authors">
+  <a href="#rfc.authors">Authors' Addresses</a>
+</h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">William Mills</span> 
+	  <span class="n hidden">
+		<span class="family-name">Mills</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Microsoft</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:wimills@microsoft.com">wimills@microsoft.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Tim Showalter</span> 
+	  <span class="n hidden">
+		<span class="family-name">Showalter</span>
+	  </span>
+	</span>
+	<span class="org vcardline"></span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:tjs@psaux.com">tjs@psaux.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Hannes Tschofenig </span> 
+	  <span class="n hidden">
+		<span class="family-name">Tschofenig</span>
+	  </span>
+	</span>
+	<span class="org vcardline">ARM Ltd.</span>
+	<span class="adr">
+	  <span class="vcardline">110 Fulbourn Rd</span>
+
+	  <span class="vcardline">
+		<span class="locality">Cambridge</span>,  
+		<span class="region"></span>
+		<span class="code">CB1 9NJ </span>
+	  </span>
+	  <span class="country-name vcardline">Great Britain</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:Hannes.tschofenig@gmx.net ">Hannes.tschofenig@gmx.net </a></span>
+
+<span class="vcardline">URI: <a href="http://www.tschofenig.priv.at">http://www.tschofenig.priv.at</a></span>
+
+  </address>
+</div>
+
+</body>
+</html>
