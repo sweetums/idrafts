@@ -317,8 +317,7 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
 	keyed message digests that are not accompanied by host and port values.  <!-- For schemes 
 	that require a URI scheme as part of the data being signed "http" is always used.--> In 
 	OAuth 1.0a for example, the so-called "signature base string calculation" includes the reconstructed HTTP
-	URL.  The server SHOULD validate that the host and port values match the expected values for
-	the service.
+	URL.  
 	</t>
 
 	<section title="Reserved Key/Values">
@@ -353,6 +352,22 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
    	OAuth Access Token Types used.  If the OAuth Access Token Type utilizes a keyed message 
 	digest of the request parameters then the client must provide a client
    	response that satisfies the data requirements for the scheme in use. 
+	</t>
+
+	<t>
+	  The server fully validates the client response before generating a server
+	  response; this will necessarily include the validation steps listed in the
+	  specification for the OAuth Access Token Type used.  However, additional
+	  validation steps may be needed, depending on the particular application
+	  protocol making use of SASL.  In particular, values included as kvpairs in
+	  the client response (such as host and port) which correspond to values
+	  known to the application by some other mechanism (such as an application
+	  protocol data unit or pre-configured values) MUST be validated to match
+	  between the initial client response and the the other source(s) of such
+	  information.  As a concrete example, when SASL is used over IMAP to an IMAP 
+	  server for a single domain the hostname can be vaialble via configuration;
+	  this hostname must be validated to match the value sent in the 'host'
+	  kvpair.
 	</t>
 
         <t>The server responds to a successfully verified client message by completing the SASL
