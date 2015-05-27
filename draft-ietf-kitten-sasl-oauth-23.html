@@ -409,7 +409,7 @@
 <td class="right">T. Showalter</td>
 </tr>
 <tr>
-<td class="left">Expires: October 01, 2015</td>
+<td class="left">Expires: October 31, 2015</td>
 <td class="right">H.T. Tschofenig</td>
 </tr>
 <tr>
@@ -418,7 +418,7 @@
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">April 2015</td>
+<td class="right">May 2015</td>
 </tr>
 
     	
@@ -426,7 +426,7 @@
   </table>
 
   <p class="title">A set of SASL Mechanisms for OAuth<br />
-  <span class="filename">draft-ietf-kitten-sasl-oauth-22.txt</span></p>
+  <span class="filename">draft-ietf-kitten-sasl-oauth-23.txt</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
 <p>OAuth enables a third-party application to obtain limited access to a protected resource, either on behalf of a resource owner by orchestrating an approval interaction, or by allowing the third-party application to obtain access on its own behalf.  </p>
@@ -436,7 +436,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet- Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on October 01, 2015.</p>
+<p>This Internet-Draft will expire on October 31, 2015.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2015 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -536,7 +536,7 @@
 <p id="rfc.section.1.p.6">When OAuth is integrated into SASL the high-level steps are as follows: </p>
 
 <ul class="empty">
-<li>(A)  The client requests authorization from the resource owner.  The authorization request can be made directly to the resource owner (as shown), or preferably indirectly via the authorization server as an intermediary.</li>
+<li>(A)  The client requests authorization from the resource owner.  The authorization request can be made directly to the resource owner (as shown), or indirectly via the authorization server as an intermediary.</li>
 <li>(B)  The client receives an authorization grant which is a credential representing the resource owner's authorization, expressed using one of the grant types defined in <a href="#RFC6749">[RFC6749]</a> or <a href="#RFC5849">[RFC5849]</a> or using an extension grant type.  The authorization grant type depends on the method used by the client to request authorization and the types supported by the authorization server.</li>
 <li>(C)  The client requests an access token by authenticating with the authorization server and presenting the authorization grant.</li>
 <li>(D)  The authorization server authenticates the client and validates the authorization grant, and if valid issues an access token.</li>
@@ -567,7 +567,7 @@
 <p> </p>
 </li></ul>
 
-<p> New extensions may be defined to add additional OAuth Access Token Types. Such a new SASL OAuth mechanism can be added by simply registering the new name(s) and citing this specification for the further definition.  </p>
+<p> New extensions may be defined to add additional OAuth Access Token Types. Such a new SASL OAuth mechanism can be added by registering the new name(s) with IANA and citing this specification for the further definition.  </p>
 <p id="rfc.section.3.p.2">SASL mechanisms using this document as their definition do not provide a data security layer; that is, they cannot provide integrity or confidentiality protection for application messages after the initial authentication.  If such protection is needed, TLS or some similar solution should be used.  Additionally, for the two mechanisms specified in this document, TLS MUST be used for OAUTHBEARER to protect the bearer token; for OAUTH10A the use of TLS is RECOMMENDED.  </p>
 <p id="rfc.section.3.p.3">These mechanisms are client initiated and lock-step, the server always replying to a client message.  In the case where the client has and correctly uses a valid token the flow is: </p>
 
@@ -639,7 +639,7 @@
 <p> </p>
 <h1 id="rfc.section.3.2">
 <a href="#rfc.section.3.2">3.2.</a> Server's Response</h1>
-<p id="rfc.section.3.2.p.1">The server validates the response according the specification for the OAuth Access Token Types used.  If the OAuth Access Token Type utilizes a keyed message digest of the request parameters then the client must provide a client response that satisfies the data requirements for the scheme in use.  </p>
+<p id="rfc.section.3.2.p.1">The server validates the response according to the specification for the OAuth Access Token Types used.  If the OAuth Access Token Type utilizes a keyed message digest of the request parameters then the client must provide a client response that satisfies the data requirements for the scheme in use.  </p>
 <p id="rfc.section.3.2.p.2">The server fully validates the client response before generating a server response; this will necessarily include the validation steps listed in the specification for the OAuth Access Token Type used.  However, additional validation steps may be needed, depending on the particular application protocol making use of SASL.  In particular, values included as kvpairs in the client response (such as host and port) which correspond to values known to the application by some other mechanism (such as an application protocol data unit or pre-configured values) MUST be validated to match between the initial client response and the the other source(s) of such information.  As a concrete example, when SASL is used over IMAP to an IMAP server for a single domain the hostname can be available via configuration; this hostname must be validated to match the value sent in the 'host' kvpair.  </p>
 <p id="rfc.section.3.2.p.3">The server responds to a successfully verified client message by completing the SASL negotiation. The authenticated identity reported by the SASL mechanism is the identity securely established for the client with the OAuth credential.  The application, not the SASL mechanism, based on local access policy determines whether the identity reported by the mechanism is allowed access to the requested resource.  Note that the semantics of the authzid is specified by the SASL framework <a href="#RFC4422">[RFC4422]</a>.</p>
 <h1 id="rfc.section.3.2.1">
@@ -894,9 +894,9 @@ auth=Bearer vF9dft4qmTc2Nvb3RlckBhdHRhdmlzdGEuY29tCg==^A^A
 <dt>An access token is not equivalent to the user's long term password.</dt>
 <dd style="margin-left: 8">
 <br><br> Care has to be taken when these OAuth credentials are used for actions like changing passwords (as it is possible with some protocols, e.g., XMPP <a href="#RFC6120">[RFC6120]</a>). The resource server should ensure that actions taken in the authenticated channel are appropriate to the strength of the presented credential.</dd>
-<dt>Lifetime of the appliation sessions.</dt>
+<dt>Lifetime of the application sessions.</dt>
 <dd style="margin-left: 8">
-<br><br> It is possible that SASL will be authenticating a connection and the life of that connection may outlast the life of the access token used to establish it.  This is a common problem in application protocols where connections are long-lived, and not a problem with this mechanism per se. Resource servers may unilaterally disconnect clients in accordance with the application protocol.</dd>
+<br><br> It is possible that SASL will be used to authenticate a connection and the life of that connection may outlast the life of the access token used to establish it.  This is a common problem in application protocols where connections are long-lived, and not a problem with this mechanism per se. Resource servers may unilaterally disconnect clients in accordance with the application protocol.</dd>
 <dt>Access tokens have a lifetime.</dt>
 <dd style="margin-left: 8">
 <br><br> Reducing the lifetime of an access token provides security benefits and OAuth 2.0 introduces refresh tokens to obtain new access token on the fly without any need for a human interaction.  Additionally, a previously obtained access token might be revoked or rendered invalid at any time. The client MAY request a new access token for each connection to a resource server, but it SHOULD cache and re-use valid credentials.</dd>
@@ -1002,6 +1002,11 @@ auth=Bearer vF9dft4qmTc2Nvb3RlckBhdHRhdmlzdGEuY29tCg==^A^A
 <td class="top">
 <a title="Nomura Research Institute, Ltd.">Sakimura, N.</a>, <a title="Ping Identity">Bradley, J.</a>, <a title="Microsoft">Jones, M.B.</a>, <a title="Google">de Medeiros, B.</a> and <a title="Salesforce">C. Mortimore</a>, "<a>OpenID Connect Core 1.0</a>", February 2014.</td>
 </tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-oauth-dyn-reg">[I-D.ietf-oauth-dyn-reg]</b></td>
+<td class="top">
+<a>Richer, J</a>, <a>Jones, M</a>, <a>Bradley, J</a>, <a>Machulak, M</a> and <a>P Hunt</a>, "<a href="http://tools.ietf.org/html/draft-ietf-oauth-dyn-reg-27">OAuth 2.0 Dynamic Client Registration Protocol</a>", Internet-Draft draft-ietf-oauth-dyn-reg-27, March 2015.</td>
+</tr>
 </tbody></table>
 <h1 id="rfc.references.2">
 <a href="#rfc.references.2">8.2.</a> Informative References</h1>
@@ -1046,11 +1051,6 @@ auth=Bearer vF9dft4qmTc2Nvb3RlckBhdHRhdmlzdGEuY29tCg==^A^A
 <td class="top">
 <a>Jones, M</a>, <a>Bradley, J</a> and <a>N Sakimura</a>, "<a href="http://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">JSON Web Token (JWT)</a>", Internet-Draft draft-ietf-oauth-json-web-token-32, December 2014.</td>
 </tr>
-<tr>
-<td class="reference"><b id="I-D.ietf-oauth-dyn-reg">[I-D.ietf-oauth-dyn-reg]</b></td>
-<td class="top">
-<a>Richer, J</a>, <a>Jones, M</a>, <a>Bradley, J</a>, <a>Machulak, M</a> and <a>P Hunt</a>, "<a href="http://tools.ietf.org/html/draft-ietf-oauth-dyn-reg-27">OAuth 2.0 Dynamic Client Registration Protocol</a>", Internet-Draft draft-ietf-oauth-dyn-reg-27, March 2015.</td>
-</tr>
 </tbody></table>
 <h1 id="rfc.appendix.Appendix A">
 <a href="#rfc.appendix.Appendix%20A">Appendix A.</a> Acknowlegements</h1>
@@ -1066,6 +1066,7 @@ auth=Bearer vF9dft4qmTc2Nvb3RlckBhdHRhdmlzdGEuY29tCg==^A^A
 <li>AD feedback from IESG review and comments.  </li>
 <li>Fixed port number in SMTP examples.  </li>
 <li>Minor editorial changes.  </li>
+<li>Dyn-Reg draft becomes normative.  </li>
 <li>Added explicit TLS start indicator in all examples, removed text that said we assume that.  </li>
 </ul>
 

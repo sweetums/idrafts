@@ -4,12 +4,12 @@
 KITTEN                                                          W. Mills
 Internet-Draft                                                 Microsoft
 Intended status: Standards Track                            T. Showalter
-Expires: October 01, 2015                                H.T. Tschofenig
+Expires: October 31, 2015                                H.T. Tschofenig
                                                                 ARM Ltd.
-                                                              April 2015
+                                                                May 2015
 
                    A set of SASL Mechanisms for OAuth
-                  draft-ietf-kitten-sasl-oauth-22.txt
+                  draft-ietf-kitten-sasl-oauth-23.txt
 
 Abstract
 
@@ -47,16 +47,16 @@ Status of this Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 01, 2015.
+   This Internet-Draft will expire on October 31, 2015.
 
 Copyright Notice
 
    Copyright (c) 2015 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
-Mills, Showalter & TschoExpires October 01, 2015                [Page 1]
+Mills, Showalter & TschoExpires October 31, 2015                [Page 1]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -113,9 +113,9 @@ Table of Contents
 
 
 
-Mills, Showalter & TschoExpires October 01, 2015                [Page 2]
+Mills, Showalter & TschoExpires October 31, 2015                [Page 2]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
 
    The core OAuth 2.0 specification [RFC6749] specifies the interaction
@@ -172,9 +172,9 @@ Internet-Draft                 SASL OAuth                     April 2015
 
 
 
-Mills, Showalter & TschoExpires October 01, 2015                [Page 3]
+Mills, Showalter & TschoExpires October 31, 2015                [Page 3]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
                                                               ----+
 
@@ -193,8 +193,8 @@ Internet-Draft                 SASL OAuth                     April 2015
 
       (A)  The client requests authorization from the resource owner.
       The authorization request can be made directly to the resource
-      owner (as shown), or preferably indirectly via the authorization
-      server as an intermediary.
+      owner (as shown), or indirectly via the authorization server as an
+      intermediary.
 
       (B)  The client receives an authorization grant which is a
       credential representing the resource owner's authorization,
@@ -231,9 +231,9 @@ Internet-Draft                 SASL OAuth                     April 2015
 
 
 
-Mills, Showalter & TschoExpires October 01, 2015                [Page 4]
+Mills, Showalter & TschoExpires October 31, 2015                [Page 4]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
 
    Again, steps (E) and (F) are not defined in [RFC6749] (but are
@@ -290,14 +290,14 @@ Internet-Draft                 SASL OAuth                     April 2015
       OAUTH10A: OAuth 1.0a MAC tokens (using the HMAC-SHA1 keyed message
          digest), as described in Section 3.4.2 of [RFC5849].
 
-Mills, Showalter & TschoExpires October 01, 2015                [Page 5]
+Mills, Showalter & TschoExpires October 31, 2015                [Page 5]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
 
    New extensions may be defined to add additional OAuth Access Token
-   Types.  Such a new SASL OAuth mechanism can be added by simply
-   registering the new name(s) and citing this specification for the
+   Types.  Such a new SASL OAuth mechanism can be added by registering
+   the new name(s) with IANA and citing this specification for the
    further definition.
 
    SASL mechanisms using this document as their definition do not
@@ -349,9 +349,9 @@ Internet-Draft                 SASL OAuth                     April 2015
 
 
 
-Mills, Showalter & TschoExpires October 01, 2015                [Page 6]
+Mills, Showalter & TschoExpires October 31, 2015                [Page 6]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
 
    
@@ -408,9 +408,9 @@ Internet-Draft                 SASL OAuth                     April 2015
 
 
 
-Mills, Showalter & TschoExpires October 01, 2015                [Page 7]
+Mills, Showalter & TschoExpires October 31, 2015                [Page 7]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
    reserved for future use:
 
@@ -426,8 +426,8 @@ Internet-Draft                 SASL OAuth                     April 2015
 
 3.2.  Server's Response
 
-   The server validates the response according the specification for the
-   OAuth Access Token Types used.  If the OAuth Access Token Type
+   The server validates the response according to the specification for
+   the OAuth Access Token Types used.  If the OAuth Access Token Type
    utilizes a keyed message digest of the request parameters then the
    client must provide a client response that satisfies the data
    requirements for the scheme in use.
@@ -467,9 +467,9 @@ Internet-Draft                 SASL OAuth                     April 2015
 
 
 
-Mills, Showalter & TschoExpires October 01, 2015                [Page 8]
+Mills, Showalter & TschoExpires October 31, 2015                [Page 8]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
    server.
 
@@ -526,9 +526,9 @@ Internet-Draft                 SASL OAuth                     April 2015
 
 
 
-Mills, Showalter & TschoExpires October 01, 2015                [Page 9]
+Mills, Showalter & TschoExpires October 31, 2015                [Page 9]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
    server does not return a scope the client SHOULD presume an unscoped
    token is required to access the resource.
@@ -585,9 +585,9 @@ Internet-Draft                 SASL OAuth                     April 2015
 
 
 
-Mills, Showalter & TschoExpires October 01, 2015               [Page 10]
+Mills, Showalter & TschoExpires October 31, 2015               [Page 10]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
 
    n,a=user@example.com,^A
@@ -644,9 +644,9 @@ Internet-Draft                 SASL OAuth                     April 2015
 
 
 
-Mills, Showalter & TschoExpires October 01, 2015               [Page 11]
+Mills, Showalter & TschoExpires October 31, 2015               [Page 11]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
 
    [Initial connection and TLS establishment...]
@@ -703,9 +703,9 @@ Internet-Draft                 SASL OAuth                     April 2015
 
 
 
-Mills, Showalter & TschoExpires October 01, 2015               [Page 12]
+Mills, Showalter & TschoExpires October 31, 2015               [Page 12]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
 
    S: * OK IMAP4rev1 Server Ready
@@ -762,9 +762,9 @@ Internet-Draft                 SASL OAuth                     April 2015
    The decoded server error response is:
 
 
-Mills, Showalter & TschoExpires October 01, 2015               [Page 13]
+Mills, Showalter & TschoExpires October 31, 2015               [Page 13]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
 
    {
@@ -819,12 +819,13 @@ Internet-Draft                 SASL OAuth                     April 2015
    The initial client response is:
 
    n,user=someuser@example.com,^A
-   auth=Bearer vF9dft4qmTc2Nvb3RlckBhdHRhdmlzdGEuY29tCg==^A^A
 
-Mills, Showalter & TschoExpires October 01, 2015               [Page 14]
+
+Mills, Showalter & TschoExpires October 31, 2015               [Page 14]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
+   auth=Bearer vF9dft4qmTc2Nvb3RlckBhdHRhdmlzdGEuY29tCg==^A^A
 
    The server returned an error message in the 334 SASL message, the
    client responds with the required dummy response, and the server
@@ -878,15 +879,16 @@ Internet-Draft                 SASL OAuth                     April 2015
       ensure that actions taken in the authenticated channel are
       appropriate to the strength of the presented credential.
 
-   Lifetime of the appliation sessions. 
 
-Mills, Showalter & TschoExpires October 01, 2015               [Page 15]
+Mills, Showalter & TschoExpires October 31, 2015               [Page 15]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
 
-      It is possible that SASL will be authenticating a connection and
-      the life of that connection may outlast the life of the access
+   Lifetime of the application sessions. 
+
+      It is possible that SASL will be used to authenticate a connection
+      and the life of that connection may outlast the life of the access
       token used to establish it.  This is a common problem in
       application protocols where connections are long-lived, and not a
       problem with this mechanism per se.  Resource servers may
@@ -936,13 +938,13 @@ Internet-Draft                 SASL OAuth                     April 2015
 
       For further information: Contact the authors of this document.
 
-      Intended usage: common
 
-
-Mills, Showalter & TschoExpires October 01, 2015               [Page 16]
+Mills, Showalter & TschoExpires October 31, 2015               [Page 16]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
+
+      Intended usage: common
 
       Owner/Change controller: the IESG
 
@@ -969,6 +971,11 @@ Internet-Draft                 SASL OAuth                     April 2015
 
 8.1.  Normative References
 
+   [I-D.ietf-oauth-dyn-reg]
+              Richer, J., Jones, M., Bradley, J., Machulak, M. and P.
+              Hunt, "OAuth 2.0 Dynamic Client Registration Protocol",
+              Internet-Draft draft-ietf-oauth-dyn-reg-27, March 2015.
+
    [OpenID.Core]
               Sakimura, N., Bradley, J., Jones, M.B., de Medeiros, B.
               and C. Mortimore, "OpenID Connect Core 1.0", February
@@ -990,6 +997,12 @@ Internet-Draft                 SASL OAuth                     April 2015
    [RFC5234]  Crocker, D. and P. Overell, "Augmented BNF for Syntax
               Specifications: ABNF", STD 68, RFC 5234, January 2008.
 
+
+Mills, Showalter & TschoExpires October 31, 2015               [Page 17]
+
+Internet-Draft                 SASL OAuth                       May 2015
+
+
    [RFC5246]  Dierks, T. and E. Rescorla, "The Transport Layer Security
               (TLS) Protocol Version 1.2", RFC 5246, August 2008.
 
@@ -997,11 +1010,6 @@ Internet-Draft                 SASL OAuth                     April 2015
               Service Application Program Interface (GSS-API) Mechanisms
               in Simple Authentication and Security Layer (SASL): The
               GS2 Mechanism Family", RFC 5801, July 2010.
-
-Mills, Showalter & TschoExpires October 01, 2015               [Page 17]
-
-Internet-Draft                 SASL OAuth                     April 2015
-
 
    [RFC5849]  Hammer-Lahav, E., "The OAuth 1.0 Protocol", RFC 5849,
               April 2010.
@@ -1016,11 +1024,6 @@ Internet-Draft                 SASL OAuth                     April 2015
               Interchange Format", RFC 7159, March 2014.
 
 8.2.  Informative References
-
-   [I-D.ietf-oauth-dyn-reg]
-              Richer, J., Jones, M., Bradley, J., Machulak, M. and P.
-              Hunt, "OAuth 2.0 Dynamic Client Registration Protocol",
-              Internet-Draft draft-ietf-oauth-dyn-reg-27, March 2015.
 
    [I-D.ietf-oauth-json-web-token]
               Jones, M., Bradley, J. and N. Sakimura, "JSON Web Token
@@ -1054,12 +1057,9 @@ Internet-Draft                 SASL OAuth                     April 2015
 Appendix A.  Acknowlegements
 
 
-
-
-
-Mills, Showalter & TschoExpires October 01, 2015               [Page 18]
+Mills, Showalter & TschoExpires October 31, 2015               [Page 18]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
 
    The authors would like to thank the members of the Kitten working
@@ -1082,6 +1082,8 @@ Appendix B.  Document History
    o  Fixed port number in SMTP examples.
 
    o  Minor editorial changes.
+
+   o  Dyn-Reg draft becomes normative.
 
    o  Added explicit TLS start indicator in all examples, removed text
       that said we assume that.
@@ -1113,13 +1115,13 @@ Appendix B.  Document History
    o  Last call feedback again.  Primarily editorial changes.  Corrected
       examples.
 
-   -15
 
-
-Mills, Showalter & TschoExpires October 01, 2015               [Page 19]
+Mills, Showalter & TschoExpires October 31, 2015               [Page 19]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
+
+   -15
 
    o  Last call feedack on the GS2 stuff being ripped out completely.
 
@@ -1172,13 +1174,13 @@ Internet-Draft                 SASL OAuth                     April 2015
 
    -08
 
-   o  Fixed the channel binding examples for p=$cbtype
 
-
-Mills, Showalter & TschoExpires October 01, 2015               [Page 20]
+Mills, Showalter & TschoExpires October 31, 2015               [Page 20]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
+
+   o  Fixed the channel binding examples for p=$cbtype
 
    o  More tuning of the authcid language and edited and renamed 3.2.1.
 
@@ -1231,13 +1233,13 @@ Internet-Draft                 SASL OAuth                     April 2015
 
    -02
 
-   o  Added the user data element back in.
 
-
-Mills, Showalter & TschoExpires October 01, 2015               [Page 21]
+Mills, Showalter & TschoExpires October 31, 2015               [Page 21]
 
-Internet-Draft                 SASL OAuth                     April 2015
+Internet-Draft                 SASL OAuth                       May 2015
 
+
+   o  Added the user data element back in.
 
    o  Minor editorial changes.
 
@@ -1290,6 +1292,4 @@ Authors' Addresses
 
 
 
-
-
-Mills, Showalter & TschoExpires October 01, 2015               [Page 22]
+Mills, Showalter & TschoExpires October 31, 2015               [Page 22]

@@ -153,7 +153,7 @@ Hence, this document  takes
 <list style="empty"> 
 <t>  (A)  The client requests authorization from the resource owner.  The
         authorization request can be made directly to the resource owner
-        (as shown), or preferably indirectly via the authorization
+        (as shown), or indirectly via the authorization
         server as an intermediary.</t>
 <t>   (B)  The client receives an authorization grant which is a credential
         representing the resource owner's authorization, expressed using
@@ -229,7 +229,7 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
 	</t></list>
 
     New extensions may be defined to add additional OAuth Access Token Types. Such a new SASL OAuth 
-	mechanism can be added by simply registering the new name(s) and citing this
+	mechanism can be added by registering the new name(s) with IANA and citing this
 	specification for the further definition.  
      </t>
 
@@ -349,7 +349,7 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
 
       <section title="Server's Response">
       
-      <t>The server validates the response according the specification for the
+      <t>The server validates the response according to the specification for the
    	OAuth Access Token Types used.  If the OAuth Access Token Type utilizes a keyed message 
 	digest of the request parameters then the client must provide a client
    	response that satisfies the data requirements for the scheme in use. 
@@ -809,9 +809,9 @@ auth=Bearer vF9dft4qmTc2Nvb3RlckBhdHRhdmlzdGEuY29tCg==^A^A
    resource server should ensure that actions taken in the authenticated channel
    are appropriate to the strength of the presented credential.</t>
 	  
-	  <t hangText="Lifetime of the appliation sessions."><vspace blankLines="1"/> 
+	  <t hangText="Lifetime of the application sessions."><vspace blankLines="1"/> 
 	  It is possible that 
-	  SASL will be authenticating a connection and the
+	  SASL will be used to authenticate a connection and the
    life of that connection may outlast the life of the access token used
    to establish it.  This is a common problem in application protocols
    where connections are long-lived, and not a problem with this
@@ -959,6 +959,41 @@ auth=Bearer vF9dft4qmTc2Nvb3RlckBhdHRhdmlzdGEuY29tCg==^A^A
                 type="HTML" />
       </reference>
 
+<reference anchor='I-D.ietf-oauth-dyn-reg'>
+<front>
+<title>OAuth 2.0 Dynamic Client Registration Protocol</title>
+
+<author initials='J' surname='Richer' fullname='Justin Richer'>
+    <organization />
+</author>
+
+<author initials='M' surname='Jones' fullname='Michael Jones'>
+    <organization />
+</author>
+
+<author initials='J' surname='Bradley' fullname='John Bradley'>
+    <organization />
+</author>
+
+<author initials='M' surname='Machulak' fullname='Maciej Machulak'>
+    <organization />
+</author>
+
+<author initials='P' surname='Hunt' fullname='Phil Hunt'>
+    <organization />
+</author>
+
+<date month='March' day='25' year='2015' />
+
+<abstract><t>This specification defines mechanisms for dynamically registering OAuth 2.0 clients with authorization servers.  Registration requests send a set of desired client metadata values to the authorization server.  The resulting registration responses return a client identifier to use at the authorization server and the client metadata values registered for the client.  The client can then use this registration information to communicate with the authorization server using the OAuth 2.0 protocol.  This specification also defines a set of common client metadata fields and values for clients to use during registration.</t></abstract>
+
+</front>
+
+<seriesInfo name='Internet-Draft' value='draft-ietf-oauth-dyn-reg-27' />
+<format type='TXT'
+        target='http://www.ietf.org/internet-drafts/draft-ietf-oauth-dyn-reg-27.txt' />
+</reference>
+
     </references>
 
     <references title="Informative References">
@@ -997,40 +1032,6 @@ auth=Bearer vF9dft4qmTc2Nvb3RlckBhdHRhdmlzdGEuY29tCg==^A^A
         target='http://www.ietf.org/internet-drafts/draft-ietf-oauth-json-web-token-32.txt' />
 </reference>
 
-<reference anchor='I-D.ietf-oauth-dyn-reg'>
-<front>
-<title>OAuth 2.0 Dynamic Client Registration Protocol</title>
-
-<author initials='J' surname='Richer' fullname='Justin Richer'>
-    <organization />
-</author>
-
-<author initials='M' surname='Jones' fullname='Michael Jones'>
-    <organization />
-</author>
-
-<author initials='J' surname='Bradley' fullname='John Bradley'>
-    <organization />
-</author>
-
-<author initials='M' surname='Machulak' fullname='Maciej Machulak'>
-    <organization />
-</author>
-
-<author initials='P' surname='Hunt' fullname='Phil Hunt'>
-    <organization />
-</author>
-
-<date month='March' day='25' year='2015' />
-
-<abstract><t>This specification defines mechanisms for dynamically registering OAuth 2.0 clients with authorization servers.  Registration requests send a set of desired client metadata values to the authorization server.  The resulting registration responses return a client identifier to use at the authorization server and the client metadata values registered for the client.  The client can then use this registration information to communicate with the authorization server using the OAuth 2.0 protocol.  This specification also defines a set of common client metadata fields and values for clients to use during registration.</t></abstract>
-
-</front>
-
-<seriesInfo name='Internet-Draft' value='draft-ietf-oauth-dyn-reg-27' />
-<format type='TXT'
-        target='http://www.ietf.org/internet-drafts/draft-ietf-oauth-dyn-reg-27.txt' />
-</reference>
 
 <!--
       <?rfc include='http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-oauth-json-web-token.xml' ?>
@@ -1065,6 +1066,8 @@ auth=Bearer vF9dft4qmTc2Nvb3RlckBhdHRhdmlzdGEuY29tCg==^A^A
           <t> Fixed port number in SMTP examples.           
           </t>
           <t> Minor editorial changes.
+          </t>
+          <t> Dyn-Reg draft becomes normative.
           </t>
           <t> Added explicit TLS start indicator in all examples, removed text that said we assume that.           
           </t>
