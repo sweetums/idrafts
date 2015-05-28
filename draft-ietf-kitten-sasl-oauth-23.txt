@@ -399,18 +399,25 @@ Internet-Draft                 SASL OAuth                       May 2015
 3.1.1.  Reserved Key/Values
 
    In these mechanisms values for path, query string and post body are
-   assigned default values.  OAuth authorization schemes MAY define
-   usage of these in the SASL context and extend this specification.
-   For OAuth Access Token Types that include a keyed message digest of
-   the request the default values MUST be used unless explicit values
-   are provided in the client response.  The following key values are
-   reserved for future use:
+
+
+
+
+
+
 
 
 
 Mills, Showalter & TschoExpires October 31, 2015                [Page 7]
 
 Internet-Draft                 SASL OAuth                       May 2015
+
+   assigned default values.  OAuth authorization schemes MAY define
+   usage of these in the SASL context and extend this specification.
+   For OAuth Access Token Types that include a keyed message digest of
+   the request the default values MUST be used unless explicit values
+   are provided in the client response.  The following key values are
+   reserved for future use:
 
       
 
@@ -458,19 +465,18 @@ Internet-Draft                 SASL OAuth                       May 2015
 
 3.2.1.  OAuth Identifiers in the SASL Context
 
-   In the OAuth framework the client may be authenticated by the
-   authorization server and the resource owner is authenticated to the
-   authorization server.  OAuth access tokens may contain information
-   about the authentication of the resource owner and about the client
-   and may therefore make this information accessible to the resource
-
-
 
 
 Mills, Showalter & TschoExpires October 31, 2015                [Page 8]
 
 Internet-Draft                 SASL OAuth                       May 2015
 
+
+   In the OAuth framework the client may be authenticated by the
+   authorization server and the resource owner is authenticated to the
+   authorization server.  OAuth access tokens may contain information
+   about the authentication of the resource owner and about the client
+   and may therefore make this information accessible to the resource
    server.
 
    If both identifiers are needed by an application the developer will
@@ -492,8 +498,10 @@ Internet-Draft                 SASL OAuth                       May 2015
       scope (OPTIONAL): An OAuth scope which is valid to access the
          service.  This may be omitted which implies that unscoped
          tokens are required.  If a scope is specified then a single
-         scope is preferred, use of a space separated list of scopes is
-         NOT RECOMMENDED.
+         scope is preferred.  At the time this document was written
+         there are several implementations that do not properly support
+         space separated lists of scopes, so the use of a space
+         separated list of scopes is NOT RECOMMENDED.
 
       openid-configuration (OPTIONAL): The URL for a document following
          the OpenID Provider Configuration Information schema as
@@ -516,20 +524,16 @@ Internet-Draft                 SASL OAuth                       May 2015
 
          The use of the 'offline_access' scope, as defined in
          [OpenID.Core] is RECOMMENDED to give clients the capability to
-         explicitly request a refresh token.
-
-   If the resource server provides a scope then the client MUST always
-   request scoped tokens from the token endpoint.  If the resource
-
-
-
-
 
 
 Mills, Showalter & TschoExpires October 31, 2015                [Page 9]
 
 Internet-Draft                 SASL OAuth                       May 2015
 
+         explicitly request a refresh token.
+
+   If the resource server provides a scope then the client MUST always
+   request scoped tokens from the token endpoint.  If the resource
    server does not return a scope the client SHOULD presume an unscoped
    token is required to access the resource.
 
@@ -574,10 +578,6 @@ Internet-Draft                 SASL OAuth                       May 2015
    point, on an IMAP server running on port 143 and given the OAuth 1.0a
    style authorization request (with %x01 shown as ^A and line breaks
    added for readability) below:
-
-
-
-
 
 
 

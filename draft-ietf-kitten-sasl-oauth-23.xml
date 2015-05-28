@@ -406,8 +406,10 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
             </t>
 	    <t hangText="scope (OPTIONAL):">An OAuth scope which is valid to access the service. 
 				This may be omitted which implies that unscoped tokens are required.
-				If a scope is specified then a single scope is 
-				preferred, use of a space separated list of scopes is NOT RECOMMENDED.
+				If a scope is specified then a single scope is preferred. At the time 
+				this document was written there are several implementations that do 
+				not properly support space separated lists of scopes, so the use of 
+				a space separated list of scopes is NOT RECOMMENDED.
                   </t>
 	    <t hangText="openid-configuration (OPTIONAL):">The URL for a document following the 
 	    OpenID Provider Configuration Information schema as described in OpenID Connect Discovery 
