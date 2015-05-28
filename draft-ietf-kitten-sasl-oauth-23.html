@@ -567,7 +567,7 @@
 <p> </p>
 </li></ul>
 
-<p> New extensions may be defined to add additional OAuth Access Token Types. Such a new SASL OAuth mechanism can be added by registering the new name(s) with IANA and citing this specification for the further definition.  </p>
+<p> New extensions may be defined to add additional OAuth Access Token Types. Such a new SASL OAuth mechanism can be added by registering the new name(s) with IANA in the SASL Mechanisms registry and citing this specification for the further definition.  </p>
 <p id="rfc.section.3.p.2">SASL mechanisms using this document as their definition do not provide a data security layer; that is, they cannot provide integrity or confidentiality protection for application messages after the initial authentication.  If such protection is needed, TLS or some similar solution should be used.  Additionally, for the two mechanisms specified in this document, TLS MUST be used for OAUTHBEARER to protect the bearer token; for OAUTH10A the use of TLS is RECOMMENDED.  </p>
 <p id="rfc.section.3.p.3">These mechanisms are client initiated and lock-step, the server always replying to a client message.  In the case where the client has and correctly uses a valid token the flow is: </p>
 
@@ -611,7 +611,7 @@
 <dt>host:</dt>
 <dd style="margin-left: 8">Contains the host name to which the client connected. In an HTTP context this is the value of the HTTP Host header. </dd>
 <dt>port:</dt>
-<dd style="margin-left: 8">Contains the port number represented as a decimal positive integer string without leading zeros to which the client connected.</dd>
+<dd style="margin-left: 8">Contains the destination port that the client connected to, represented as a decimal positive integer string without leading zeros.</dd>
 </dl>
 <p> </p>
 </li></ul>
@@ -629,9 +629,9 @@
 <dt>path (RESERVED):</dt>
 <dd style="margin-left: 8">HTTP path data, the default value is "/".  </dd>
 <dt>post (RESERVED):</dt>
-<dd style="margin-left: 8">HTTP post data, the default value is "".  </dd>
+<dd style="margin-left: 8">HTTP post data, the default value is the empty string ("").  </dd>
 <dt>qs (RESERVED):</dt>
-<dd style="margin-left: 8">The HTTP query string, the default value is "".  </dd>
+<dd style="margin-left: 8">The HTTP query string, the default value is the empty string ("").  </dd>
 </dl>
 <p> </p>
 </li></ul>
@@ -640,7 +640,7 @@
 <h1 id="rfc.section.3.2">
 <a href="#rfc.section.3.2">3.2.</a> Server's Response</h1>
 <p id="rfc.section.3.2.p.1">The server validates the response according to the specification for the OAuth Access Token Types used.  If the OAuth Access Token Type utilizes a keyed message digest of the request parameters then the client must provide a client response that satisfies the data requirements for the scheme in use.  </p>
-<p id="rfc.section.3.2.p.2">The server fully validates the client response before generating a server response; this will necessarily include the validation steps listed in the specification for the OAuth Access Token Type used.  However, additional validation steps may be needed, depending on the particular application protocol making use of SASL.  In particular, values included as kvpairs in the client response (such as host and port) which correspond to values known to the application by some other mechanism (such as an application protocol data unit or pre-configured values) MUST be validated to match between the initial client response and the the other source(s) of such information.  As a concrete example, when SASL is used over IMAP to an IMAP server for a single domain the hostname can be available via configuration; this hostname must be validated to match the value sent in the 'host' kvpair.  </p>
+<p id="rfc.section.3.2.p.2">The server fully validates the client response before generating a server response; this will necessarily include the validation steps listed in the specification for the OAuth Access Token Type used.  However, additional validation steps may be needed, depending on the particular application protocol making use of SASL.  In particular, values included as kvpairs in the client response (such as host and port) which correspond to values known to the application server by some other mechanism (such as an application protocol data unit or pre-configured values) MUST be validated to match between the initial client response and the the other source(s) of such information.  As a concrete example, when SASL is used over IMAP to an IMAP server for a single domain the hostname can be available via configuration; this hostname must be validated to match the value sent in the 'host' kvpair.  </p>
 <p id="rfc.section.3.2.p.3">The server responds to a successfully verified client message by completing the SASL negotiation. The authenticated identity reported by the SASL mechanism is the identity securely established for the client with the OAuth credential.  The application, not the SASL mechanism, based on local access policy determines whether the identity reported by the mechanism is allowed access to the requested resource.  Note that the semantics of the authzid is specified by the SASL framework <a href="#RFC4422">[RFC4422]</a>.</p>
 <h1 id="rfc.section.3.2.1">
 <a href="#rfc.section.3.2.1">3.2.1.</a> OAuth Identifiers in the SASL Context</h1>

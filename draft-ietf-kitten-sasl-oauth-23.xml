@@ -229,7 +229,7 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
 	</t></list>
 
     New extensions may be defined to add additional OAuth Access Token Types. Such a new SASL OAuth 
-	mechanism can be added by registering the new name(s) with IANA and citing this
+	mechanism can be added by registering the new name(s) with IANA in the SASL Mechanisms registry and citing this
 	specification for the further definition.  
      </t>
 
@@ -306,9 +306,8 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
 	                                   if this OAuth exchange was being carried out over HTTP.</t>
             <t hangText="host:">Contains the host name to which the client connected. In 
                                 an HTTP context this is the value of the HTTP Host header. </t>
-            <t hangText="port:">Contains the port number represented as a
-				decimal positive integer string without leading zeros 
-				to which the client connected.</t>
+            <t hangText="port:">Contains the destination port that the client connected to, represented as a
+				decimal positive integer string without leading zeros.</t>
           </list>
         </t></list>
 	</t>
@@ -335,9 +334,9 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
 		  </t>
 		  <t hangText="path (RESERVED):">HTTP path data, the default value is "/".
 		  </t>
-		  <t hangText="post (RESERVED):">HTTP post data, the default value is "".
+		  <t hangText="post (RESERVED):">HTTP post data, the default value is the empty string ("").
 		  </t>
-  	          <t hangText="qs (RESERVED):">The HTTP query string, the default value is "".  
+  	          <t hangText="qs (RESERVED):">The HTTP query string, the default value is the empty string ("").  
   		  </t>
 		</list>
 	    </t></list>
@@ -362,7 +361,7 @@ the Dynamic Client Registration protocol  <xref target="I-D.ietf-oauth-dyn-reg"/
 	  validation steps may be needed, depending on the particular application
 	  protocol making use of SASL.  In particular, values included as kvpairs in
 	  the client response (such as host and port) which correspond to values
-	  known to the application by some other mechanism (such as an application
+	  known to the application server by some other mechanism (such as an application
 	  protocol data unit or pre-configured values) MUST be validated to match
 	  between the initial client response and the the other source(s) of such
 	  information.  As a concrete example, when SASL is used over IMAP to an IMAP 
