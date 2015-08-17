@@ -26,7 +26,7 @@
           <country/>
         </postal>
         <phone/>
-        <email>wimills@microsoft.com</email>
+        <email>wmills_92105@yahoo.com</email>
       </address>
     </author>
     <author fullname="Tim Showalter" initials="T." surname="Showalter">
@@ -77,10 +77,12 @@ Original:
 This document defines how an application client uses credentials
 obtained via OAuth over the Simple Authentication and Security Layer
 (SASL) to access a protected resource at a resource serve.
+
+[wmills] yes, corrected.
 -->
        <t>This document defines how an application client uses credentials obtained via OAuth
 	 over the Simple Authentication and Security Layer (SASL)
-	 to access a protected resource at a resource serve.  Thereby, it enables
+	 to access a protected resource at a resource server.  Thereby, it enables
 	 schemes defined within the OAuth framework for non-HTTP-based application protocols.
        </t> 
        <t>Clients typically store the user's long-term credential. This does, however, lead to 
@@ -111,12 +113,16 @@ Perhaps:
    protected resource, either by orchestrating an approval interaction on
    behalf of a resource owner or by allowing the third-party application to
    obtain access on its own behalf.
+
+[wmills] accepted your change.
 -->
 
 	 <t>OAuth 1.0a <xref target="RFC5849"/> and OAuth 2.0 <xref target="RFC6749"/> are protocol frameworks that enable a third-party
-	 application to obtain limited access to a protected resource, either on
-	 behalf of a resource owner by orchestrating an approval interaction, or by allowing the
+	 application to obtain limited access to a protected resource, either 
+	 by orchestrating an approval interaction on
+	 behalf of a resource owner or by allowing the
 	 third-party application to obtain access on its own behalf. </t>
+
 <!-- [rfced] Throughout the text, the following terminology appears to be used 
 inconsistently.  
 
@@ -125,8 +131,17 @@ consistent.
 
 - Bearer Token vs. bearer token (note: appears as lowercase in RFC 6750)
 - OAuth 2.0 Bearer Token vs. OAuth 2.0 bearer token 
+
+[wmills] OK fixed these.
+
 - GS2 header vs. gs2-header
+
+[wmills] ....
+
 - OAuth 1.0 vs. OAuth 1.0a
+
+[wmills] corrected
+
 -->
 
 	 <t>The core OAuth 2.0
@@ -214,7 +229,7 @@ consistent.
 
  <t>
  Again, steps (E) and (F) are not defined in <xref target="RFC6749"/> (but are
- described in, for example, <xref target="RFC6750"/> for the OAuth Bearer Token
+ described in, for example, <xref target="RFC6750"/> for the OAuth bearer token
  instead) and are the main functionality specified within this
  document. Consequently, the message exchange shown in <xref target="overview"/> is the
  result of this specification. The client will generally need to
@@ -231,7 +246,7 @@ consistent.
  the Dynamic Client Registration protocol <xref target="RFC7591"/>.
        </t>
 
-	   <t>OAuth 1.0 follows a similar model but uses a different terminology and 
+	   <t>OAuth 1.0a follows a similar model but uses a different terminology and 
 	   does not separate the resource server from the authorization server.</t>
 
      </section>
@@ -288,9 +303,12 @@ always replying to a client message.
 Perhaps:
 These mechanisms are client initiated and in lockstep, and the server
 is always replying to a client message. 
+
+[wmills] yes thanks
+
 -->
 
-     <t>These mechanisms are client initiated and lock-step, the server always replying to a client 
+     <t>These mechanisms are client initiated and lock-step, and the server always replying to a client 
 	message.  In the case where the client has and correctly uses a valid token, the flow is:
 
 	<list style="numbers">
@@ -330,7 +348,7 @@ is always replying to a client message.
   value          = *(VCHAR / SP / HTAB / CR / LF )
   kvpair         = key "=" value kvsep
 ;;gs2-header     = See RFC 5801
-  client_resp    = (gs2-header kvsep *kvpair kvsep) / kvsep]]></artwork>
+  client-resp    = (gs2-header kvsep *kvpair kvsep) / kvsep]]></artwork>
         </figure>
 
 <!-- [rfced] In the ABNF, client_resp give this error 
@@ -342,6 +360,8 @@ May it be changed to client-resp or otherwise?
 
 Original:
      client_resp    = (gs2-header kvsep *kvpair kvsep) / kvsep
+
+[wmills] fixed
 -->
 	<t>The GS2 header MAY include the username associated with the resource being accessed, the "authzid".  
            It is worth noting that application protocols are allowed to require an authzid, as are specific server implementations. 
@@ -456,10 +476,12 @@ formatted error result, and fails the authentication.
 Updated:
 For a failed authentication, the server returns an error result 
 in JSON [RFC7159] format and fails the authentication. 
+
+[wmills] OK
 -->
 
-	<t>For a failed authentication, the server returns a JSON <xref target="RFC7159"/> 
-	formatted error result and fails the authentication.  The error result consists 
+	<t>For a failed authentication, the server returns an error result in JSON <xref target="RFC7159"/> 
+	format and fails the authentication.  The error result consists 
 	of the following values:
 
 	<list><t>
@@ -486,6 +508,9 @@ openid-configuration (OPTIONAL):  The URL for a document following
          the OpenID Provider Configuration Information schema as
          described in OpenID Connect Discovery (OIDCD)
          [OpenID.Discovery] section 3 that is appropriate for the user.
+
+[wmills] I think this is correct as section 3 defines the schema, and we're talking about
+required elements in the schema.
 
 -->
 	    <t hangText="openid-configuration (OPTIONAL):">The URL for a document following the 
@@ -548,9 +573,12 @@ send either an additional client response consisting of a single %x01
 (control A) character to the server in order to allow the server to
 finish the exchange or send a SASL cancellation token as generally
 defined in section 3.5 of SASL [RFC4422].
+
+[wmills] changing "cancellation token" to "abort message" which is consistent with 3.5 of 4422
+
 -->
-	cancellation token as generally defined in Section 3.5 of SASL <xref target="RFC4422"/>.
-	A specific example of a cancellation token can be found in IMAP <xref target="RFC3501"/>, 
+	abort message as generally defined in Section 3.5 of SASL <xref target="RFC4422"/>.
+	A specific example of an abort message can be found in IMAP <xref target="RFC3501"/>, 
 	Section 6.2.2.
 	</t>
       </section>
@@ -585,11 +613,13 @@ Using the example in the OAuth 1.0a specification as a starting point,
 below is the authorization request in OAuth 1.0a style (with %x01 shown
 as ^A and line breaks added for readability), assuming it is on an IMAP
 server running on port 143:
+
+[wmills] accepted your change
 -->
-        <t> Using the example in the OAuth 1.0a specification 
-        as a starting point, on an IMAP server running on port 143 and given
-        the OAuth 1.0a style authorization request (with %x01 shown as ^A and line breaks added 
-	for readability) below: 
+        <t>Using the example in the OAuth 1.0a specification as a starting point,
+below is the authorization request in OAuth 1.0a style (with %x01 shown
+as ^A and line breaks added for readability), assuming it is on an IMAP
+server running on port 143:
 	</t>
 
 <figure>
@@ -607,7 +637,7 @@ auth=OAuth realm="Example",
 ]]></artwork>
           </figure>
 
-        <t>The signature base string would be constructed per the OAuth 1.0 
+        <t>The signature base string would be constructed per the OAuth 1.0a 
 	specification <xref target="RFC5849" /> with the following things noted:
 	<list style="symbols">
 		<t>The method value is defaulted to POST.</t>
@@ -634,9 +664,9 @@ A1%26oauth_timestamp%3D137131201%26oauth_token%3Dkkk9d7dh3k39sjv7
     <section title="Examples">
       <t>These examples illustrate exchanges between IMAP and SMTP clients and servers.  All
          IMAP examples use SASL-IR  <xref target="RFC4959"/> and send payload in the initial 
-         client response.   The Bearer Token examples assume encrypted transport; if the 
+         client response.   The bearer token examples assume encrypted transport; if the 
          underlying connection is not already TLS, then STARTTLS MUST be used as TLS is required in the 
-         Bearer Token specification. </t>
+         bearer token specification. </t>
 
       <t>Note to implementers:  The SASL OAuth method names are case insensitive.  One example
 	uses "Bearer" but that could as easily be "bearer", "BEARER", or "BeArEr".
@@ -673,7 +703,7 @@ auth=Bearer vF9dft4qmTc2Nvb3RlckBhbHRhdmlzdGEuY29tCg==^A^A
           </figure>
 
         <t>The same credential used in an SMTP exchange is shown below.
-	Again, this example assumes that TLS is already established per the Bearer Token 
+	Again, this example assumes that TLS is already established per the bearer token 
 	specification requirements.</t>
 
           <figure>
@@ -825,7 +855,7 @@ S: t1 NO SASL authentication failed
       <section title="SMTP Example of a Failed Negotiation">
         <t>This example shows an authorization failure in an SMTP exchange.  
 	TLS negotiation is not shown, but as noted above, it is required for the use
-	of Bearer Tokens.</t>
+	of bearer tokens.</t>
 
           <figure>
             <artwork><![CDATA[
@@ -884,12 +914,12 @@ auth=Bearer vF9dft4qmTc2Nvb3RlckBhdHRhdmlzdGEuY29tCg==^A^A
     <section title="Security Considerations">
     
     <t>OAuth 1.0a and OAuth 2.0 allow for a variety of deployment scenarios, and the security
- properties of these profiles vary. As shown in <xref target="overview"/>, this specification is aimed to be integrated into a larger OAuth deployment. Application developers therefore need to understand their security requirements based on a threat assessment before selecting a specific SASL OAuth mechanism. For OAuth 2.0, a detailed security document <xref target="RFC6819"/> provides guidance to select those OAuth 2.0 components that help to mitigate threats for a given deployment. For OAuth 1.0a, Section 4 of <xref target="RFC5849"/> provides guidance specific to OAuth 1.0.</t>
+ properties of these profiles vary. As shown in <xref target="overview"/>, this specification is aimed to be integrated into a larger OAuth deployment. Application developers therefore need to understand their security requirements based on a threat assessment before selecting a specific SASL OAuth mechanism. For OAuth 2.0, a detailed security document <xref target="RFC6819"/> provides guidance to select those OAuth 2.0 components that help to mitigate threats for a given deployment. For OAuth 1.0a, Section 4 of <xref target="RFC5849"/> provides guidance specific to OAuth 1.0a.</t>
 
    <t>This document specifies two SASL  Mechanisms for OAuth and each comes with different security properties. 
    
    <list style="hanging">
-	  <t hangText="OAUTHBEARER:">This mechanism borrows from OAuth 2.0 bearer tokens <xref target="RFC6750"/>. It relies on the application using TLS to protect the OAuth 2.0 Bearer Token exchange; without TLS usage at the application layer, this method is completely insecure. Consequently, TLS MUST be provided by the application when choosing this authentication mechanism.</t>
+	  <t hangText="OAUTHBEARER:">This mechanism borrows from OAuth 2.0 bearer tokens <xref target="RFC6750"/>. It relies on the application using TLS to protect the OAuth 2.0 bearer token exchange; without TLS usage at the application layer, this method is completely insecure. Consequently, TLS MUST be provided by the application when choosing this authentication mechanism.</t>
 	  
 	  <t hangText="OAUTH10A:">This mechanism reuses OAuth 1.0a MAC tokens (using the HMAC-SHA1 keyed message digest), as described in Section 3.4.2 of <xref target="RFC5849"/>. To compute the keyed message digest in the same way as in RFC 5839, this specification conveys additional parameters between the client and the server. This SASL mechanism only supports client authentication. If server-side authentication is desirable, then it must be provided by the application underneath the SASL layer. The use of TLS is strongly RECOMMENDED. 
 	     </t>
@@ -1011,6 +1041,8 @@ Perhaps
               Connect Discovery 1.0", November 2014,
               <http://openid.net/specs/
               openid-connect-discovery-1_0.html>.
+
+[wmills] thank you.
 --> 
 
 <reference anchor="OpenID.Discovery" target="http://openid.net/specs/openid-connect-discovery-1_0.html">
